@@ -35,11 +35,13 @@ func _input(event):
 
 func mouse_enter_handler():
 	is_selected = true
+	position = Vector2(position.x, position.y-Constants.Tile.SELECT_HEIGHT)
 	print_debug("entered")
 	pass
 	
 func mouse_exit_handler():
 	is_selected = false
+	position = Vector2(position.x, position.y+Constants.Tile.SELECT_HEIGHT)
 	print_debug("leaved")
 	pass
 		

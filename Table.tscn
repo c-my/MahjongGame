@@ -1,0 +1,129 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://BottomHand.gd" type="Script" id=1]
+[ext_resource path="res://Table.gd" type="Script" id=2]
+[ext_resource path="res://OppositeHand.gd" type="Script" id=3]
+[ext_resource path="res://LeftHand.gd" type="Script" id=4]
+[ext_resource path="res://RightHand.gd" type="Script" id=5]
+[ext_resource path="res://Asset/TableBackground.png" type="Texture" id=6]
+[ext_resource path="res://Asset/Timer/TimerLeft.png" type="Texture" id=7]
+[ext_resource path="res://Asset/Timer/TimerBackground.png" type="Texture" id=8]
+[ext_resource path="res://Asset/Timer/TimerOpposite.png" type="Texture" id=9]
+[ext_resource path="res://Asset/Timer/TimerBottom.png" type="Texture" id=10]
+[ext_resource path="res://Asset/Timer/TimerRight.png" type="Texture" id=11]
+[ext_resource path="res://Timer.gd" type="Script" id=12]
+
+[node name="Table" type="Node2D"]
+script = ExtResource( 2 )
+
+[node name="Background" type="TextureRect" parent="."]
+margin_right = 1920.0
+margin_bottom = 1080.0
+texture = ExtResource( 6 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Timer" type="TextureRect" parent="."]
+margin_right = 132.0
+margin_bottom = 131.0
+texture = ExtResource( 8 )
+script = ExtResource( 12 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TimerLeft" type="TextureRect" parent="Timer"]
+visible = false
+margin_left = -164.0
+margin_top = -174.0
+margin_right = 40.0
+margin_bottom = 251.0
+texture = ExtResource( 7 )
+
+[node name="TimerRight" type="TextureRect" parent="Timer"]
+visible = false
+margin_left = 94.0
+margin_top = -173.0
+margin_right = 298.0
+margin_bottom = 252.0
+texture = ExtResource( 11 )
+
+[node name="TimerOpposite" type="TextureRect" parent="Timer"]
+visible = false
+margin_left = -119.0
+margin_top = -166.0
+margin_right = 303.0
+margin_bottom = 35.0
+texture = ExtResource( 9 )
+
+[node name="TimerBottom" type="TextureRect" parent="Timer"]
+margin_left = -122.0
+margin_top = 92.0
+margin_right = 304.0
+margin_bottom = 295.0
+texture = ExtResource( 10 )
+
+[node name="BottomHand" type="HBoxContainer" parent="."]
+margin_left = 155.239
+margin_top = 303.084
+margin_right = 195.239
+margin_bottom = 343.084
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="OppositeHand" type="Node2D" parent="."]
+position = Vector2( 763.265, 222.789 )
+script = ExtResource( 3 )
+
+[node name="LeftHand" type="Node2D" parent="."]
+position = Vector2( 265.815, 355.45 )
+script = ExtResource( 4 )
+
+[node name="RightHand" type="Node2D" parent="."]
+position = Vector2( 1647.43, 380.177 )
+script = ExtResource( 5 )
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+custom_constants/separation = 10
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="Button" parent="HBoxContainer"]
+margin_right = 64.0
+margin_bottom = 40.0
+text = "Add Tile"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button2" type="Button" parent="HBoxContainer"]
+margin_left = 74.0
+margin_right = 189.0
+margin_bottom = 40.0
+text = "Add to Oppotite"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button3" type="Button" parent="HBoxContainer"]
+margin_left = 199.0
+margin_right = 281.0
+margin_bottom = 40.0
+text = "Add to Left"
+
+[node name="Button4" type="Button" parent="HBoxContainer"]
+margin_left = 291.0
+margin_right = 381.0
+margin_bottom = 40.0
+text = "Add to Right"
+[connection signal="pressed" from="HBoxContainer/Button" to="." method="_on_Button_pressed"]
+[connection signal="pressed" from="HBoxContainer/Button2" to="." method="_on_Button2_pressed"]
+[connection signal="pressed" from="HBoxContainer/Button3" to="." method="_on_Button3_pressed"]
+[connection signal="pressed" from="HBoxContainer/Button4" to="." method="_on_Button4_pressed"]
