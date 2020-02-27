@@ -18,6 +18,15 @@ _global_script_class_icons={
 config/name="MahjongGame"
 config/icon="res://icon.png"
 
+[autoload]
+
+Constants="*res://Constants.gd"
+
+[display]
+
+window/size/width=1920
+window/size/height=1080
+
 [rendering]
 
 environment/default_environment="res://default_env.tres"
