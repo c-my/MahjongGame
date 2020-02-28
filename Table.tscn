@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://BottomHand.gd" type="Script" id=1]
 [ext_resource path="res://Table.gd" type="Script" id=2]
@@ -12,6 +12,10 @@
 [ext_resource path="res://Asset/Timer/TimerBottom.png" type="Texture" id=10]
 [ext_resource path="res://Asset/Timer/TimerRight.png" type="Texture" id=11]
 [ext_resource path="res://Timer.gd" type="Script" id=12]
+[ext_resource path="res://BottomDropArea.gd" type="Script" id=13]
+[ext_resource path="res://OppositeDropArea.gd" type="Script" id=14]
+[ext_resource path="res://RightDropArea.gd" type="Script" id=15]
+[ext_resource path="res://LeftDropArea.gd" type="Script" id=16]
 
 [node name="Table" type="Node2D"]
 script = ExtResource( 2 )
@@ -76,7 +80,7 @@ __meta__ = {
 }
 
 [node name="OppositeHand" type="Node2D" parent="."]
-position = Vector2( 763.265, 222.789 )
+position = Vector2( 896.551, 142.818 )
 script = ExtResource( 3 )
 
 [node name="LeftHand" type="Node2D" parent="."]
@@ -123,7 +127,51 @@ margin_left = 291.0
 margin_right = 381.0
 margin_bottom = 40.0
 text = "Add to Right"
+
+[node name="Button5" type="Button" parent="HBoxContainer"]
+margin_left = 391.0
+margin_right = 531.0
+margin_bottom = 40.0
+text = "AddBoomtDropArea"
+
+[node name="Button6" type="Button" parent="HBoxContainer"]
+margin_left = 541.0
+margin_right = 644.0
+margin_bottom = 40.0
+text = "AddOppoDrop"
+
+[node name="Button7" type="Button" parent="HBoxContainer"]
+margin_left = 654.0
+margin_right = 754.0
+margin_bottom = 40.0
+text = "AddRightDrop"
+
+[node name="Button8" type="Button" parent="HBoxContainer"]
+margin_left = 764.0
+margin_right = 856.0
+margin_bottom = 40.0
+text = "AddLeftDrop"
+
+[node name="BottomDropArea" type="Node2D" parent="."]
+position = Vector2( 621.315, 779.207 )
+script = ExtResource( 13 )
+
+[node name="OppositeDropArea" type="Node2D" parent="."]
+position = Vector2( 1222.13, 256.318 )
+script = ExtResource( 14 )
+
+[node name="LeftDropArea" type="Node2D" parent="."]
+position = Vector2( 383.452, 332.188 )
+script = ExtResource( 16 )
+
+[node name="RightDropArea" type="Node2D" parent="."]
+position = Vector2( 1570.72, 658.225 )
+script = ExtResource( 15 )
 [connection signal="pressed" from="HBoxContainer/Button" to="." method="_on_Button_pressed"]
 [connection signal="pressed" from="HBoxContainer/Button2" to="." method="_on_Button2_pressed"]
 [connection signal="pressed" from="HBoxContainer/Button3" to="." method="_on_Button3_pressed"]
 [connection signal="pressed" from="HBoxContainer/Button4" to="." method="_on_Button4_pressed"]
+[connection signal="pressed" from="HBoxContainer/Button5" to="." method="_on_Button5_pressed"]
+[connection signal="pressed" from="HBoxContainer/Button6" to="." method="_on_Button6_pressed"]
+[connection signal="pressed" from="HBoxContainer/Button7" to="." method="_on_Button7_pressed"]
+[connection signal="pressed" from="HBoxContainer/Button8" to="." method="_on_Button8_pressed"]

@@ -29,6 +29,7 @@ func show_tiles():
 			tiles[i].position = Vector2(i*Constants.Tile.WIDTH, -Constants.Tile.SELECT_HEIGHT)
 	print_debug("show_tiles")
 	
+func sort_tiles():
 	pass
 
 

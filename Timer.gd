@@ -16,6 +16,27 @@ func _ready():
 	$TimerLeft.rect_position = Vector2(-164, -174)
 	$TimerRight.rect_position = Vector2(94, -173)
 	
+func show_timer(direction):
+	if direction == Constants.Timer_Table.DIRECTION.NONE:
+		$TimerBottom.hide()
+		$TimerRight.hide()
+		$TimerOpposite.hide()
+		$TimerLeft.hide()
+	elif direction == Constants.Timer_Table.DIRECTION.RIGHT:
+		$TimerBottom.hide()
+		$TimerRight.show()
+		$TimerOpposite.hide()
+		$TimerLeft.hide()
+	elif direction == Constants.Timer_Table.DIRECTION.OPPOSITE:
+		$TimerBottom.hide()
+		$TimerRight.hide()
+		$TimerOpposite.show()
+		$TimerLeft.hide()
+	elif direction == Constants.Timer_Table.DIRECTION.LEFT:
+		$TimerBottom.hide()
+		$TimerRight.hide()
+		$TimerOpposite.hide()
+		$TimerLeft.show()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
