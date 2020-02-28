@@ -5,6 +5,7 @@ extends Node2D
 # var a = 2
 # var b = "text"
 var Tile = preload("res://Tile.tscn")
+var is_my_turn = false
 
 
 # Called when the node enters the scene tree for the first time.
@@ -12,6 +13,12 @@ func _ready():
 	# center the timer	
 	pass # Replace with function body.
 
+
+func tile_click_handler(tile):
+	if not is_my_turn:
+		return
+	$BottomHand.remove_tile_by_instance(tile)
+	# TODO:send websocket msg
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
