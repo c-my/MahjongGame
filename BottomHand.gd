@@ -4,7 +4,6 @@ extends HBoxContainer
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
-var tiles = []
 
 
 # Called when the node enters the scene tree for the first time.
@@ -12,11 +11,15 @@ func _ready():
 	pass # Replace with function body.
 	
 func add_tile_by_instance(tile):
-	tiles.append(tile)
 	add_child(tile)
+	show_tiles()
+	
+func remove_tile_by_instance(tile):
+	remove_child(tile)
 	show_tiles()
 
 func show_tiles():
+	var tiles = get_children()
 	var length = tiles.size()*Constants.Tile.WIDTH
 	var y = Constants.Screen.HEIGHT - Constants.Table.BOTTOM_HAND_MARGIN_Y - Constants.Tile.HEIGHT
 	var x = (Constants.Screen.WIDTH - Constants.Table.BOTTOM_LIE_WIDTH - length)/2.0
