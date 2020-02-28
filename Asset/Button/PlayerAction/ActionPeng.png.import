@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/ActionHu.png-ef5fcc6f76e5182f2be0dfb5097b6637.stex"
+path="res://.import/ActionPeng.png-13a2d64f3256907dbd7f540dda134d39.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Asset/Button/ActionHu.png"
-dest_files=[ "res://.import/ActionHu.png-ef5fcc6f76e5182f2be0dfb5097b6637.stex" ]
+source_file="res://Asset/Button/PlayerAction/ActionPeng.png"
+dest_files=[ "res://.import/ActionPeng.png-13a2d64f3256907dbd7f540dda134d39.stex" ]
 
 [params]
 

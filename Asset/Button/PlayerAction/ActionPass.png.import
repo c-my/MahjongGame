@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/ActionGang.png-e0c4c010d98cab44265cc5a3b6f922d1.stex"
+path="res://.import/ActionPass.png-7a5ced7b93716cfd215f9b4664879ba9.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Asset/Button/ActionGang.png"
-dest_files=[ "res://.import/ActionGang.png-e0c4c010d98cab44265cc5a3b6f922d1.stex" ]
+source_file="res://Asset/Button/PlayerAction/ActionPass.png"
+dest_files=[ "res://.import/ActionPass.png-7a5ced7b93716cfd215f9b4664879ba9.stex" ]
 
 [params]
 
