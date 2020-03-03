@@ -6,7 +6,7 @@ extends Node
 # var b = "text"
 
 class Tile:
-	enum Suit {Character, Bamboo, Dot, Bonus, Wind, Dragon, Flower, Season}
+	enum Suit {Character, Bamboo, Dot, Wind, Dragon, Flower, Season}
 	const HEIGHT = 142
 	const WIDTH = 90
 	const SELECT_HEIGHT = 30

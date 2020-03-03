@@ -21,6 +21,7 @@ config/icon="res://icon.png"
 [autoload]
 
 Constants="*res://Constants.gd"
+ConnManager="*res://ConnManager.gd"
 
 [display]
 

@@ -152,6 +152,18 @@ margin_right = 856.0
 margin_bottom = 40.0
 text = "AddLeftDrop"
 
+[node name="Button9" type="Button" parent="HBoxContainer"]
+margin_left = 866.0
+margin_right = 970.0
+margin_bottom = 40.0
+text = "Send to Server"
+
+[node name="TextEdit" type="TextEdit" parent="HBoxContainer"]
+margin_left = 980.0
+margin_right = 1080.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 50, 0 )
+
 [node name="BottomDropArea" type="Node2D" parent="."]
 position = Vector2( 621.315, 779.207 )
 script = ExtResource( 13 )
@@ -175,3 +187,4 @@ script = ExtResource( 15 )
 [connection signal="pressed" from="HBoxContainer/Button6" to="." method="_on_Button6_pressed"]
 [connection signal="pressed" from="HBoxContainer/Button7" to="." method="_on_Button7_pressed"]
 [connection signal="pressed" from="HBoxContainer/Button8" to="." method="_on_Button8_pressed"]
+[connection signal="pressed" from="HBoxContainer/Button9" to="." method="_on_Button9_pressed"]

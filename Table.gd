@@ -59,3 +59,8 @@ func _on_Button7_pressed():
 func _on_Button8_pressed():
 	$LeftDropArea.add_tile(randi()%3, randi()%9)
 	pass # Replace with function body.
+
+
+func _on_Button9_pressed():
+	ConnManager.send_message($HBoxContainer/TextEdit.text)
+	
