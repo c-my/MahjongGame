@@ -160,7 +160,7 @@ text = "Send to Server"
 
 [node name="TextEdit" type="TextEdit" parent="HBoxContainer"]
 margin_left = 980.0
-margin_right = 1080.0
+margin_right = 1030.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 50, 0 )
 

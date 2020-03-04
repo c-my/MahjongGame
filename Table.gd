@@ -6,10 +6,12 @@ extends Node2D
 # var b = "text"
 var Tile = preload("res://Tile.tscn")
 var is_my_turn = false
+var my_table_order = 0
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	ConnManager.connect("deal_tiles", self, "deal_tile")
 	# center the timer	
 	pass # Replace with function body.
 
@@ -19,6 +21,19 @@ func tile_click_handler(tile):
 		return
 	$BottomHand.remove_tile_by_instance(tile)
 	# TODO:send websocket msg
+	
+func deal_tile(msg):
+	var tiles = msg["current_tile"]
+	for i in range(tiles.size()):
+
+		var t = Tile.instance()
+		t.set_tile_type(tiles[i]["suit"], tiles[i]["number"])
+		$BottomHand.add_tile_by_instance(t)
+		pass
+	var tiles_count = msg["tiles_count"]
+	$RightHand.show_tiles(tiles_count[(my_table_order+1)%4])
+	$OppositeHand.show_tiles(tiles_count[(my_table_order+2)%4])
+	$LeftHand.show_tiles(tiles_count[(my_table_order+3)%4])	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
