@@ -30,19 +30,17 @@ func rearrange_tiles():
 	print_debug("hand loc:", self.position)
 	for i in range(tiles.size()):
 		tiles[i].position = Vector2(-i*Constants.Tile.SIDE_HAND_DIFF, i*Constants.Tile.SIDE_HAND_WIDTH)
-		pass
-	pass
 	
 func get_tile_instance():
 	var tile = Sprite.new()
 	tile.texture = texture
+	tile.centered = false
 	return tile
 	
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	texture = ImageTexture.new()
 	texture.load("res://Asset/Tile/LeftHand.png")
-	pass # Replace with function body.
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

@@ -34,6 +34,8 @@ class Table:
 	const BOTTOM_HAND_MARGIN_X = 10
 	const BOTTOM_HAND_MARGIN_Y = 20
 	
+	const OPPO_HAND_MARGIN_Y = 100
+	
 class Timer_Table:
 	enum DIRECTION {NONE, BOTTOM, RIGHT, OPPOSITE, LEFT}
 
