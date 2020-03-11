@@ -37,6 +37,11 @@ func show_timer(direction):
 		$TimerRight.hide()
 		$TimerOpposite.hide()
 		$TimerLeft.show()
+	elif direction == Constants.Timer_Table.DIRECTION.BOTTOM:
+		$TimerBottom.show()
+		$TimerRight.hide()
+		$TimerOpposite.hide()
+		$TimerLeft.hide()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
