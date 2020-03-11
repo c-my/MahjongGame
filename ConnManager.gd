@@ -8,10 +8,9 @@ extends Node
 var url = "ws://127.0.0.1"
 var port = "1114"
 
-enum MsgType {GameMsg = 0, ChatMsg}
-enum PlayerAction {Start, Deal, Chow, Pong, Kong, Win}
-
-signal deal_tiles
+signal recv_game_msg
+signal deal_tiles	# 发牌
+signal draw_tile	# 抓牌
 
 
 # Our WebSocketClient instance
@@ -27,6 +26,9 @@ func _ready():
 	# Alternatively, you could check get_peer(1).get_available_packets() in a loop.
 	_client.connect("data_received", self, "_on_data")
 
+
+		
+func connect_ws():
 	# Initiate connection to the given URL.
 	var err = _client.connect_to_url(url+":"+port)
 	if err != OK:
@@ -58,14 +60,25 @@ func _on_data():
 	print("Got data from server: ", data_recv)
 	var json_recv = JSON.parse(data_recv)
 	var json = json_recv.result
-	if json["msg_type"]==MsgType.GameMsg:
-		if json["available_actions"][0]==PlayerAction.Deal:
-			print_debug("current tiles: ", json["current_tile"])
-			print_debug("type: ", typeof(json["current_tile"]))
-			emit_signal("deal_tiles", json)
+	if json["msg_type"]==Message.msg_type.GAME_MSG:
+		emit_signal("recv_game_msg", json)
 	print_debug("msg_type: ", json_recv.result["msg_type"])
 
 func _process(delta):
 	# Call this in _process or _physics_process. Data transfer, and signals
 	# emission will only happen when calling this function.
 	_client.poll()
+	
+func send_start():
+	var msg = Message.game_msg_dict
+	msg["action"]=Message.player_action.START
+	msg["chow_type"] = Message.chow_type.NAC
+	send_message(to_json(msg))
+	
+func send_discard(tile, order):
+	var msg = Message.game_msg_dict
+	msg["action"]=Message.player_action.DISCARD
+	msg["tile"] = tile
+	msg["table_order"] = order
+	msg["chow_type"] = Message.chow_type.NAC
+	send_message(to_json(msg))

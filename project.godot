@@ -16,11 +16,13 @@ _global_script_class_icons={
 [application]
 
 config/name="MahjongGame"
+run/main_scene="res://Table.tscn"
 config/icon="res://icon.png"
 
 [autoload]
 
 Constants="*res://Constants.gd"
+Message="*res://Message.gd"
 ConnManager="*res://ConnManager.gd"
 
 [display]

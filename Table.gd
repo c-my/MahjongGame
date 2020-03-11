@@ -11,7 +11,7 @@ var my_table_order = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	ConnManager.connect("deal_tiles", self, "deal_tile")
+	ConnManager.connect("recv_game_msg", self, "handle_game_msg")
 	# center the timer	
 	pass # Replace with function body.
 
@@ -22,22 +22,86 @@ func tile_click_handler(tile):
 	$BottomHand.remove_tile_by_instance(tile)
 	# TODO:send websocket msg
 	
+func handle_game_msg(msg):
+	set_hand_areas(msg)
+	set_drop_areas(msg)
+	set_timer_direction(msg)
+	set_turn(msg)
+	# 处理逻辑
+	
 func deal_tile(msg):
-	var tiles = msg["current_tile"]
-	for i in range(tiles.size()):
+	set_hand_areas(msg)
+	set_drop_areas(msg)
+	set_timer_direction(msg)
+	set_turn(msg)
+		
+		
 
+func set_hand_areas(msg):
+	var tiles_count = msg["player_tile"]
+	$RightHand.show_tiles(tiles_count[(my_table_order+1)%4]["hand_tiles"].size())
+	$OppositeHand.show_tiles(tiles_count[(my_table_order+2)%4]["hand_tiles"].size())
+	$LeftHand.show_tiles(tiles_count[(my_table_order+3)%4]["hand_tiles"].size())
+	
+	var my_tiles = msg["player_tile"][my_table_order]["hand_tiles"]
+	$BottomHand.clear_tiles()
+	for i in range(my_tiles.size()):
 		var t = Tile.instance()
-		t.set_tile_type(tiles[i]["suit"], tiles[i]["number"])
+		t.set_tile_type(my_tiles[i]["suit"], my_tiles[i]["number"])
+		t.connect("clicked", self, "handle_tile_click")
 		$BottomHand.add_tile_by_instance(t)
-		pass
-	var tiles_count = msg["tiles_count"]
-	$RightHand.show_tiles(tiles_count[(my_table_order+1)%4])
-	$OppositeHand.show_tiles(tiles_count[(my_table_order+2)%4])
-	$LeftHand.show_tiles(tiles_count[(my_table_order+3)%4])	
-
+	$BottomHand.show_tiles()
+	
+func set_drop_areas(msg):
+	var bottom_drop_tiles = msg["player_tile"][my_table_order]["drop_tiles"]
+	$BottomDropArea.clear_tiles()
+	if bottom_drop_tiles!=null:
+		for t in bottom_drop_tiles:
+			$BottomDropArea.add_tile(t["suit"], t["number"])
+	var right_drop_tiles = msg["player_tile"][(my_table_order+1)%4]["drop_tiles"]
+	$RightDropArea.clear_tiles()
+	if right_drop_tiles!=null:
+		for t in right_drop_tiles:
+			$RightDropArea.add_tile(t["suit"], t["number"])
+	var oppo_drop_tiles = msg["player_tile"][(my_table_order+2)%4]["drop_tiles"]
+	$OppositeDropArea.clear_tiles()
+	if oppo_drop_tiles!=null:
+		for t in oppo_drop_tiles:
+			$OppositeDropArea.add_tile(t["suit"], t["number"])
+	var left_drop_tiles = msg["player_tile"][(my_table_order+3)%4]["drop_tiles"] 
+	$LeftDropArea.clear_tiles()
+	if left_drop_tiles!=null:
+		for t in left_drop_tiles:
+			$LeftDropArea.add_tile(t["suit"], t["number"])
+		
+func set_timer_direction(msg):
+	var current_turn = msg["current_turn"]
+	var direction
+	if current_turn==my_table_order%4:
+		direction = Constants.Timer_Table.DIRECTION.BOTTOM
+	elif  current_turn==(my_table_order+1)%4:
+		direction = Constants.Timer_Table.DIRECTION.RIGHT
+	elif  current_turn==(my_table_order+2)%4:
+		direction = Constants.Timer_Table.DIRECTION.OPPOSITE		
+	elif  current_turn==(my_table_order+3)%4:
+		direction = Constants.Timer_Table.DIRECTION.LEFT
+	$Timer.show_timer(direction)
+	
+func set_turn(msg):
+	if msg["current_turn"]==my_table_order:
+		is_my_turn = true
+	else:
+		is_my_turn = false
+	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
+
+func handle_tile_click(suit, number):
+	if not is_my_turn:
+		return
+	ConnManager.send_discard({"suit":suit, "number": number}, my_table_order)
+	
 
 
 func _on_Button_pressed():
@@ -55,27 +119,25 @@ func _on_Button3_pressed():
 
 
 func _on_Button4_pressed():
-	$RightHand.show_tiles(randi()%13)
+	my_table_order = 0
 
 
 func _on_Button5_pressed():
-	$BottomDropArea.add_tile(randi()%3, randi()%9)
-	pass # Replace with function body.
+	my_table_order = 1
 
 
 func _on_Button6_pressed():
-	$OppositeDropArea.add_tile(randi()%3, randi()%9)
+	my_table_order = 2
 
 
 func _on_Button7_pressed():
-	$RightDropArea.add_tile(randi()%3, randi()%9)
+	my_table_order = 3
 
 
 func _on_Button8_pressed():
-	$LeftDropArea.add_tile(randi()%3, randi()%9)
-	pass # Replace with function body.
+	ConnManager.connect_ws()
 
 
 func _on_Button9_pressed():
-	ConnManager.send_message($HBoxContainer/TextEdit.text)
+	ConnManager.send_start()
 	

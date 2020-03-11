@@ -29,21 +29,19 @@ func set_tile_type(suit, number):
 func _input(event):
 	if (event is InputEventMouseButton or event is InputEventScreenTouch) and  event.pressed :
 		if get_rect().has_point(to_local(event.position)):
-			emit_signal("clicked", self)
-			print_debug("pressed")
+			emit_signal("clicked", self.suit, self.number)
 			get_tree().set_input_as_handled()
 
 func mouse_enter_handler():
 	is_selected = true
 	position = Vector2(position.x, position.y-Constants.Tile.SELECT_HEIGHT)
-	print_debug("entered")
-	pass
+
 	
 func mouse_exit_handler():
 	is_selected = false
 	position = Vector2(position.x, position.y+Constants.Tile.SELECT_HEIGHT)
-	print_debug("leaved")
-	pass
+
+
 		
 
 

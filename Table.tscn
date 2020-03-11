@@ -122,47 +122,41 @@ margin_right = 281.0
 margin_bottom = 40.0
 text = "Add to Left"
 
-[node name="Button4" type="Button" parent="HBoxContainer"]
+[node name="One" type="Button" parent="HBoxContainer"]
 margin_left = 291.0
-margin_right = 381.0
+margin_right = 346.0
 margin_bottom = 40.0
-text = "Add to Right"
+text = "  One  "
 
-[node name="Button5" type="Button" parent="HBoxContainer"]
-margin_left = 391.0
-margin_right = 531.0
+[node name="Two" type="Button" parent="HBoxContainer"]
+margin_left = 356.0
+margin_right = 409.0
 margin_bottom = 40.0
-text = "AddBoomtDropArea"
+text = "  Two  "
 
-[node name="Button6" type="Button" parent="HBoxContainer"]
-margin_left = 541.0
-margin_right = 644.0
+[node name="Three" type="Button" parent="HBoxContainer"]
+margin_left = 419.0
+margin_right = 483.0
 margin_bottom = 40.0
-text = "AddOppoDrop"
+text = "  Three  "
 
-[node name="Button7" type="Button" parent="HBoxContainer"]
-margin_left = 654.0
-margin_right = 754.0
+[node name="Four" type="Button" parent="HBoxContainer"]
+margin_left = 493.0
+margin_right = 549.0
 margin_bottom = 40.0
-text = "AddRightDrop"
+text = "  Four  "
 
-[node name="Button8" type="Button" parent="HBoxContainer"]
-margin_left = 764.0
-margin_right = 856.0
+[node name="ConnectButton" type="Button" parent="HBoxContainer"]
+margin_left = 559.0
+margin_right = 623.0
 margin_bottom = 40.0
-text = "AddLeftDrop"
+text = "Connect"
 
-[node name="Button9" type="Button" parent="HBoxContainer"]
-margin_left = 866.0
-margin_right = 970.0
+[node name="StartButton" type="Button" parent="HBoxContainer"]
+margin_left = 633.0
+margin_right = 674.0
 margin_bottom = 40.0
-text = "Send to Server"
-
-[node name="TextEdit" type="TextEdit" parent="HBoxContainer"]
-margin_left = 980.0
-margin_right = 1030.0
-margin_bottom = 40.0
-rect_min_size = Vector2( 50, 0 )
+text = "Start"
 
 [node name="BottomDropArea" type="Node2D" parent="."]
 position = Vector2( 621.315, 779.207 )
@@ -182,9 +176,9 @@ script = ExtResource( 15 )
 [connection signal="pressed" from="HBoxContainer/Button" to="." method="_on_Button_pressed"]
 [connection signal="pressed" from="HBoxContainer/Button2" to="." method="_on_Button2_pressed"]
 [connection signal="pressed" from="HBoxContainer/Button3" to="." method="_on_Button3_pressed"]
-[connection signal="pressed" from="HBoxContainer/Button4" to="." method="_on_Button4_pressed"]
-[connection signal="pressed" from="HBoxContainer/Button5" to="." method="_on_Button5_pressed"]
-[connection signal="pressed" from="HBoxContainer/Button6" to="." method="_on_Button6_pressed"]
-[connection signal="pressed" from="HBoxContainer/Button7" to="." method="_on_Button7_pressed"]
-[connection signal="pressed" from="HBoxContainer/Button8" to="." method="_on_Button8_pressed"]
-[connection signal="pressed" from="HBoxContainer/Button9" to="." method="_on_Button9_pressed"]
+[connection signal="pressed" from="HBoxContainer/One" to="." method="_on_Button4_pressed"]
+[connection signal="pressed" from="HBoxContainer/Two" to="." method="_on_Button5_pressed"]
+[connection signal="pressed" from="HBoxContainer/Three" to="." method="_on_Button6_pressed"]
+[connection signal="pressed" from="HBoxContainer/Four" to="." method="_on_Button7_pressed"]
+[connection signal="pressed" from="HBoxContainer/ConnectButton" to="." method="_on_Button8_pressed"]
+[connection signal="pressed" from="HBoxContainer/StartButton" to="." method="_on_Button9_pressed"]

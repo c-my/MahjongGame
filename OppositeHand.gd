@@ -26,8 +26,6 @@ func show_tiles(count):
 	
 	
 func rearrange_tiles():
-	print_debug("tiles_count:", tiles.size())
-	print_debug("hand loc:", self.position)
 	for i in range(tiles.size()):
 		tiles[i].position = Vector2(i*Constants.Tile.OPPOSITE_HAND_WIDTH, 0)
 	var x = (Constants.Screen.WIDTH - get_children().size()*Constants.Tile.OPPOSITE_HAND_WIDTH)/2.0
@@ -43,7 +41,7 @@ func get_tile_instance():
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	texture = ImageTexture.new()
-	texture.load("res://Asset/Tile/OppositeHand.png")
+	texture = load("res://Asset/Tile/OppositeHand.png")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
