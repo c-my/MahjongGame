@@ -18,7 +18,7 @@ func _ready():
 	$Control.rect_size = self.get_rect().size
 	$Control.connect("mouse_entered", self, "mouse_enter_handler")
 	$Control.connect("mouse_exited", self, "mouse_exit_handler")
-	pass # Replace with function body.
+
 	
 # note: number starts from 1
 func set_tile_type(suit, number):

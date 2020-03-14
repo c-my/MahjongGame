@@ -12,8 +12,10 @@ var my_table_order = 0
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	ConnManager.connect("recv_game_msg", self, "handle_game_msg")
-	# center the timer	
-	pass # Replace with function body.
+	
+	$PlayerAction.connect("chow", self, "handle_chow")
+	$PlayerAction.connect("pong", self, "handle_pong")
+	$PlayerAction.connect("kong", self, "handle_kong")
 
 
 func tile_click_handler(tile):
@@ -27,7 +29,17 @@ func handle_game_msg(msg):
 	set_drop_areas(msg)
 	set_timer_direction(msg)
 	set_turn(msg)
+	set_player_action(msg)
 	# 处理逻辑
+	
+func handle_chow():
+	pass
+	
+func handle_pong():
+	pass
+	
+func handle_kong():
+	pass
 	
 func deal_tile(msg):
 	set_hand_areas(msg)
@@ -93,6 +105,20 @@ func set_turn(msg):
 	else:
 		is_my_turn = false
 	
+func set_player_action(msg):
+	var acts = [false,false,false,false,true]
+	var actions = msg["available_actions"]
+	if actions != null:
+		for action in actions:
+			if action==Message.player_action.CHOW:
+				acts[0]=true
+			elif action==Message.player_action.PONG:
+				acts[1]=true
+			elif action==Message.player_action.CONCEALED_KONG or action==Message.player_action.EXPOSED_KONG or action==Message.player_action.ADDED_KONG:
+				acts[2]=true
+			elif action==Message.player_action.WIN:
+				acts[3]=true
+	$PlayerAction.show_actions(acts)
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
