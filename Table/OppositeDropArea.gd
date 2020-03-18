@@ -11,7 +11,7 @@ var texture
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	texture = ImageTexture.new()
-	texture = load("res://Asset/Tile/DropTileOppo.png")
+	texture = load("res://Asset/Tile/DropTileBottom.png")
 	
 func add_tile(suit, number):
 	var tile = get_tile_instance(suit, number)

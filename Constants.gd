@@ -7,23 +7,23 @@ extends Node
 
 class Tile:
 	enum Suit {Character, Bamboo, Dot, Wind, Dragon, Flower, Season}
-	const HEIGHT = 142
-	const WIDTH = 90
+	const HEIGHT = 118
+	const WIDTH = 76
 	const SELECT_HEIGHT = 30
 	
 	const OPPOSITE_HAND_WIDTH = 38
-	const OPPOSITE_DROP_WIDTH = 26
-	const OPPOSITE_DROP_HEIGHT = 40
+	const OPPOSITE_DROP_WIDTH = 76
+	const OPPOSITE_DROP_HEIGHT = 118
 	
 	const SIDE_HAND_WIDTH = 26
 	const SIDE_HAND_DIFF = 4
-	const SIDE_DROP_WIDTH = 37
-	const SIDE_DROP_HEIGHT = 32
+	const SIDE_DROP_WIDTH = 120
+	const SIDE_DROP_HEIGHT = 114
 	const SIDE_DROP_THICK = 9
 	const SIDE_DROP_DIFF = 2
 	
-	const BOTTOM_DROP_WIDTH = 29
-	const BOTTOM_DROP_HEIGHT = 43
+	const BOTTOM_DROP_WIDTH = 76
+	const BOTTOM_DROP_HEIGHT = 118
 	
 class Screen:
 	const WIDTH = 1920

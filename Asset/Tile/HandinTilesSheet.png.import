@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/HandTilesSheet.png-2920ca68689bbc4df674488106a0ce93.stex"
+path="res://.import/HandinTilesSheet.png-bb4f6e9f2dcbc202f8e75eeb85e3a879.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Asset/Tile/HandTilesSheet.png"
-dest_files=[ "res://.import/HandTilesSheet.png-2920ca68689bbc4df674488106a0ce93.stex" ]
+source_file="res://Asset/Tile/HandinTilesSheet.png"
+dest_files=[ "res://.import/HandinTilesSheet.png-bb4f6e9f2dcbc202f8e75eeb85e3a879.stex" ]
 
 [params]
 
