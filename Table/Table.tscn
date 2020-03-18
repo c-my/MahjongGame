@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://Table/OppositeDropArea.gd" type="Script" id=1]
 [ext_resource path="res://Table/PlayerAction.gd" type="Script" id=2]
@@ -22,6 +22,7 @@
 [ext_resource path="res://Table/BottomDropArea.gd" type="Script" id=20]
 [ext_resource path="res://Table/BottomHand.gd" type="Script" id=21]
 [ext_resource path="res://Table/LeftDropArea.gd" type="Script" id=22]
+[ext_resource path="res://Table/BottomShownArea.gd" type="Script" id=23]
 
 [node name="Table" type="Node2D"]
 script = ExtResource( 6 )
@@ -181,10 +182,10 @@ position = Vector2( 1570.72, 658.225 )
 script = ExtResource( 3 )
 
 [node name="PlayerAction" type="HBoxContainer" parent="."]
-margin_left = 1236.44
-margin_top = 714.806
-margin_right = 1695.44
-margin_bottom = 798.806
+margin_left = 1054.08
+margin_top = 690.079
+margin_right = 1819.08
+margin_bottom = 805.079
 custom_constants/separation = 10
 script = ExtResource( 2 )
 __meta__ = {
@@ -192,39 +193,42 @@ __meta__ = {
 }
 
 [node name="Chow" type="TextureButton" parent="PlayerAction"]
-margin_right = 84.0
-margin_bottom = 84.0
+margin_right = 145.0
+margin_bottom = 115.0
 texture_normal = ExtResource( 15 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Pong" type="TextureButton" parent="PlayerAction"]
-margin_left = 94.0
-margin_right = 180.0
-margin_bottom = 84.0
+margin_left = 155.0
+margin_right = 300.0
+margin_bottom = 115.0
 texture_normal = ExtResource( 19 )
 
 [node name="Kong" type="TextureButton" parent="PlayerAction"]
-margin_left = 190.0
-margin_right = 275.0
-margin_bottom = 84.0
+margin_left = 310.0
+margin_right = 455.0
+margin_bottom = 115.0
 texture_normal = ExtResource( 16 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Win" type="TextureButton" parent="PlayerAction"]
-margin_left = 285.0
-margin_right = 367.0
-margin_bottom = 84.0
+margin_left = 465.0
+margin_right = 610.0
+margin_bottom = 115.0
 texture_normal = ExtResource( 17 )
 
 [node name="Cancel" type="TextureButton" parent="PlayerAction"]
-margin_left = 377.0
-margin_right = 459.0
-margin_bottom = 84.0
+margin_left = 620.0
+margin_right = 765.0
+margin_bottom = 115.0
 texture_normal = ExtResource( 11 )
+
+[node name="BottomShownArea" type="Node" parent="."]
+script = ExtResource( 23 )
 [connection signal="pressed" from="TestButtons/Button" to="." method="_on_Button_pressed"]
 [connection signal="pressed" from="TestButtons/Button2" to="." method="_on_Button2_pressed"]
 [connection signal="pressed" from="TestButtons/Button3" to="." method="_on_Button3_pressed"]

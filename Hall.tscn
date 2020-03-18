@@ -1,3 +1,43 @@
-[gd_scene format=2]
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Asset/HallBackground.png" type="Texture" id=1]
+[ext_resource path="res://Asset/Button/RoomControl/CreateRoom.png" type="Texture" id=2]
+[ext_resource path="res://Asset/Button/RoomControl/EnterRoom.png" type="Texture" id=3]
 
 [node name="Node2D" type="Node2D"]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+margin_right = 1920.0
+margin_bottom = 1080.0
+texture = ExtResource( 1 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ButtonContainer" type="HBoxContainer" parent="."]
+margin_left = 621.264
+margin_top = 859.261
+margin_right = 1417.26
+margin_bottom = 1018.26
+custom_constants/separation = 30
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CreateRoomButton" type="TextureButton" parent="ButtonContainer"]
+margin_right = 383.0
+margin_bottom = 159.0
+texture_normal = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="EnterRoomButton" type="TextureButton" parent="ButtonContainer"]
+margin_left = 413.0
+margin_right = 796.0
+margin_bottom = 159.0
+texture_normal = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
