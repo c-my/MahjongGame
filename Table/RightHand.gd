@@ -26,6 +26,8 @@ func show_tiles(count):
 	
 	
 func rearrange_tiles():
+	var y = (Constants.Screen.HEIGHT-tiles.size()*Constants.Tile.SIDE_HAND_WIDTH)/2.0
+	position = Vector2(Constants.Screen.WIDTH-Constants.Table.SIDE_HAND_MARGIN-Constants.Tile.SIDE_HAND_THICK, y)
 	for i in range(tiles.size()):
 		tiles[i].position = Vector2(i*Constants.Tile.SIDE_HAND_DIFF, i*Constants.Tile.SIDE_HAND_WIDTH)
 	

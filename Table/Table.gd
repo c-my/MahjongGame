@@ -11,6 +11,7 @@ var my_table_order = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+# warning-ignore:return_value_discarded
 	ConnManager.connect("recv_game_msg", self, "handle_game_msg")
 	
 	$PlayerAction.connect("chow", self, "handle_chow")
@@ -27,6 +28,7 @@ func tile_click_handler(tile):
 func handle_game_msg(msg):
 	set_hand_areas(msg)
 	set_drop_areas(msg)
+	set_shown_areas(msg)
 	set_timer_direction(msg)
 	set_turn(msg)
 	set_player_action(msg)
@@ -40,13 +42,7 @@ func handle_pong():
 	
 func handle_kong():
 	pass
-	
-func deal_tile(msg):
-	set_hand_areas(msg)
-	set_drop_areas(msg)
-	set_timer_direction(msg)
-	set_turn(msg)
-		
+			
 		
 
 func set_hand_areas(msg):
@@ -119,6 +115,26 @@ func set_player_action(msg):
 			elif action==Message.player_action.WIN:
 				acts[3]=true
 	$PlayerAction.show_actions(acts)
+	
+	
+func set_shown_areas(msg):
+	var tiles = msg["player_tile"]
+	if tiles == null:
+		return
+	var bottom_shown = tiles[my_table_order]["shown_tiles"]
+	if bottom_shown != null:
+		$BottomShown.show_tiles(bottom_shown)
+	var right_shown = tiles[(my_table_order+1)%4]["shown_tiles"]
+	if right_shown != null:
+		$RightShown.show_tiles(right_shown)
+	var oppo_shown = tiles[(my_table_order+2)%4]["shown_tiles"]
+	if oppo_shown != null:
+		$OppoShown.show_tiles(oppo_shown)
+	var left_shown = tiles[(my_table_order+3)%4]["shown_tiles"]
+	if left_shown != null:
+		$LeftShown.show_tiles(left_shown)
+		
+		
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass

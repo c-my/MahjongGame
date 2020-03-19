@@ -14,6 +14,7 @@ func _ready():
 	texture = load("res://Asset/Tile/DropTileLeft.png")
 	hide_texture = ImageTexture.new()
 	hide_texture = load("res://Asset/Tile/HideTileLeft.png")
+	position = Vector2(Constants.Table.SIDE_SHOWN_MARGIN_X, Constants.Table.SIDE_SHOWN_MARGIN_Y)
 
 	
 func show_tiles(tiles):
