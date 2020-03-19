@@ -25,7 +25,7 @@ func get_tile_instance(suit, number):
 	tile.vframes = 5
 	tile.hframes = 9
 	tile.frame_coords = Vector2(number-1, suit)
-	tile.scale = Vector2(0.8, 0.8)
+	tile.scale = Vector2(Constants.Tile.SIDE_SCALE, Constants.Tile.SIDE_SCALE)
 	return tile
 
 func show_tiles():

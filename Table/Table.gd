@@ -222,7 +222,17 @@ func _on_bottomshown_pressed():
 			{"suit":1,"number":7},
 			{"suit":1,"number":7}
 		]
+	},
+   {
+		"shown_type":6,
+		"tiles":[
+			{"suit":4,"number":1},
+			{"suit":4,"number":1},
+			{"suit":4,"number":1},
+			{"suit":4,"number":1}
+		]
 	}
 ]""")
 	$BottomShown.show_tiles(json_tmp.result)
 	$OppoShown.show_tiles(json_tmp.result)
+	$LeftShown.show_tiles(json_tmp.result)

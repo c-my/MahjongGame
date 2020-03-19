@@ -24,31 +24,7 @@
 [ext_resource path="res://Table/LeftDropArea.gd" type="Script" id=22]
 [ext_resource path="res://Table/BottomShown.gd" type="Script" id=23]
 [ext_resource path="res://Table/OppoShown.gd" type="Script" id=24]
-
-[sub_resource type="GDScript" id=1]
-script/source = "extends Node
-
-
-# Declare member variables here. Examples:
-# var a = 2
-# var b = \"text\"
-
-var shown_suits = []
-
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-	
-
-		
-
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
-"
+[ext_resource path="res://Table/LeftShown.gd" type="Script" id=25]
 
 [node name="Table" type="Node2D"]
 script = ExtResource( 6 )
@@ -126,12 +102,16 @@ script = ExtResource( 23 )
 script = ExtResource( 21 )
 
 [node name="LeftHand" type="Node2D" parent="."]
-position = Vector2( 265.815, 355.45 )
+position = Vector2( 163.816, 336.905 )
 script = ExtResource( 4 )
 
 [node name="RightHand" type="Node2D" parent="."]
 position = Vector2( 1647.43, 380.177 )
 script = ExtResource( 5 )
+
+[node name="LeftShown" type="Node2D" parent="."]
+position = Vector2( 256.542, 126.726 )
+script = ExtResource( 25 )
 
 [node name="LeftDropArea" type="Node2D" parent="."]
 position = Vector2( 383.452, 332.188 )
@@ -186,9 +166,6 @@ margin_left = 620.0
 margin_right = 765.0
 margin_bottom = 115.0
 texture_normal = ExtResource( 11 )
-
-[node name="BottomShownArea" type="Node" parent="."]
-script = SubResource( 1 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 margin_right = 40.0
