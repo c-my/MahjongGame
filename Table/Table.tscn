@@ -98,73 +98,6 @@ script = ExtResource( 4 )
 position = Vector2( 1647.43, 380.177 )
 script = ExtResource( 5 )
 
-[node name="TestButtons" type="HBoxContainer" parent="."]
-margin_right = 40.0
-margin_bottom = 40.0
-custom_constants/separation = 10
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Button" type="Button" parent="TestButtons"]
-margin_right = 64.0
-margin_bottom = 40.0
-text = "Add Tile"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Button2" type="Button" parent="TestButtons"]
-margin_left = 74.0
-margin_right = 189.0
-margin_bottom = 40.0
-text = "Add to Oppotite"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Button3" type="Button" parent="TestButtons"]
-margin_left = 199.0
-margin_right = 281.0
-margin_bottom = 40.0
-text = "Add to Left"
-
-[node name="One" type="Button" parent="TestButtons"]
-margin_left = 291.0
-margin_right = 346.0
-margin_bottom = 40.0
-text = "  One  "
-
-[node name="Two" type="Button" parent="TestButtons"]
-margin_left = 356.0
-margin_right = 409.0
-margin_bottom = 40.0
-text = "  Two  "
-
-[node name="Three" type="Button" parent="TestButtons"]
-margin_left = 419.0
-margin_right = 483.0
-margin_bottom = 40.0
-text = "  Three  "
-
-[node name="Four" type="Button" parent="TestButtons"]
-margin_left = 493.0
-margin_right = 549.0
-margin_bottom = 40.0
-text = "  Four  "
-
-[node name="ConnectButton" type="Button" parent="TestButtons"]
-margin_left = 559.0
-margin_right = 623.0
-margin_bottom = 40.0
-text = "Connect"
-
-[node name="StartButton" type="Button" parent="TestButtons"]
-margin_left = 633.0
-margin_right = 674.0
-margin_bottom = 40.0
-text = "Start"
-
 [node name="BottomDropArea" type="Node2D" parent="."]
 position = Vector2( 621.315, 779.207 )
 script = ExtResource( 20 )
@@ -229,12 +162,125 @@ texture_normal = ExtResource( 11 )
 
 [node name="BottomShownArea" type="Node" parent="."]
 script = ExtResource( 23 )
-[connection signal="pressed" from="TestButtons/Button" to="." method="_on_Button_pressed"]
-[connection signal="pressed" from="TestButtons/Button2" to="." method="_on_Button2_pressed"]
-[connection signal="pressed" from="TestButtons/Button3" to="." method="_on_Button3_pressed"]
-[connection signal="pressed" from="TestButtons/One" to="." method="_on_Button4_pressed"]
-[connection signal="pressed" from="TestButtons/Two" to="." method="_on_Button5_pressed"]
-[connection signal="pressed" from="TestButtons/Three" to="." method="_on_Button6_pressed"]
-[connection signal="pressed" from="TestButtons/Four" to="." method="_on_Button7_pressed"]
-[connection signal="pressed" from="TestButtons/ConnectButton" to="." method="_on_Button8_pressed"]
-[connection signal="pressed" from="TestButtons/StartButton" to="." method="_on_Button9_pressed"]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TestButtons" type="HBoxContainer" parent="VBoxContainer"]
+margin_right = 677.0
+margin_bottom = 20.0
+custom_constants/separation = 10
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="One" type="Button" parent="VBoxContainer/TestButtons"]
+margin_right = 55.0
+margin_bottom = 20.0
+text = "  One  "
+
+[node name="Two" type="Button" parent="VBoxContainer/TestButtons"]
+margin_left = 65.0
+margin_right = 118.0
+margin_bottom = 20.0
+text = "  Two  "
+
+[node name="Three" type="Button" parent="VBoxContainer/TestButtons"]
+margin_left = 128.0
+margin_right = 192.0
+margin_bottom = 20.0
+text = "  Three  "
+
+[node name="Four" type="Button" parent="VBoxContainer/TestButtons"]
+margin_left = 202.0
+margin_right = 258.0
+margin_bottom = 20.0
+text = "  Four  "
+
+[node name="ConnectButton" type="Button" parent="VBoxContainer/TestButtons"]
+margin_left = 268.0
+margin_right = 332.0
+margin_bottom = 20.0
+text = "Connect"
+
+[node name="StartButton" type="Button" parent="VBoxContainer/TestButtons"]
+margin_left = 342.0
+margin_right = 383.0
+margin_bottom = 20.0
+text = "Start"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+margin_top = 24.0
+margin_right = 677.0
+margin_bottom = 44.0
+
+[node name="Button" type="Button" parent="VBoxContainer/HBoxContainer"]
+margin_right = 64.0
+margin_bottom = 20.0
+text = "Add Tile"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button3" type="Button" parent="VBoxContainer/HBoxContainer"]
+margin_left = 68.0
+margin_right = 150.0
+margin_bottom = 20.0
+text = "Add to Left"
+
+[node name="Button2" type="Button" parent="VBoxContainer/HBoxContainer"]
+margin_left = 154.0
+margin_right = 269.0
+margin_bottom = 20.0
+text = "Add to Oppotite"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button4" type="Button" parent="VBoxContainer/HBoxContainer"]
+margin_left = 273.0
+margin_right = 350.0
+margin_bottom = 20.0
+text = "RightHand"
+
+[node name="Button5" type="Button" parent="VBoxContainer/HBoxContainer"]
+margin_left = 354.0
+margin_right = 445.0
+margin_bottom = 20.0
+text = "BottomDrop"
+
+[node name="Button6" type="Button" parent="VBoxContainer/HBoxContainer"]
+margin_left = 449.0
+margin_right = 516.0
+margin_bottom = 20.0
+text = "LeftDrop"
+
+[node name="Button7" type="Button" parent="VBoxContainer/HBoxContainer"]
+margin_left = 520.0
+margin_right = 595.0
+margin_bottom = 20.0
+text = "RightDrop"
+
+[node name="Button8" type="Button" parent="VBoxContainer/HBoxContainer"]
+margin_left = 599.0
+margin_right = 677.0
+margin_bottom = 20.0
+text = "OppoDrop"
+[connection signal="pressed" from="VBoxContainer/TestButtons/One" to="." method="_on_Button4_pressed"]
+[connection signal="pressed" from="VBoxContainer/TestButtons/Two" to="." method="_on_Button5_pressed"]
+[connection signal="pressed" from="VBoxContainer/TestButtons/Three" to="." method="_on_Button6_pressed"]
+[connection signal="pressed" from="VBoxContainer/TestButtons/Four" to="." method="_on_Button7_pressed"]
+[connection signal="pressed" from="VBoxContainer/TestButtons/ConnectButton" to="." method="_on_Button8_pressed"]
+[connection signal="pressed" from="VBoxContainer/TestButtons/StartButton" to="." method="_on_Button9_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/Button" to="." method="_on_Button_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/Button3" to="." method="_on_Button3_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/Button2" to="." method="_on_Button2_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/Button4" to="." method="_on_righthand_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/Button5" to="." method="_on_bottomdrop_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/Button6" to="." method="_on_leftdrop_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/Button7" to="." method="_on_rightdrop_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/Button8" to="." method="_on_oppodrop_pressed"]

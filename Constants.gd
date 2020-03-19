@@ -19,8 +19,8 @@ class Tile:
 	const SIDE_HAND_DIFF = 4
 	const SIDE_DROP_WIDTH = 120
 	const SIDE_DROP_HEIGHT = 114
-	const SIDE_DROP_THICK = 9
-	const SIDE_DROP_DIFF = 2
+	const SIDE_DROP_THICK = 38
+	const SIDE_DROP_DIFF = 0
 	
 	const BOTTOM_DROP_WIDTH = 76
 	const BOTTOM_DROP_HEIGHT = 118

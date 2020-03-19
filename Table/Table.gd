@@ -134,6 +134,7 @@ func _on_Button_pressed():
 	var tile = Tile.instance()
 	tile.set_tile_type(randi()%3, randi()%9)
 	$BottomHand.add_tile_by_instance(tile)
+	$BottomHand.show_tiles()
 
 
 func _on_Button2_pressed():
@@ -167,3 +168,28 @@ func _on_Button8_pressed():
 func _on_Button9_pressed():
 	ConnManager.send_start()
 	
+
+
+func _on_righthand_pressed():
+	$RightHand.show_tiles(randi()%13)
+
+
+func _on_bottomdrop_pressed():
+	$BottomDropArea.add_tile(randi()%3, randi()%9)
+	$BottomDropArea.show_tiles()
+
+
+func _on_leftdrop_pressed():
+	$LeftDropArea.add_tile(randi()%3, randi()%9)
+	$LeftDropArea.show_tiles()
+
+
+func _on_rightdrop_pressed():
+	$RightDropArea.add_tile(randi()%3, randi()%9)
+	$RightDropArea.show_tiles()
+
+
+func _on_oppodrop_pressed():
+	$RightDropArea.clear_tiles();
+	$OppositeDropArea.add_tile(randi()%3, randi()%9)
+	$OppositeDropArea.show_tiles()

@@ -22,7 +22,7 @@ func get_tile_instance(suit, number):
 	var tile = Sprite.new()
 	tile.texture = texture
 	tile.centered = false
-	tile.vframes = 7
+	tile.vframes = 5
 	tile.hframes = 9
 	tile.frame_coords = Vector2(number-1, suit)
 	return tile
