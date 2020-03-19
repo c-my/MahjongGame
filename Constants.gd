@@ -24,6 +24,8 @@ class Tile:
 	
 	const BOTTOM_DROP_WIDTH = 76
 	const BOTTOM_DROP_HEIGHT = 118
+	const BOTTOM_DROP_THICK = 32
+	const BOTTOM_SHOWN_SEP = 20
 	
 class Screen:
 	const WIDTH = 1920

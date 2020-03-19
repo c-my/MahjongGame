@@ -193,3 +193,35 @@ func _on_oppodrop_pressed():
 	$RightDropArea.clear_tiles();
 	$OppositeDropArea.add_tile(randi()%3, randi()%9)
 	$OppositeDropArea.show_tiles()
+
+
+func _on_bottomshown_pressed():
+	var json_tmp = JSON.parse("""[
+	{
+		"shown_type":2,
+		"tiles":[
+			{"suit":0,"number":1},
+			{"suit":0,"number":2},
+			{"suit":0,"number":3}
+		]
+	},
+   {
+		"shown_type":5,
+		"tiles":[
+			{"suit":2,"number":3},
+			{"suit":2,"number":3},
+			{"suit":2,"number":3},
+			{"suit":2,"number":3}
+		]
+	},
+   {
+		"shown_type":4,
+		"tiles":[
+			{"suit":1,"number":7},
+			{"suit":1,"number":7},
+			{"suit":1,"number":7},
+			{"suit":1,"number":7}
+		]
+	}
+]""")
+	$BottomShown.show_tiles(json_tmp.result)
