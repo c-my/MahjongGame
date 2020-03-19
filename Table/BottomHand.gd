@@ -1,4 +1,4 @@
-extends HBoxContainer
+extends Node2D
 
 
 # Declare member variables here. Examples:
@@ -55,9 +55,6 @@ func show_tiles():
 #		else:
 #			new_tile.position = Vector2((length+1), -Constants.Tile.SELECT_HEIGHT)
 	
-func sort_tiles():
-	pass
-
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):

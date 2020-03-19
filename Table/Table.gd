@@ -225,3 +225,4 @@ func _on_bottomshown_pressed():
 	}
 ]""")
 	$BottomShown.show_tiles(json_tmp.result)
+	$OppoShown.show_tiles(json_tmp.result)

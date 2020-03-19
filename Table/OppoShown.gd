@@ -54,7 +54,7 @@ func show_tiles(tiles):
 			add_child(hide_t)
 			hide_t.position = Vector2(pos+Constants.Tile.BOTTOM_DROP_WIDTH, -Constants.Tile.BOTTOM_DROP_THICK)		
 		
-		pos += Constants.Tile.BOTTOM_SHOWN_SEP + 3*Constants.Tile.BOTTOM_DROP_WIDTH
+		pos -= Constants.Tile.BOTTOM_SHOWN_SEP + 3*Constants.Tile.BOTTOM_DROP_WIDTH
 		
 func clear_tiles():
 	pos = 0
