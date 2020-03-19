@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://Table/OppositeDropArea.gd" type="Script" id=1]
 [ext_resource path="res://Table/PlayerAction.gd" type="Script" id=2]
@@ -25,6 +25,7 @@
 [ext_resource path="res://Table/BottomShown.gd" type="Script" id=23]
 [ext_resource path="res://Table/OppoShown.gd" type="Script" id=24]
 [ext_resource path="res://Table/LeftShown.gd" type="Script" id=25]
+[ext_resource path="res://Table/RightShown.gd" type="Script" id=26]
 
 [node name="Table" type="Node2D"]
 script = ExtResource( 6 )
@@ -105,10 +106,6 @@ script = ExtResource( 21 )
 position = Vector2( 163.816, 336.905 )
 script = ExtResource( 4 )
 
-[node name="RightHand" type="Node2D" parent="."]
-position = Vector2( 1647.43, 380.177 )
-script = ExtResource( 5 )
-
 [node name="LeftShown" type="Node2D" parent="."]
 position = Vector2( 256.542, 126.726 )
 script = ExtResource( 25 )
@@ -116,6 +113,14 @@ script = ExtResource( 25 )
 [node name="LeftDropArea" type="Node2D" parent="."]
 position = Vector2( 383.452, 332.188 )
 script = ExtResource( 22 )
+
+[node name="RightHand" type="Node2D" parent="."]
+position = Vector2( 1805.06, 383.268 )
+script = ExtResource( 5 )
+
+[node name="RightShown" type="Node2D" parent="."]
+position = Vector2( 1718.52, 856.17 )
+script = ExtResource( 26 )
 
 [node name="RightDropArea" type="Node2D" parent="."]
 position = Vector2( 1570.72, 658.225 )

@@ -236,3 +236,4 @@ func _on_bottomshown_pressed():
 	$BottomShown.show_tiles(json_tmp.result)
 	$OppoShown.show_tiles(json_tmp.result)
 	$LeftShown.show_tiles(json_tmp.result)
+	$RightShown.show_tiles(json_tmp.result)
