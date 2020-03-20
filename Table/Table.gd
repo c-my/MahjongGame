@@ -10,16 +10,20 @@ var has_actions = false #用于控制能否发牌
 var my_table_order = 0
 var current_msg
 var current_kong_type = Message.player_action.EXPOSED_KONG
+var just_clicked = false
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-# warning-ignore:return_value_discarded
 	ConnManager.connect("recv_game_msg", self, "handle_game_msg")
 	
 	$PlayerAction/Chow.connect("pressed", self, "handle_chow")
 	$PlayerAction/Pong.connect("pressed", self, "handle_pong")
 	$PlayerAction/Kong.connect("pressed", self, "handle_kong")
+	
+	$ChowPanel/LeftChow.connect("pressed", self, "handle_left_chow")
+	$ChowPanel/MidChow.connect("pressed", self, "handle_mid_chow")
+	$ChowPanel/RightChow.connect("pressed", self, "handle_right_chow")
 
 
 	
@@ -30,12 +34,37 @@ func handle_game_msg(msg):
 	set_timer_direction(msg)
 	set_turn(msg)
 	set_player_action(msg)
+	set_chow_panel()
 	current_msg = msg
+	just_clicked = false
 	# 处理逻辑
 	
 func handle_chow():
-	pass
+	var chow_types = current_msg["chow_types"]
+	if chow_types == null:
+		return
+	if chow_types.size()==1:
+		ConnManager.send_chow(current_msg["current_tile"], my_table_order,chow_types[0])
+	else:	# show chow panel
+		var suit = current_msg["current_tile"]["suit"]
+		var number = current_msg["current_tile"]["number"]
+		$ChowPanel.show_panel(suit, number, chow_types)
+
+func handle_left_chow():
+	var suit = current_msg["current_tile"]["suit"]
+	var number = current_msg["current_tile"]["number"]
+	ConnManager.send_chow({"suit":suit,"number":number}, my_table_order ,Message.chow_type.LEFT)
 	
+func handle_mid_chow():
+	var suit = current_msg["current_tile"]["suit"]
+	var number = current_msg["current_tile"]["number"]
+	ConnManager.send_chow({"suit":suit,"number":number}, my_table_order ,Message.chow_type.MID)
+	
+func handle_right_chow():
+	var suit = current_msg["current_tile"]["suit"]
+	var number = current_msg["current_tile"]["number"]
+	ConnManager.send_chow({"suit":suit,"number":number}, my_table_order ,Message.chow_type.RIGHT)
+		
 func handle_pong():
 	print_debug("handle pong")
 	if current_msg == null:
@@ -129,8 +158,7 @@ func set_player_action(msg):
 			elif action==Message.player_action.WIN:
 				acts[3]=true
 	has_actions = $PlayerAction.show_actions(acts)
-	
-	
+		
 func set_shown_areas(msg):
 	var tiles = msg["player_tile"]
 	if tiles == null:
@@ -148,7 +176,8 @@ func set_shown_areas(msg):
 	if left_shown != null:
 		$LeftShown.show_tiles(left_shown)
 		
-		
+func set_chow_panel():
+	$ChowPanel.hide()	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
@@ -158,7 +187,10 @@ func handle_tile_click(suit, number):
 		return
 	if has_actions:
 		return
+	if just_clicked:
+		return
 	ConnManager.send_discard({"suit":suit, "number": number}, my_table_order)
+	just_clicked = true
 	
 
 
@@ -225,6 +257,7 @@ func _on_oppodrop_pressed():
 	$RightDropArea.clear_tiles();
 	$OppositeDropArea.add_tile(randi()%3, randi()%9)
 	$OppositeDropArea.show_tiles()
+	$ChowPanel.show_panel(1,3,[0,1,2])
 
 
 func _on_bottomshown_pressed():

@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=31 format=2]
 
 [ext_resource path="res://Table/OppositeDropArea.gd" type="Script" id=1]
 [ext_resource path="res://Table/PlayerAction.gd" type="Script" id=2]
@@ -26,6 +26,10 @@
 [ext_resource path="res://Table/OppoShown.gd" type="Script" id=24]
 [ext_resource path="res://Table/LeftShown.gd" type="Script" id=25]
 [ext_resource path="res://Table/RightShown.gd" type="Script" id=26]
+[ext_resource path="res://Table/LeftChow.gd" type="Script" id=27]
+[ext_resource path="res://Table/MidChow.gd" type="Script" id=28]
+[ext_resource path="res://Table/RightChow.gd" type="Script" id=29]
+[ext_resource path="res://Table/ChowPanel.gd" type="Script" id=30]
 
 [node name="Table" type="Node2D"]
 script = ExtResource( 6 )
@@ -287,6 +291,18 @@ margin_left = 681.0
 margin_right = 782.0
 margin_bottom = 20.0
 text = "BottomShown"
+
+[node name="ChowPanel" type="Node2D" parent="."]
+script = ExtResource( 30 )
+
+[node name="LeftChow" type="Node2D" parent="ChowPanel"]
+script = ExtResource( 27 )
+
+[node name="MidChow" type="Node2D" parent="ChowPanel"]
+script = ExtResource( 28 )
+
+[node name="RightChow" type="Node2D" parent="ChowPanel"]
+script = ExtResource( 29 )
 [connection signal="pressed" from="VBoxContainer/TestButtons/One" to="." method="_on_Button4_pressed"]
 [connection signal="pressed" from="VBoxContainer/TestButtons/Two" to="." method="_on_Button5_pressed"]
 [connection signal="pressed" from="VBoxContainer/TestButtons/Three" to="." method="_on_Button6_pressed"]

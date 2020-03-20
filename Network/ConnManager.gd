@@ -83,8 +83,13 @@ func send_discard(tile, order):
 	msg["chow_type"] = Message.chow_type.NAC
 	send_message(to_json(msg))
 	
-func send_chow(tile,order):
-	pass
+func send_chow(tile,order,chow_type):
+	var msg = Message.game_msg_dict
+	msg["action"] = Message.player_action.CHOW
+	msg["tile"] = tile
+	msg["table_order"] = order
+	msg["chow_type"] = chow_type
+	send_message(to_json(msg))
 	
 func send_pong(tile, order):
 	var msg = Message.game_msg_dict
