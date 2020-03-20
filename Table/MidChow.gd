@@ -26,6 +26,7 @@ func get_tile_instance(suit, number):
 	tile.vframes = 5
 	tile.hframes = 9
 	tile.frame_coords = Vector2(number-1, suit)
+	tile.scale = Vector2(Constants.Tile.CHOW_SCALE, Constants.Tile.CHOW_SCALE)
 	return tile
 
 
@@ -35,6 +36,8 @@ func clear_tiles():
 		child.queue_free()
 		
 func _input(event):
+	if !visible:
+		return
 	if (event is InputEventMouseButton or event is InputEventScreenTouch) and event.pressed:
 		if Rect2(0,0,Constants.Tile.CHOW_WIDTH*3, Constants.Tile.HEIGHT).has_point(to_local(event.position)):
 			emit_signal("pressed")

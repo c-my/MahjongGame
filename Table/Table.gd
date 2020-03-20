@@ -37,7 +37,7 @@ func handle_game_msg(msg):
 	set_chow_panel()
 	current_msg = msg
 	just_clicked = false
-	# 处理逻辑
+	
 	
 func handle_chow():
 	var chow_types = current_msg["chow_types"]
@@ -48,19 +48,26 @@ func handle_chow():
 	else:	# show chow panel
 		var suit = current_msg["current_tile"]["suit"]
 		var number = current_msg["current_tile"]["number"]
+		print_debug("show chow panel: ", suit, number,"types: ",chow_types)
 		$ChowPanel.show_panel(suit, number, chow_types)
 
 func handle_left_chow():
+	if current_msg == null:
+		return
 	var suit = current_msg["current_tile"]["suit"]
 	var number = current_msg["current_tile"]["number"]
 	ConnManager.send_chow({"suit":suit,"number":number}, my_table_order ,Message.chow_type.LEFT)
 	
 func handle_mid_chow():
+	if current_msg == null:
+		return
 	var suit = current_msg["current_tile"]["suit"]
 	var number = current_msg["current_tile"]["number"]
 	ConnManager.send_chow({"suit":suit,"number":number}, my_table_order ,Message.chow_type.MID)
 	
 func handle_right_chow():
+	if current_msg == null:
+		return
 	var suit = current_msg["current_tile"]["suit"]
 	var number = current_msg["current_tile"]["number"]
 	ConnManager.send_chow({"suit":suit,"number":number}, my_table_order ,Message.chow_type.RIGHT)
@@ -239,25 +246,25 @@ func _on_righthand_pressed():
 
 
 func _on_bottomdrop_pressed():
-	$BottomDropArea.add_tile(randi()%3, randi()%9)
+	$BottomDropArea.add_tile(randi()%3, randi()%9+1)
 	$BottomDropArea.show_tiles()
 
 
 func _on_leftdrop_pressed():
-	$LeftDropArea.add_tile(randi()%3, randi()%9)
+	$LeftDropArea.add_tile(randi()%3, randi()%9+1)
 	$LeftDropArea.show_tiles()
 
 
 func _on_rightdrop_pressed():
-	$RightDropArea.add_tile(randi()%3, randi()%9)
+	$RightDropArea.add_tile(randi()%3, randi()%9+1)
 	$RightDropArea.show_tiles()
 
 
 func _on_oppodrop_pressed():
 	$RightDropArea.clear_tiles();
-	$OppositeDropArea.add_tile(randi()%3, randi()%9)
+	$OppositeDropArea.add_tile(randi()%3, randi()%9+1)
 	$OppositeDropArea.show_tiles()
-	$ChowPanel.show_panel(1,3,[0,1,2])
+	$ChowPanel.show_panel(0,6,[0,1,2])
 
 
 func _on_bottomshown_pressed():

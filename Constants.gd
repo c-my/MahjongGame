@@ -11,9 +11,12 @@ class Tile:
 	const HEIGHT = 118*BOTTOM_HAND_SCALE
 	const WIDTH = 76*BOTTOM_HAND_SCALE
 	const SELECT_HEIGHT = 30
-	const CHOW_WIDTH = 76
+	const CHOW_SCALE = 1.3
+	const CHOW_WIDTH = 76*CHOW_SCALE
+	const CHOW_HEIGHT = 118*CHOW_SCALE
 	
 	const OPPOSITE_HAND_WIDTH = 79
+	const OPPOSITE_HAND_HEIGHT = 120
 	const OPPOSITE_DROP_WIDTH = 76
 	const OPPOSITE_DROP_HEIGHT = 118
 	
@@ -51,6 +54,10 @@ class Table:
 	
 class Timer_Table:
 	enum DIRECTION {NONE, BOTTOM, RIGHT, OPPOSITE, LEFT}
+	
+class Chow_Panel:
+	const SEPARATION = 30
+	const MARGIN_BOTTOM = 350
 
 
 # Called when the node enters the scene tree for the first time.

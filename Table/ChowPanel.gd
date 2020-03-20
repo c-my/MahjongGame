@@ -1,6 +1,5 @@
 extends Node2D
 
-var sep = 10
 
 # Declare member variables here. Examples:
 # var a = 2
@@ -13,7 +12,7 @@ func _ready():
 	
 
 func show_panel(suit, number, types):
-	if len(types)==1:
+	if types.size()==1:
 		hide()
 	hide_all()
 	for t in types:
@@ -27,7 +26,9 @@ func show_panel(suit, number, types):
 	for child in get_children():
 		if child.visible:
 			child.position = Vector2(pos, 0)
-			pos += sep+3*Constants.Tile.CHOW_WIDTH
+			pos += Constants.Chow_Panel.SEPARATION+3*Constants.Tile.CHOW_WIDTH
+	position = Vector2((Constants.Screen.WIDTH-pos)/2, Constants.Screen.HEIGHT - Constants.Chow_Panel.MARGIN_BOTTOM - Constants.Tile.CHOW_HEIGHT)
+	show()
 			
 func hide_all():
 	$LeftChow.hide()

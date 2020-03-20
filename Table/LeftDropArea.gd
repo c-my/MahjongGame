@@ -32,7 +32,6 @@ func show_tiles():
 	for i in range(get_children().size()):
 		get_children()[i].position = Vector2(-i*Constants.Tile.SIDE_DROP_DIFF, 
 				i*(Constants.Tile.SIDE_DROP_HEIGHT-Constants.Tile.SIDE_DROP_THICK))
-	pass
 
 func clear_tiles():
 	for tile in get_children():
