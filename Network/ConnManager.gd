@@ -77,8 +77,50 @@ func send_start():
 	
 func send_discard(tile, order):
 	var msg = Message.game_msg_dict
-	msg["action"]=Message.player_action.DISCARD
+	msg["action"] = Message.player_action.DISCARD
 	msg["tile"] = tile
 	msg["table_order"] = order
 	msg["chow_type"] = Message.chow_type.NAC
+	send_message(to_json(msg))
+	
+func send_chow(tile,order):
+	pass
+	
+func send_pong(tile, order):
+	var msg = Message.game_msg_dict
+	msg["action"] = Message.player_action.PONG
+	msg["tile"] = tile
+	msg["table_order"] = order
+	msg["chow_type"] = Message.chow_type.NAC
+	send_message(to_json(msg))
+	
+func send_exposedkong(tile, order):
+	var msg = Message.game_msg_dict
+	msg["action"] = Message.player_action.EXPOSED_KONG
+	msg["tile"] = tile
+	msg["table_order"] = order
+	msg["chow_type"] = Message.chow_type.NAC
+	send_message(to_json(msg))
+	
+func send_concealedkong(tile, order):
+	var msg = Message.game_msg_dict
+	msg["action"] = Message.player_action.CONCEALED_KONG
+	msg["tile"] = tile
+	msg["table_order"] = order
+	msg["chow_type"] = Message.chow_type.NAC
+	send_message(to_json(msg))
+
+func send_addedkong(tile, order):
+	var msg = Message.game_msg_dict
+	msg["action"] = Message.player_action.ADDED_KONG
+	msg["tile"] = tile
+	msg["table_order"] = order
+	msg["chow_type"] = Message.chow_type.NAC
+	send_message(to_json(msg))
+	
+func send_cancel(order):
+	var msg = Message.game_msg_dict
+	msg["action"] = Message.player_action.CANCEL
+	msg["table_order"] = order
+	msg["chow_type"] = Message.chow_tyoe.NAC
 	send_message(to_json(msg))

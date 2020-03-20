@@ -132,6 +132,7 @@ margin_top = 690.079
 margin_right = 1819.08
 margin_bottom = 805.079
 custom_constants/separation = 10
+alignment = 2
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false

@@ -5,30 +5,23 @@ extends HBoxContainer
 # var a = 2
 # var b = "text"
 
-signal chow
-signal pong
-signal kong
-signal win
-signal cancel
-
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	$Chow.connect("pressed", self, "chow")
-	$Pong.connect("pressed", self, "pong")
-	$Kong.connect("pressed", self, "kong")
-	$Win.connect("pressed", self, "win")
-	$Cancel.connect("pressed", self, "cancel")
+	pass
 	
 func show_actions(actions):
 	if (not actions[0]) and (not actions[1]) and (not actions[2]) and (not actions[3]):
 		self.hide()
+		return false
 	else:
-		$Chow.disabled = !actions[0]
-		$Pong.disabled = !actions[1]
-		$Kong.disabled = !actions[2]
-		$Win.disabled = !actions[3]
-		$Cancel.disabled = !actions[4]
+		$Chow.visible = actions[0]
+		$Pong.visible = actions[1]
+		$Kong.visible = actions[2]
+		$Win.visible = actions[3]
+		$Cancel.visible = true
+		self.show()
+		return true
 
 
 

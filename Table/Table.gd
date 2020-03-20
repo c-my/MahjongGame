@@ -6,7 +6,10 @@ extends Node2D
 # var b = "text"
 var Tile = preload("res://Tile.tscn")
 var is_my_turn = false
+var has_actions = false #用于控制能否发牌
 var my_table_order = 0
+var current_msg
+var current_kong_type = Message.player_action.EXPOSED_KONG
 
 
 # Called when the node enters the scene tree for the first time.
@@ -14,16 +17,11 @@ func _ready():
 # warning-ignore:return_value_discarded
 	ConnManager.connect("recv_game_msg", self, "handle_game_msg")
 	
-	$PlayerAction.connect("chow", self, "handle_chow")
-	$PlayerAction.connect("pong", self, "handle_pong")
-	$PlayerAction.connect("kong", self, "handle_kong")
+	$PlayerAction/Chow.connect("pressed", self, "handle_chow")
+	$PlayerAction/Pong.connect("pressed", self, "handle_pong")
+	$PlayerAction/Kong.connect("pressed", self, "handle_kong")
 
 
-func tile_click_handler(tile):
-	if not is_my_turn:
-		return
-	$BottomHand.remove_tile_by_instance(tile)
-	# TODO:send websocket msg
 	
 func handle_game_msg(msg):
 	set_hand_areas(msg)
@@ -32,16 +30,28 @@ func handle_game_msg(msg):
 	set_timer_direction(msg)
 	set_turn(msg)
 	set_player_action(msg)
+	current_msg = msg
 	# 处理逻辑
 	
 func handle_chow():
 	pass
 	
 func handle_pong():
-	pass
+	print_debug("handle pong")
+	if current_msg == null:
+		print_debug("current msg is null")
+		return
+	ConnManager.send_pong(current_msg["current_tile"], my_table_order)
 	
 func handle_kong():
-	pass
+	if current_msg == null:
+		return
+	if current_kong_type == Message.player_action.EXPOSED_KONG:
+		ConnManager.send_exposedkong(current_msg["current_tile"], my_table_order)
+	elif current_kong_type == Message.player_action.CONCEALED_KONG:
+		pass
+	elif current_kong_type == Message.player_action.ADDED_KONG:
+		pass
 			
 		
 
@@ -103,6 +113,9 @@ func set_turn(msg):
 	
 func set_player_action(msg):
 	var acts = [false,false,false,false,true]
+	if msg["current_turn"]!=my_table_order:
+		$PlayerAction.show_actions(acts)
+		return	
 	var actions = msg["available_actions"]
 	if actions != null:
 		for action in actions:
@@ -111,10 +124,11 @@ func set_player_action(msg):
 			elif action==Message.player_action.PONG:
 				acts[1]=true
 			elif action==Message.player_action.CONCEALED_KONG or action==Message.player_action.EXPOSED_KONG or action==Message.player_action.ADDED_KONG:
+				current_kong_type = action
 				acts[2]=true
 			elif action==Message.player_action.WIN:
 				acts[3]=true
-	$PlayerAction.show_actions(acts)
+	has_actions = $PlayerAction.show_actions(acts)
 	
 	
 func set_shown_areas(msg):
@@ -140,7 +154,9 @@ func set_shown_areas(msg):
 #	pass
 
 func handle_tile_click(suit, number):
-	if not is_my_turn:
+	if (not is_my_turn):
+		return
+	if has_actions:
 		return
 	ConnManager.send_discard({"suit":suit, "number": number}, my_table_order)
 	
