@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://Asset/HallBackground.png" type="Texture" id=1]
 [ext_resource path="res://Asset/Button/RoomControl/CreateRoom.png" type="Texture" id=2]
@@ -7,10 +7,47 @@
 [ext_resource path="res://Asset/Button/General/Confirm.png" type="Texture" id=5]
 [ext_resource path="res://Asset/Button/General/Cancel.png" type="Texture" id=6]
 [ext_resource path="res://Asset/PopupBackground.png" type="Texture" id=7]
+[ext_resource path="res://Asset/Font/SourceHanSansSC-Normal.otf" type="DynamicFontData" id=8]
 
 [sub_resource type="StyleBoxTexture" id=1]
 texture = ExtResource( 7 )
 region_rect = Rect2( 0, 0, 640, 569 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 32
+font_data = ExtResource( 8 )
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 1, 1, 1, 1 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 32
+extra_spacing_char = 5
+font_data = ExtResource( 8 )
+
+[sub_resource type="DynamicFont" id=7]
+size = 32
+font_data = ExtResource( 8 )
+
+[sub_resource type="StyleBoxFlat" id=5]
+bg_color = Color( 1, 1, 1, 1 )
+
+[sub_resource type="DynamicFont" id=6]
+size = 32
+extra_spacing_char = 5
+font_data = ExtResource( 8 )
+
+[sub_resource type="DynamicFont" id=10]
+size = 32
+font_data = ExtResource( 8 )
+
+[sub_resource type="StyleBoxFlat" id=8]
+bg_color = Color( 1, 1, 1, 1 )
+
+[sub_resource type="DynamicFont" id=9]
+size = 32
+extra_spacing_char = 5
+font_data = ExtResource( 8 )
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource( 4 )
@@ -67,36 +104,52 @@ texture = ExtResource( 7 )
 [node name="VoxContainer" type="VBoxContainer" parent="CreateRoomDialog"]
 margin_right = 640.0
 margin_bottom = 569.0
+custom_constants/separation = 50
 alignment = 1
 
 [node name="PasswdContainer" type="HBoxContainer" parent="CreateRoomDialog/VoxContainer"]
-margin_right = 40.0
-margin_bottom = 40.0
+margin_top = 198.0
+margin_right = 640.0
+margin_bottom = 246.0
+custom_constants/separation = 20
 alignment = 1
 
 [node name="PasswordLabel" type="Label" parent="CreateRoomDialog/VoxContainer/PasswdContainer"]
-margin_right = 40.0
-margin_bottom = 14.0
-text = "Password"
+margin_left = 174.0
+margin_right = 302.0
+margin_bottom = 48.0
+custom_fonts/font = SubResource( 4 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "房间密码"
 
 [node name="PasswordEdit" type="LineEdit" parent="CreateRoomDialog/VoxContainer/PasswdContainer"]
-margin_right = 58.0
-margin_bottom = 24.0
+margin_left = 322.0
+margin_right = 466.0
+margin_bottom = 48.0
+custom_styles/normal = SubResource( 2 )
+custom_fonts/font = SubResource( 3 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+max_length = 6
+expand_to_text_length = true
+clear_button_enabled = true
 
 [node name="ButtonContainer" type="HBoxContainer" parent="CreateRoomDialog/VoxContainer"]
-margin_right = 40.0
-margin_bottom = 40.0
+margin_top = 296.0
+margin_right = 640.0
+margin_bottom = 371.0
 custom_constants/separation = 20
 alignment = 1
 
 [node name="ConfirmButton" type="TextureButton" parent="CreateRoomDialog/VoxContainer/ButtonContainer"]
-margin_right = 40.0
-margin_bottom = 40.0
+margin_left = 89.0
+margin_right = 310.0
+margin_bottom = 75.0
 texture_normal = ExtResource( 5 )
 
 [node name="CancelButton" type="TextureButton" parent="CreateRoomDialog/VoxContainer/ButtonContainer"]
-margin_right = 40.0
-margin_bottom = 40.0
+margin_left = 330.0
+margin_right = 551.0
+margin_bottom = 75.0
 texture_normal = ExtResource( 6 )
 
 [node name="JoinRoomDialog" type="PopupPanel" parent="."]
@@ -114,50 +167,75 @@ texture = ExtResource( 7 )
 [node name="VoxContainer" type="VBoxContainer" parent="JoinRoomDialog"]
 margin_right = 640.0
 margin_bottom = 569.0
+custom_constants/separation = 20
 alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="RoomIDContainer" type="HBoxContainer" parent="JoinRoomDialog/VoxContainer"]
-margin_right = 40.0
-margin_bottom = 40.0
+margin_top = 179.0
+margin_right = 640.0
+margin_bottom = 227.0
 alignment = 1
 
 [node name="RoomIDLabel" type="Label" parent="JoinRoomDialog/VoxContainer/RoomIDContainer"]
-margin_right = 40.0
-margin_bottom = 14.0
-text = "RoomID"
+margin_left = 198.0
+margin_right = 294.0
+margin_bottom = 48.0
+custom_fonts/font = SubResource( 7 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "房间号"
 
 [node name="RoomIDEdit" type="LineEdit" parent="JoinRoomDialog/VoxContainer/RoomIDContainer"]
-margin_right = 58.0
-margin_bottom = 24.0
+margin_left = 298.0
+margin_right = 442.0
+margin_bottom = 48.0
+custom_styles/normal = SubResource( 5 )
+custom_fonts/font = SubResource( 6 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+max_length = 6
 
 [node name="PasswdContainer" type="HBoxContainer" parent="JoinRoomDialog/VoxContainer"]
-margin_right = 40.0
-margin_bottom = 40.0
+margin_top = 247.0
+margin_right = 640.0
+margin_bottom = 295.0
 alignment = 1
 
 [node name="PasswordLabel" type="Label" parent="JoinRoomDialog/VoxContainer/PasswdContainer"]
-margin_right = 40.0
-margin_bottom = 14.0
-text = "Password"
+margin_left = 210.0
+margin_right = 281.0
+margin_bottom = 48.0
+custom_fonts/font = SubResource( 10 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "密 码"
 
 [node name="PasswordEdit" type="LineEdit" parent="JoinRoomDialog/VoxContainer/PasswdContainer"]
-margin_right = 58.0
-margin_bottom = 24.0
+margin_left = 285.0
+margin_right = 429.0
+margin_bottom = 48.0
+custom_styles/normal = SubResource( 8 )
+custom_fonts/font = SubResource( 9 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+max_length = 6
 
 [node name="ButtonContainer" type="HBoxContainer" parent="JoinRoomDialog/VoxContainer"]
-margin_right = 40.0
-margin_bottom = 40.0
+margin_top = 315.0
+margin_right = 640.0
+margin_bottom = 390.0
 custom_constants/separation = 20
 alignment = 1
 
 [node name="ConfirmButton" type="TextureButton" parent="JoinRoomDialog/VoxContainer/ButtonContainer"]
-margin_right = 40.0
-margin_bottom = 40.0
+margin_left = 89.0
+margin_right = 310.0
+margin_bottom = 75.0
 texture_normal = ExtResource( 5 )
 
 [node name="CancelButton" type="TextureButton" parent="JoinRoomDialog/VoxContainer/ButtonContainer"]
-margin_right = 40.0
-margin_bottom = 40.0
+margin_left = 330.0
+margin_right = 551.0
+margin_bottom = 75.0
 texture_normal = ExtResource( 6 )
 
 [node name="CreateRoomRequest" type="HTTPRequest" parent="."]
