@@ -39,10 +39,10 @@ func show_tiles():
 
 	set_position(Vector2(x, y))
 	for i in range(tiles.size()):
-#		if new_tile_flag and new_tile_number!=0 and tiles[i].suit==new_tile_number and tiles[i].number==new_tile_number:
-#			new_tile_flag = false
-#			new_tile_index = i
-#			continue
+		if new_tile_flag and new_tile_number!=0 and tiles[i].suit==new_tile_number and tiles[i].number==new_tile_number:
+			new_tile_flag = false
+			new_tile_index = i
+			continue
 		if not tiles[i].is_selected:
 			tiles[i].position = Vector2(i*Constants.Tile.WIDTH, 0)
 		else:

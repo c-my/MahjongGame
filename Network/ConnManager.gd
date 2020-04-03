@@ -9,6 +9,9 @@ var url = "ws://127.0.0.1"
 var port = "1114"
 
 signal recv_game_msg
+signal recv_table_order_msg
+signal conn_success
+signal conn_failed
 signal deal_tiles	# 发牌
 signal draw_tile	# 抓牌
 
@@ -28,9 +31,9 @@ func _ready():
 
 
 		
-func connect_ws():
+func connect_ws(user_id):
 	# Initiate connection to the given URL.
-	var err = _client.connect_to_url(url+":"+port)
+	var err = _client.connect_to_url(url+":"+port+"/ws/"+ str(user_id))
 	if err != OK:
 		print("Unable to connect")
 		set_process(false)
@@ -48,6 +51,7 @@ func _connected(proto = ""):
 	# This is called on connection, "proto" will be the selected WebSocket
 	# sub-protocol (which is optional)
 	print("Connected with protocol: ", proto)
+	emit_signal("conn_success")
 	# You MUST always use get_peer(1).put_packet to send data to server,
 	# and not put_packet directly when not using the MultiplayerAPI.
 #	_client.get_peer(1).put_packet("Test packet".to_utf8())
@@ -62,6 +66,8 @@ func _on_data():
 	var json = json_recv.result
 	if json["msg_type"]==Message.msg_type.GAME_MSG:
 		emit_signal("recv_game_msg", json)
+	elif json["msg_type"]==Message.msg_type.TABLE_ORDER_MSG:
+		emit_signal("recv_table_order_msg", json)
 	print_debug("msg_type: ", json_recv.result["msg_type"])
 
 func _process(delta):

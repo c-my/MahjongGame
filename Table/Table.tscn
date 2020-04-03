@@ -229,15 +229,9 @@ margin_right = 258.0
 margin_bottom = 20.0
 text = "  Four  "
 
-[node name="ConnectButton" type="Button" parent="VBoxContainer/TestButtons"]
-margin_left = 268.0
-margin_right = 332.0
-margin_bottom = 20.0
-text = "Connect"
-
 [node name="StartButton" type="Button" parent="VBoxContainer/TestButtons"]
-margin_left = 342.0
-margin_right = 383.0
+margin_left = 268.0
+margin_right = 309.0
 margin_bottom = 20.0
 text = "Start"
 
@@ -308,7 +302,6 @@ text = "BottomShown"
 [connection signal="pressed" from="VBoxContainer/TestButtons/Two" to="." method="_on_Button5_pressed"]
 [connection signal="pressed" from="VBoxContainer/TestButtons/Three" to="." method="_on_Button6_pressed"]
 [connection signal="pressed" from="VBoxContainer/TestButtons/Four" to="." method="_on_Button7_pressed"]
-[connection signal="pressed" from="VBoxContainer/TestButtons/ConnectButton" to="." method="_on_Button8_pressed"]
 [connection signal="pressed" from="VBoxContainer/TestButtons/StartButton" to="." method="_on_Button9_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/Button" to="." method="_on_Button_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/Button3" to="." method="_on_Button3_pressed"]

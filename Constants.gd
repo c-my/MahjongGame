@@ -58,6 +58,11 @@ class Timer_Table:
 class Chow_Panel:
 	const SEPARATION = 30
 	const MARGIN_BOTTOM = 350
+	
+class HTTP:
+	const BASE_URL = "http://127.0.0.1"
+	const PORT = "1114"
+	const ROOM_URL = BASE_URL+":"+PORT+"/room/"
 
 
 # Called when the node enters the scene tree for the first time.

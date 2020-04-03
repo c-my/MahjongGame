@@ -40,6 +40,7 @@ func _input(event):
 		return
 	if (event is InputEventMouseButton or event is InputEventScreenTouch) and event.pressed:
 		if Rect2(0,0,Constants.Tile.CHOW_WIDTH*3, Constants.Tile.HEIGHT).has_point(to_local(event.position)):
+			print_debug("pressed")
 			emit_signal("pressed")
 			get_tree().set_input_as_handled()
 		

@@ -1,9 +1,6 @@
 extends Node2D
 
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
 var Tile = preload("res://Tile.tscn")
 var is_my_turn = false
 var has_actions = false #用于控制能否发牌
@@ -16,6 +13,7 @@ var just_clicked = false
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	ConnManager.connect("recv_game_msg", self, "handle_game_msg")
+	ConnManager.connect("recv_table_order_msg", self, "handle_table_order_msg")
 	
 	$PlayerAction/Chow.connect("pressed", self, "handle_chow")
 	$PlayerAction/Pong.connect("pressed", self, "handle_pong")
@@ -38,8 +36,14 @@ func handle_game_msg(msg):
 	current_msg = msg
 	just_clicked = false
 	
+func handle_table_order_msg(msg):
+	my_table_order = msg["table_order"]
+	print_debug("set table order: ", my_table_order)
+	
 	
 func handle_chow():
+	if current_msg == null:
+		return
 	var chow_types = current_msg["chow_types"]
 	if chow_types == null:
 		return
@@ -85,9 +89,9 @@ func handle_kong():
 	if current_kong_type == Message.player_action.EXPOSED_KONG:
 		ConnManager.send_exposedkong(current_msg["current_tile"], my_table_order)
 	elif current_kong_type == Message.player_action.CONCEALED_KONG:
-		pass
+		ConnManager.send_concealedkong(current_msg["current_tile"], my_table_order)
 	elif current_kong_type == Message.player_action.ADDED_KONG:
-		pass
+		ConnManager.send_addedkong(current_msg["current_tile"], my_table_order)
 			
 		
 
@@ -200,6 +204,8 @@ func handle_tile_click(suit, number):
 	just_clicked = true
 	
 
+# DEBUG AREA
+# following functions will be removed when release
 
 func _on_Button_pressed():
 	var tile = Tile.instance()
@@ -230,10 +236,6 @@ func _on_Button6_pressed():
 
 func _on_Button7_pressed():
 	my_table_order = 3
-
-
-func _on_Button8_pressed():
-	ConnManager.connect_ws()
 
 
 func _on_Button9_pressed():
