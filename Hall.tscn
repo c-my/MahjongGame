@@ -99,7 +99,73 @@ margin_right = 40.0
 margin_bottom = 40.0
 texture_normal = ExtResource( 6 )
 
+[node name="JoinRoomDialog" type="PopupPanel" parent="."]
+margin_right = 48.0
+margin_bottom = 40.0
+custom_styles/panel = SubResource( 1 )
+popup_exclusive = true
+
+[node name="TextureRect" type="TextureRect" parent="JoinRoomDialog"]
+visible = false
+margin_right = 640.0
+margin_bottom = 569.0
+texture = ExtResource( 7 )
+
+[node name="VoxContainer" type="VBoxContainer" parent="JoinRoomDialog"]
+margin_right = 640.0
+margin_bottom = 569.0
+alignment = 1
+
+[node name="RoomIDContainer" type="HBoxContainer" parent="JoinRoomDialog/VoxContainer"]
+margin_right = 40.0
+margin_bottom = 40.0
+alignment = 1
+
+[node name="RoomIDLabel" type="Label" parent="JoinRoomDialog/VoxContainer/RoomIDContainer"]
+margin_right = 40.0
+margin_bottom = 14.0
+text = "RoomID"
+
+[node name="RoomIDEdit" type="LineEdit" parent="JoinRoomDialog/VoxContainer/RoomIDContainer"]
+margin_right = 58.0
+margin_bottom = 24.0
+
+[node name="PasswdContainer" type="HBoxContainer" parent="JoinRoomDialog/VoxContainer"]
+margin_right = 40.0
+margin_bottom = 40.0
+alignment = 1
+
+[node name="PasswordLabel" type="Label" parent="JoinRoomDialog/VoxContainer/PasswdContainer"]
+margin_right = 40.0
+margin_bottom = 14.0
+text = "Password"
+
+[node name="PasswordEdit" type="LineEdit" parent="JoinRoomDialog/VoxContainer/PasswdContainer"]
+margin_right = 58.0
+margin_bottom = 24.0
+
+[node name="ButtonContainer" type="HBoxContainer" parent="JoinRoomDialog/VoxContainer"]
+margin_right = 40.0
+margin_bottom = 40.0
+custom_constants/separation = 20
+alignment = 1
+
+[node name="ConfirmButton" type="TextureButton" parent="JoinRoomDialog/VoxContainer/ButtonContainer"]
+margin_right = 40.0
+margin_bottom = 40.0
+texture_normal = ExtResource( 5 )
+
+[node name="CancelButton" type="TextureButton" parent="JoinRoomDialog/VoxContainer/ButtonContainer"]
+margin_right = 40.0
+margin_bottom = 40.0
+texture_normal = ExtResource( 6 )
+
 [node name="CreateRoomRequest" type="HTTPRequest" parent="."]
+
+[node name="JoinRoomRequest" type="HTTPRequest" parent="."]
 [connection signal="pressed" from="ButtonContainer/CreateRoomButton" to="." method="_on_CreateRoomButton_pressed"]
-[connection signal="pressed" from="CreateRoomDialog/VoxContainer/ButtonContainer/ConfirmButton" to="." method="_on_ConfirmButton_pressed"]
-[connection signal="pressed" from="CreateRoomDialog/VoxContainer/ButtonContainer/CancelButton" to="." method="_on_CancelButton_pressed"]
+[connection signal="pressed" from="ButtonContainer/EnterRoomButton" to="." method="_on_EnterRoomButton_pressed"]
+[connection signal="pressed" from="CreateRoomDialog/VoxContainer/ButtonContainer/ConfirmButton" to="." method="_on_CreateRoom_ConfirmButton_pressed"]
+[connection signal="pressed" from="CreateRoomDialog/VoxContainer/ButtonContainer/CancelButton" to="." method="_on_CreateRoom_CancelButton_pressed"]
+[connection signal="pressed" from="JoinRoomDialog/VoxContainer/ButtonContainer/ConfirmButton" to="." method="_on_JoinRoom_ConfirmButton_pressed"]
+[connection signal="pressed" from="JoinRoomDialog/VoxContainer/ButtonContainer/CancelButton" to="." method="_on_JoinRoom_CancelButton_pressed"]

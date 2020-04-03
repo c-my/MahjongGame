@@ -37,7 +37,7 @@ func handle_game_msg(msg):
 	just_clicked = false
 	
 func handle_table_order_msg(msg):
-	my_table_order = msg["table_order"]
+	my_table_order = int(msg["table_order"])
 	print_debug("set table order: ", my_table_order)
 	
 	
@@ -221,21 +221,6 @@ func _on_Button2_pressed():
 func _on_Button3_pressed():
 	$LeftHand.show_tiles(randi()%13)
 
-
-func _on_Button4_pressed():
-	my_table_order = 0
-
-
-func _on_Button5_pressed():
-	my_table_order = 1
-
-
-func _on_Button6_pressed():
-	my_table_order = 2
-
-
-func _on_Button7_pressed():
-	my_table_order = 3
 
 
 func _on_Button9_pressed():
