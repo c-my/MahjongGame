@@ -14,11 +14,13 @@ var just_clicked = false
 func _ready():
 	ConnManager.connect("recv_game_msg", self, "handle_game_msg")
 	ConnManager.connect("recv_table_order_msg", self, "handle_table_order_msg")
+	ConnManager.connect("recv_game_result_msg", self, "handle_game_result_msg")
 	
 	$PlayerAction/Chow.connect("pressed", self, "handle_chow")
 	$PlayerAction/Pong.connect("pressed", self, "handle_pong")
 	$PlayerAction/Kong.connect("pressed", self, "handle_kong")
 	$PlayerAction/Cancel.connect("pressed", self, "handle_cancel")
+	$PlayerAction/Win.connect("pressed", self, "handle_win")
 	
 	$ChowPanel/LeftChow.connect("pressed", self, "handle_left_chow")
 	$ChowPanel/MidChow.connect("pressed", self, "handle_mid_chow")
@@ -40,6 +42,10 @@ func handle_game_msg(msg):
 func handle_table_order_msg(msg):
 	my_table_order = int(msg["table_order"])
 	print_debug("set table order: ", my_table_order)
+	
+func handle_game_result_msg(msg):
+	var winner = msg["winner"]
+	print_debug("winner: ", winner)
 	
 	
 func handle_chow():
@@ -93,6 +99,14 @@ func handle_kong():
 		ConnManager.send_concealedkong(current_msg["current_tile"], my_table_order)
 	elif current_kong_type == Message.player_action.ADDED_KONG:
 		ConnManager.send_addedkong(current_msg["current_tile"], my_table_order)
+		
+
+func handle_win():
+	if current_msg == null:
+		return
+	print_debug("send win")
+	ConnManager.send_win(current_msg["current_tile"], my_table_order)
+
 		
 func handle_cancel():
 	if current_msg == null:

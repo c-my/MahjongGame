@@ -10,6 +10,7 @@ var port = "1114"
 
 signal recv_game_msg
 signal recv_table_order_msg
+signal recv_game_result_msg
 signal conn_success
 signal conn_failed
 signal deal_tiles	# 发牌
@@ -64,10 +65,14 @@ func _on_data():
 	print("Got data from server: ", data_recv)
 	var json_recv = JSON.parse(data_recv)
 	var json = json_recv.result
-	if json["msg_type"]==Message.msg_type.GAME_MSG:
+	var msg_type = json["msg_type"]
+	if msg_type == Message.msg_type.GAME_MSG:
 		emit_signal("recv_game_msg", json)
-	elif json["msg_type"]==Message.msg_type.TABLE_ORDER_MSG:
+	elif msg_type == Message.msg_type.TABLE_ORDER_MSG:
 		emit_signal("recv_table_order_msg", json)
+	elif msg_type == Message.msg_type.GAME_RESULT_MSG:
+		emit_signal("recv_game_result_msg", json)
+	
 	print_debug("msg_type: ", json_recv.result["msg_type"])
 
 func _process(delta):
@@ -124,6 +129,14 @@ func send_concealedkong(tile, order):
 func send_addedkong(tile, order):
 	var msg = Message.game_msg_dict
 	msg["action"] = Message.player_action.ADDED_KONG
+	msg["tile"] = tile
+	msg["table_order"] = order
+	msg["chow_type"] = Message.chow_type.NAC
+	send_message(to_json(msg))
+	
+func send_win(tile, order):
+	var msg = Message.game_msg_dict
+	msg["action"] = Message.player_action.WIN
 	msg["tile"] = tile
 	msg["table_order"] = order
 	msg["chow_type"] = Message.chow_type.NAC
