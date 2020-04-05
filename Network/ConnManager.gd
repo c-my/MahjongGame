@@ -133,5 +133,5 @@ func send_cancel(order):
 	var msg = Message.game_msg_dict
 	msg["action"] = Message.player_action.CANCEL
 	msg["table_order"] = order
-	msg["chow_type"] = Message.chow_tyoe.NAC
+	msg["chow_type"] = Message.chow_type.NAC
 	send_message(to_json(msg))
