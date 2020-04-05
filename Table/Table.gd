@@ -18,6 +18,7 @@ func _ready():
 	$PlayerAction/Chow.connect("pressed", self, "handle_chow")
 	$PlayerAction/Pong.connect("pressed", self, "handle_pong")
 	$PlayerAction/Kong.connect("pressed", self, "handle_kong")
+	$PlayerAction/Cancel.connect("pressed", self, "handle_cancel")
 	
 	$ChowPanel/LeftChow.connect("pressed", self, "handle_left_chow")
 	$ChowPanel/MidChow.connect("pressed", self, "handle_mid_chow")
@@ -92,6 +93,12 @@ func handle_kong():
 		ConnManager.send_concealedkong(current_msg["current_tile"], my_table_order)
 	elif current_kong_type == Message.player_action.ADDED_KONG:
 		ConnManager.send_addedkong(current_msg["current_tile"], my_table_order)
+		
+func handle_cancel():
+	if current_msg == null:
+		return
+	print_debug("send cancel")
+	ConnManager.send_cancel(my_table_order)
 			
 		
 

@@ -18,24 +18,24 @@ region_rect = Rect2( 0, 0, 640, 569 )
 size = 32
 font_data = ExtResource( 8 )
 
-[sub_resource type="StyleBoxTexture" id=12]
+[sub_resource type="StyleBoxTexture" id=3]
 texture = ExtResource( 9 )
 region_rect = Rect2( 0, 0, 257, 59 )
 
-[sub_resource type="StyleBoxTexture" id=11]
+[sub_resource type="StyleBoxTexture" id=4]
 texture = ExtResource( 9 )
 region_rect = Rect2( 0, 0, 257, 59 )
 
-[sub_resource type="DynamicFont" id=4]
+[sub_resource type="DynamicFont" id=5]
 size = 32
 extra_spacing_char = 5
 font_data = ExtResource( 8 )
 
-[sub_resource type="DynamicFont" id=5]
+[sub_resource type="DynamicFont" id=6]
 size = 32
 font_data = ExtResource( 8 )
 
-[sub_resource type="DynamicFont" id=8]
+[sub_resource type="DynamicFont" id=7]
 size = 32
 font_data = ExtResource( 8 )
 
@@ -116,9 +116,9 @@ text = "房间密码"
 margin_left = 302.0
 margin_right = 590.0
 margin_bottom = 48.0
-custom_styles/focus = SubResource( 12 )
-custom_styles/normal = SubResource( 11 )
-custom_fonts/font = SubResource( 4 )
+custom_styles/focus = SubResource( 3 )
+custom_styles/normal = SubResource( 4 )
+custom_fonts/font = SubResource( 5 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 align = 1
 max_length = 6
@@ -171,25 +171,25 @@ __meta__ = {
 
 [node name="RoomIDContainer" type="HBoxContainer" parent="JoinRoomDialog/VoxContainer"]
 margin_top = 179.0
-margin_right = 688.0
+margin_right = 640.0
 margin_bottom = 227.0
 alignment = 1
 
 [node name="RoomIDLabel" type="Label" parent="JoinRoomDialog/VoxContainer/RoomIDContainer"]
-margin_left = 148.0
-margin_right = 244.0
+margin_left = 124.0
+margin_right = 220.0
 margin_bottom = 48.0
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = SubResource( 6 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "房间号"
 
 [node name="RoomIDEdit" type="LineEdit" parent="JoinRoomDialog/VoxContainer/RoomIDContainer"]
-margin_left = 252.0
-margin_right = 540.0
+margin_left = 228.0
+margin_right = 516.0
 margin_bottom = 48.0
-custom_styles/focus = SubResource( 12 )
-custom_styles/normal = SubResource( 11 )
-custom_fonts/font = SubResource( 4 )
+custom_styles/focus = SubResource( 3 )
+custom_styles/normal = SubResource( 4 )
+custom_fonts/font = SubResource( 5 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 align = 1
 max_length = 6
@@ -199,25 +199,25 @@ caret_blink = true
 
 [node name="PasswdContainer" type="HBoxContainer" parent="JoinRoomDialog/VoxContainer"]
 margin_top = 247.0
-margin_right = 688.0
+margin_right = 640.0
 margin_bottom = 295.0
 alignment = 1
 
 [node name="PasswordLabel" type="Label" parent="JoinRoomDialog/VoxContainer/PasswdContainer"]
-margin_left = 160.0
-margin_right = 231.0
+margin_left = 136.0
+margin_right = 207.0
 margin_bottom = 48.0
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = SubResource( 7 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "密 码"
 
 [node name="PasswordEdit" type="LineEdit" parent="JoinRoomDialog/VoxContainer/PasswdContainer"]
-margin_left = 239.0
-margin_right = 527.0
+margin_left = 215.0
+margin_right = 503.0
 margin_bottom = 48.0
-custom_styles/focus = SubResource( 12 )
-custom_styles/normal = SubResource( 11 )
-custom_fonts/font = SubResource( 4 )
+custom_styles/focus = SubResource( 3 )
+custom_styles/normal = SubResource( 4 )
+custom_fonts/font = SubResource( 5 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 align = 1
 max_length = 6
@@ -228,20 +228,20 @@ caret_blink = true
 
 [node name="ButtonContainer" type="HBoxContainer" parent="JoinRoomDialog/VoxContainer"]
 margin_top = 315.0
-margin_right = 688.0
+margin_right = 640.0
 margin_bottom = 390.0
 custom_constants/separation = 20
 alignment = 1
 
 [node name="ConfirmButton" type="TextureButton" parent="JoinRoomDialog/VoxContainer/ButtonContainer"]
-margin_left = 113.0
-margin_right = 334.0
+margin_left = 89.0
+margin_right = 310.0
 margin_bottom = 75.0
 texture_normal = ExtResource( 5 )
 
 [node name="CancelButton" type="TextureButton" parent="JoinRoomDialog/VoxContainer/ButtonContainer"]
-margin_left = 354.0
-margin_right = 575.0
+margin_left = 330.0
+margin_right = 551.0
 margin_bottom = 75.0
 texture_normal = ExtResource( 6 )
 
