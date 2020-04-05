@@ -63,6 +63,19 @@ class HTTP:
 	const BASE_URL = "http://127.0.0.1"
 	const PORT = "1114"
 	const ROOM_URL = BASE_URL+":"+PORT+"/room/"
+	
+	const RELEASE_BASE_URL = "http://mj.caimingyang.cn"
+	const RELEASE_PORT = "80"
+	const RELEASE_ROOM_URL = RELEASE_BASE_URL+":"+RELEASE_PORT+"/room/"
+
+class WebSockt:
+	const BASE_URL = "ws://127.0.0.1"
+	const BASE_PORT = "1114"
+	const URL = BASE_URL+":"+BASE_PORT
+	
+	const RELEASE_BASE_URL = "ws://mj.caimingyang.cn"
+	const RELEASE_BASE_PORT = "80"
+	const RELEASE_URL = RELEASE_BASE_URL+":"+RELEASE_BASE_PORT
 
 
 # Called when the node enters the scene tree for the first time.

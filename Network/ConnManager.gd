@@ -5,8 +5,6 @@ extends Node
 # var a = 2
 # var b = "text"
 
-var url = "ws://127.0.0.1"
-var port = "1114"
 
 signal recv_game_msg
 signal recv_table_order_msg
@@ -34,7 +32,7 @@ func _ready():
 		
 func connect_ws(user_id):
 	# Initiate connection to the given URL.
-	var err = _client.connect_to_url(url+":"+port+"/ws/"+ str(user_id))
+	var err = _client.connect_to_url(Constants.WebSockt.URL+"/ws/"+ str(user_id))
 	if err != OK:
 		print("Unable to connect")
 		set_process(false)
