@@ -36,7 +36,7 @@ func clear_tiles():
 		child.queue_free()
 		
 func _input(event):
-	if !visible:
+	if !is_visible_in_tree() :
 		return
 	if (event is InputEventMouseButton or event is InputEventScreenTouch) and event.pressed:
 		if Rect2(0,0,Constants.Tile.CHOW_WIDTH*3, Constants.Tile.HEIGHT).has_point(to_local(event.position)):
