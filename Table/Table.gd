@@ -8,6 +8,7 @@ var my_table_order = 0
 var current_msg
 var current_kong_type = Message.player_action.EXPOSED_KONG
 var just_clicked = false
+var is_mute = false
 
 
 # Called when the node enters the scene tree for the first time.
@@ -15,6 +16,9 @@ func _ready():
 	ConnManager.connect("recv_game_msg", self, "handle_game_msg")
 	ConnManager.connect("recv_table_order_msg", self, "handle_table_order_msg")
 	ConnManager.connect("recv_game_result_msg", self, "handle_game_result_msg")
+	ConnManager.connect("recv_get_ready_msg", self, "handle_get_ready_msg")
+	
+	$ReadyButton.connect("pressed", self, "handle_ready_pressed")
 	
 	$PlayerAction/Chow.connect("pressed", self, "handle_chow")
 	$PlayerAction/Pong.connect("pressed", self, "handle_pong")
@@ -36,6 +40,7 @@ func handle_game_msg(msg):
 	set_turn(msg)
 	set_player_action(msg)
 	set_chow_panel()
+	set_action_audio(msg)
 	current_msg = msg
 	just_clicked = false
 	
@@ -47,6 +52,14 @@ func handle_game_result_msg(msg):
 	var winner = msg["winner"]
 	print_debug("winner: ", winner)
 	
+func handle_get_ready_msg(msg):
+	# TODO: show ready state
+	pass
+	
+func handle_ready_pressed():
+	print_debug("ready pressed")
+	ConnManager.send_ready(my_table_order)
+	
 	
 func handle_chow():
 	if current_msg == null:
@@ -55,6 +68,7 @@ func handle_chow():
 	if chow_types == null:
 		return
 	if chow_types.size()==1:
+		play_action_audio(Message.player_action.CHOW)
 		ConnManager.send_chow(current_msg["current_tile"], my_table_order,chow_types[0])
 	else:	# show chow panel
 		var suit = current_msg["current_tile"]["suit"]
@@ -67,6 +81,7 @@ func handle_left_chow():
 		return
 	var suit = current_msg["current_tile"]["suit"]
 	var number = current_msg["current_tile"]["number"]
+	play_action_audio(Message.player_action.CHOW)
 	ConnManager.send_chow({"suit":suit,"number":number}, my_table_order ,Message.chow_type.LEFT)
 	
 func handle_mid_chow():
@@ -74,6 +89,7 @@ func handle_mid_chow():
 		return
 	var suit = current_msg["current_tile"]["suit"]
 	var number = current_msg["current_tile"]["number"]
+	play_action_audio(Message.player_action.CHOW)
 	ConnManager.send_chow({"suit":suit,"number":number}, my_table_order ,Message.chow_type.MID)
 	
 func handle_right_chow():
@@ -81,6 +97,7 @@ func handle_right_chow():
 		return
 	var suit = current_msg["current_tile"]["suit"]
 	var number = current_msg["current_tile"]["number"]
+	play_action_audio(Message.player_action.CHOW)
 	ConnManager.send_chow({"suit":suit,"number":number}, my_table_order ,Message.chow_type.RIGHT)
 		
 func handle_pong():
@@ -88,16 +105,20 @@ func handle_pong():
 	if current_msg == null:
 		print_debug("current msg is null")
 		return
+	play_action_audio(Message.player_action.PONG)
 	ConnManager.send_pong(current_msg["current_tile"], my_table_order)
 	
 func handle_kong():
 	if current_msg == null:
 		return
 	if current_kong_type == Message.player_action.EXPOSED_KONG:
+		play_action_audio(current_kong_type)
 		ConnManager.send_exposedkong(current_msg["current_tile"], my_table_order)
 	elif current_kong_type == Message.player_action.CONCEALED_KONG:
+		play_action_audio(current_kong_type)		
 		ConnManager.send_concealedkong(current_msg["current_tile"], my_table_order)
 	elif current_kong_type == Message.player_action.ADDED_KONG:
+		play_action_audio(current_kong_type)		
 		ConnManager.send_addedkong(current_msg["current_tile"], my_table_order)
 		
 
@@ -105,6 +126,7 @@ func handle_win():
 	if current_msg == null:
 		return
 	print_debug("send win")
+	play_action_audio(Message.player_action.WIN)	
 	ConnManager.send_win(current_msg["current_tile"], my_table_order)
 
 		
@@ -210,6 +232,18 @@ func set_shown_areas(msg):
 		
 func set_chow_panel():
 	$ChowPanel.hide()	
+	
+func set_action_audio(msg):
+	var last_turn = msg["last_turn"]
+	var last_action = msg["last_action"]
+	if last_turn < 0 or last_turn == my_table_order:
+		return
+	if last_action == Message.player_action.DISCARD:
+		var last_tile = msg["last_tile"]
+		play_discard_audio(last_tile["suit"], last_tile["number"])
+	else:
+		play_action_audio(last_action)
+		
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
@@ -221,9 +255,35 @@ func handle_tile_click(suit, number):
 		return
 	if just_clicked:
 		return
+	play_discard_audio(suit, number)
 	ConnManager.send_discard({"suit":suit, "number": number}, my_table_order)
 	just_clicked = true
 	
+
+func play_discard_audio(suit, number):
+	var gender_string = "Male"
+	var audio_path = "res://Asset/Audio/Action/Discard/%s/%d%d.ogg" % [gender_string, suit, number]
+	$ActionPlayer.stream = load(audio_path)
+	$ActionPlayer.stream.set("loop", false)
+	$ActionPlayer.play()
+	
+func play_action_audio(action):
+	var gender_string = "Male"
+	var action_string = ""
+	if action == Message.player_action.CHOW:
+		action_string = "Chow"
+	elif action == Message.player_action.PONG:
+		action_string = "Pong"
+	elif action == Message.player_action.EXPOSED_KONG or action == Message.player_action.ADDED_KONG or action == Message.player_action.CONCEALED_KONG:
+		action_string = "Kong"
+	elif action == Message.player_action.WIN:
+		action_string = "Win"
+	else:
+		return	
+	var audio_path = "res://Asset/Audio/Action/PlayerAction/%s/%s.ogg" % [gender_string, action_string]
+	$ActionPlayer.stream = load(audio_path)
+	$ActionPlayer.stream.set("loop", false)
+	$ActionPlayer.play()
 
 # DEBUG AREA
 # following functions will be removed when release

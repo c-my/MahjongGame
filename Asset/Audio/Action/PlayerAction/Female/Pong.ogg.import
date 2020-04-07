@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Pong.ogg-98aa11fb74f21ab8b37f2905eb1f0150.oggstr"
+
+[deps]
+
+source_file="res://Asset/Audio/Action/PlayerAction/Female/Pong.ogg"
+dest_files=[ "res://.import/Pong.ogg-98aa11fb74f21ab8b37f2905eb1f0150.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Kong.ogg-d805606a1b4da4b24f649867ca7b39ec.oggstr"
+
+[deps]
+
+source_file="res://Asset/Audio/Action/PlayerAction/Female/Kong.ogg"
+dest_files=[ "res://.import/Kong.ogg-d805606a1b4da4b24f649867ca7b39ec.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

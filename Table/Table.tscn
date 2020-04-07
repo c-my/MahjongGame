@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=2]
+[gd_scene load_steps=33 format=2]
 
 [ext_resource path="res://Table/OppositeDropArea.gd" type="Script" id=1]
 [ext_resource path="res://Table/PlayerAction.gd" type="Script" id=2]
@@ -30,9 +30,17 @@
 [ext_resource path="res://Table/MidChow.gd" type="Script" id=28]
 [ext_resource path="res://Table/RightChow.gd" type="Script" id=29]
 [ext_resource path="res://Table/ChowPanel.gd" type="Script" id=30]
+[ext_resource path="res://Asset/Audio/BGM/BGM1.ogg" type="AudioStream" id=31]
+[ext_resource path="res://Asset/Button/RoomControl/Ready.png" type="Texture" id=32]
 
 [node name="Table" type="Node2D"]
 script = ExtResource( 6 )
+
+[node name="BGMPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 31 )
+autoplay = true
+
+[node name="ActionPlayer" type="AudioStreamPlayer" parent="."]
 
 [node name="Background" type="TextureRect" parent="."]
 margin_right = 1920.0
@@ -77,6 +85,7 @@ margin_bottom = 35.0
 texture = ExtResource( 14 )
 
 [node name="TimerBottom" type="TextureRect" parent="Timer"]
+visible = false
 margin_left = -122.0
 margin_top = 92.0
 margin_right = 304.0
@@ -179,6 +188,7 @@ margin_bottom = 115.0
 texture_normal = ExtResource( 11 )
 
 [node name="ChowPanel" type="Node2D" parent="."]
+visible = false
 position = Vector2( 684.956, 530.841 )
 script = ExtResource( 30 )
 
@@ -200,7 +210,7 @@ __meta__ = {
 }
 
 [node name="TestButtons" type="HBoxContainer" parent="VBoxContainer"]
-margin_right = 1377.0
+margin_right = 76.0
 margin_bottom = 37.0
 custom_constants/separation = 10
 __meta__ = {
@@ -213,6 +223,7 @@ margin_bottom = 37.0
 text = "Start"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+visible = false
 margin_top = 45.0
 margin_right = 1377.0
 margin_bottom = 82.0
@@ -275,6 +286,17 @@ margin_left = 1199.0
 margin_right = 1377.0
 margin_bottom = 37.0
 text = "BottomShown"
+
+[node name="ReadyButton" type="TextureButton" parent="."]
+visible = false
+margin_left = 896.551
+margin_top = 603.429
+margin_right = 1132.55
+margin_bottom = 702.429
+texture_normal = ExtResource( 32 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
 [connection signal="pressed" from="VBoxContainer/TestButtons/StartButton" to="." method="_on_Button9_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/Button" to="." method="_on_Button_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/Button3" to="." method="_on_Button3_pressed"]

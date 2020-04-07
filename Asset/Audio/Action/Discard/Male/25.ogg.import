@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/25.ogg-b0effdea2824fc25d7be74be50ee949f.oggstr"
+
+[deps]
+
+source_file="res://Asset/Audio/Action/Discard/Male/25.ogg"
+dest_files=[ "res://.import/25.ogg-b0effdea2824fc25d7be74be50ee949f.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

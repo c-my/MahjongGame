@@ -145,7 +145,6 @@ margin_bottom = 75.0
 texture_normal = ExtResource( 6 )
 
 [node name="JoinRoomDialog" type="PopupPanel" parent="."]
-visible = true
 margin_right = 48.0
 margin_bottom = 40.0
 custom_styles/panel = SubResource( 1 )

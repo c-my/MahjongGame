@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Chow.ogg-c8864bed3d6960aa339f65ed9ac6fcf0.oggstr"
+
+[deps]
+
+source_file="res://Asset/Audio/Action/PlayerAction/Female/Chow.ogg"
+dest_files=[ "res://.import/Chow.ogg-c8864bed3d6960aa339f65ed9ac6fcf0.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

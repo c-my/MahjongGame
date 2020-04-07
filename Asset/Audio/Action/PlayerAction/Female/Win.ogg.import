@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Win.ogg-9a0d412fc26cf707f1646480ac53a2a4.oggstr"
+
+[deps]
+
+source_file="res://Asset/Audio/Action/PlayerAction/Female/Win.ogg"
+dest_files=[ "res://.import/Win.ogg-9a0d412fc26cf707f1646480ac53a2a4.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0
