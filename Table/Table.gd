@@ -19,6 +19,7 @@ func _ready():
 	ConnManager.connect("recv_get_ready_msg", self, "handle_get_ready_msg")
 	
 	$ReadyButton.connect("pressed", self, "handle_ready_pressed")
+
 	
 	$PlayerAction/Chow.connect("pressed", self, "handle_chow")
 	$PlayerAction/Pong.connect("pressed", self, "handle_pong")
@@ -243,6 +244,16 @@ func set_action_audio(msg):
 		play_discard_audio(last_tile["suit"], last_tile["number"])
 	else:
 		play_action_audio(last_action)
+		
+func handle_sound_button_clicked():
+	var mute = $ControlButtons/SoundButton.pressed
+	AudioServer.set_bus_mute(AudioServer.get_bus_index("Master"), mute)
+	
+func handle_music_button_clicked():
+	var mute = $ControlButtons/SoundButton.pressed
+	AudioServer.set_bus_mute(AudioServer.get_bus_index("Effect"), mute)      
+	
+	
 		
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):

@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=2]
+[gd_scene load_steps=37 format=2]
 
 [ext_resource path="res://Table/OppositeDropArea.gd" type="Script" id=1]
 [ext_resource path="res://Table/PlayerAction.gd" type="Script" id=2]
@@ -32,6 +32,10 @@
 [ext_resource path="res://Table/ChowPanel.gd" type="Script" id=30]
 [ext_resource path="res://Asset/Audio/BGM/BGM1.ogg" type="AudioStream" id=31]
 [ext_resource path="res://Asset/Button/RoomControl/Ready.png" type="Texture" id=32]
+[ext_resource path="res://Asset/Button/RoomControl/Mute.png" type="Texture" id=33]
+[ext_resource path="res://Asset/Button/RoomControl/Sound.png" type="Texture" id=34]
+[ext_resource path="res://Asset/Button/RoomControl/Music.png" type="Texture" id=35]
+[ext_resource path="res://Asset/Button/RoomControl/MusicMute.png" type="Texture" id=36]
 
 [node name="Table" type="Node2D"]
 script = ExtResource( 6 )
@@ -41,6 +45,7 @@ stream = ExtResource( 31 )
 autoplay = true
 
 [node name="ActionPlayer" type="AudioStreamPlayer" parent="."]
+bus = "Effect"
 
 [node name="Background" type="TextureRect" parent="."]
 margin_right = 1920.0
@@ -297,6 +302,31 @@ texture_normal = ExtResource( 32 )
 __meta__ = {
 "_edit_use_anchors_": true
 }
+
+[node name="ControlButtons" type="HBoxContainer" parent="."]
+margin_left = 1509.08
+margin_top = 35.0
+margin_right = 1815.08
+margin_bottom = 163.0
+custom_constants/separation = 50
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MusicButton" type="TextureButton" parent="ControlButtons"]
+margin_right = 128.0
+margin_bottom = 128.0
+toggle_mode = true
+texture_normal = ExtResource( 35 )
+texture_pressed = ExtResource( 36 )
+
+[node name="SoundButton" type="TextureButton" parent="ControlButtons"]
+margin_left = 178.0
+margin_right = 306.0
+margin_bottom = 128.0
+toggle_mode = true
+texture_normal = ExtResource( 34 )
+texture_pressed = ExtResource( 33 )
 [connection signal="pressed" from="VBoxContainer/TestButtons/StartButton" to="." method="_on_Button9_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/Button" to="." method="_on_Button_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/Button3" to="." method="_on_Button3_pressed"]
@@ -307,3 +337,5 @@ __meta__ = {
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/Button7" to="." method="_on_rightdrop_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/Button8" to="." method="_on_oppodrop_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/Button9" to="." method="_on_bottomshown_pressed"]
+[connection signal="pressed" from="ControlButtons/MusicButton" to="." method="handle_music_button_clicked"]
+[connection signal="pressed" from="ControlButtons/SoundButton" to="." method="handle_sound_button_clicked"]
