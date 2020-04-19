@@ -10,11 +10,13 @@ extends Node
 func _ready():
 	pass # Replace with function body.
 
-enum msg_type{GAME_MSG, TABLE_ORDER_MSG, GAME_RESULT_MSG, GET_READY_MSG}
+enum msg_type{GAME_MSG, TABLE_ORDER_MSG, GAME_RESULT_MSG, GET_READY_MSG, USER_ORDER_MSG}
 
 enum player_action{START,DEAL, CHOW,PONG, EXPOSED_KONG, CONCEALED_KONG, ADDED_KONG, WIN, CANCEL, DISCARD, DRAW, READY}
 
 enum chow_type{LEFT, MID, RIGHT, NAC}
+
+enum gender{FEMALE, MALE}
 
 var game_msg_dict = {
 	"msg_type":msg_type.GAME_MSG,

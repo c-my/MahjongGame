@@ -5,6 +5,8 @@ var Tile = preload("res://Tile.tscn")
 var is_my_turn = false
 var has_actions = false #用于控制能否发牌
 var my_table_order = 0
+var my_user_order = 0
+var my_gender = 0
 var current_msg
 var current_kong_type = Message.player_action.EXPOSED_KONG
 var just_clicked = false
@@ -17,6 +19,7 @@ func _ready():
 	ConnManager.connect("recv_table_order_msg", self, "handle_table_order_msg")
 	ConnManager.connect("recv_game_result_msg", self, "handle_game_result_msg")
 	ConnManager.connect("recv_get_ready_msg", self, "handle_get_ready_msg")
+	ConnManager.connect("recv_user_order_msg", self, "handle_user_id_msg")
 	
 	$ReadyButton.connect("pressed", self, "handle_ready_pressed")
 
@@ -57,6 +60,9 @@ func handle_get_ready_msg(msg):
 	# TODO: show ready state
 	pass
 	
+func handle_user_id_msg(msg):
+	my_user_order = msg["user_order"]
+	
 func handle_ready_pressed():
 	print_debug("ready pressed")
 	ConnManager.send_ready(my_table_order)
@@ -69,7 +75,7 @@ func handle_chow():
 	if chow_types == null:
 		return
 	if chow_types.size()==1:
-		play_action_audio(Message.player_action.CHOW)
+		play_action_audio(Message.player_action.CHOW, my_gender)
 		ConnManager.send_chow(current_msg["current_tile"], my_table_order,chow_types[0])
 	else:	# show chow panel
 		var suit = current_msg["current_tile"]["suit"]
@@ -82,7 +88,7 @@ func handle_left_chow():
 		return
 	var suit = current_msg["current_tile"]["suit"]
 	var number = current_msg["current_tile"]["number"]
-	play_action_audio(Message.player_action.CHOW)
+	play_action_audio(Message.player_action.CHOW, my_gender)
 	ConnManager.send_chow({"suit":suit,"number":number}, my_table_order ,Message.chow_type.LEFT)
 	
 func handle_mid_chow():
@@ -90,7 +96,7 @@ func handle_mid_chow():
 		return
 	var suit = current_msg["current_tile"]["suit"]
 	var number = current_msg["current_tile"]["number"]
-	play_action_audio(Message.player_action.CHOW)
+	play_action_audio(Message.player_action.CHOW, my_gender)
 	ConnManager.send_chow({"suit":suit,"number":number}, my_table_order ,Message.chow_type.MID)
 	
 func handle_right_chow():
@@ -98,7 +104,7 @@ func handle_right_chow():
 		return
 	var suit = current_msg["current_tile"]["suit"]
 	var number = current_msg["current_tile"]["number"]
-	play_action_audio(Message.player_action.CHOW)
+	play_action_audio(Message.player_action.CHOW, my_gender)
 	ConnManager.send_chow({"suit":suit,"number":number}, my_table_order ,Message.chow_type.RIGHT)
 		
 func handle_pong():
@@ -106,20 +112,20 @@ func handle_pong():
 	if current_msg == null:
 		print_debug("current msg is null")
 		return
-	play_action_audio(Message.player_action.PONG)
+	play_action_audio(Message.player_action.PONG, my_gender)
 	ConnManager.send_pong(current_msg["current_tile"], my_table_order)
 	
 func handle_kong():
 	if current_msg == null:
 		return
 	if current_kong_type == Message.player_action.EXPOSED_KONG:
-		play_action_audio(current_kong_type)
+		play_action_audio(current_kong_type, my_gender)
 		ConnManager.send_exposedkong(current_msg["current_tile"], my_table_order)
 	elif current_kong_type == Message.player_action.CONCEALED_KONG:
-		play_action_audio(current_kong_type)		
+		play_action_audio(current_kong_type, my_gender)		
 		ConnManager.send_concealedkong(current_msg["current_tile"], my_table_order)
 	elif current_kong_type == Message.player_action.ADDED_KONG:
-		play_action_audio(current_kong_type)		
+		play_action_audio(current_kong_type, my_gender)		
 		ConnManager.send_addedkong(current_msg["current_tile"], my_table_order)
 		
 
@@ -127,7 +133,7 @@ func handle_win():
 	if current_msg == null:
 		return
 	print_debug("send win")
-	play_action_audio(Message.player_action.WIN)	
+	play_action_audio(Message.player_action.WIN, my_gender)	
 	ConnManager.send_win(current_msg["current_tile"], my_table_order)
 
 		
@@ -239,11 +245,12 @@ func set_action_audio(msg):
 	var last_action = msg["last_action"]
 	if last_turn < 0 or last_turn == my_table_order:
 		return
+	var gender = msg["user_list"][last_turn]["gender"]
 	if last_action == Message.player_action.DISCARD:
 		var last_tile = msg["last_tile"]
-		play_discard_audio(last_tile["suit"], last_tile["number"])
+		play_discard_audio(last_tile["suit"], last_tile["number"], gender)
 	else:
-		play_action_audio(last_action)
+		play_action_audio(last_action, gender)
 		
 func handle_sound_button_clicked():
 	var mute = $ControlButtons/SoundButton.pressed
@@ -266,20 +273,26 @@ func handle_tile_click(suit, number):
 		return
 	if just_clicked:
 		return
-	play_discard_audio(suit, number)
+	var last_turn = current_msg["last_turn"]
+	var gender = current_msg["user_list"][last_turn]["gender"]
+	play_discard_audio(suit, number, gender)
 	ConnManager.send_discard({"suit":suit, "number": number}, my_table_order)
 	just_clicked = true
 	
 
-func play_discard_audio(suit, number):
+func play_discard_audio(suit, number, gender=Message.gender.MALE):
 	var gender_string = "Male"
+	if gender==Message.gender.FEMALE:
+		gender_string = "Female"
 	var audio_path = "res://Asset/Audio/Action/Discard/%s/%d%d.ogg" % [gender_string, suit, number]
 	$ActionPlayer.stream = load(audio_path)
 	$ActionPlayer.stream.set("loop", false)
 	$ActionPlayer.play()
 	
-func play_action_audio(action):
+func play_action_audio(action, gender=Message.gender.MALE):
 	var gender_string = "Male"
+	if gender==Message.gender.FEMALE:
+		gender_string = "Female"
 	var action_string = ""
 	if action == Message.player_action.CHOW:
 		action_string = "Chow"
