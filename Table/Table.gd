@@ -37,6 +37,7 @@ func _ready():
 
 	
 func handle_game_msg(msg):
+	my_gender = msg["user_list"][my_table_order]["gender"]
 	set_hand_areas(msg)
 	set_drop_areas(msg)
 	set_shown_areas(msg)
@@ -273,9 +274,8 @@ func handle_tile_click(suit, number):
 		return
 	if just_clicked:
 		return
-	var last_turn = current_msg["last_turn"]
-	var gender = current_msg["user_list"][last_turn]["gender"]
-	play_discard_audio(suit, number, gender)
+		
+	play_discard_audio(suit, number, my_gender)
 	ConnManager.send_discard({"suit":suit, "number": number}, my_table_order)
 	just_clicked = true
 	
