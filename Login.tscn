@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://Asset/LoginBackgounnd.png" type="Texture" id=1]
 [ext_resource path="res://Asset/Font/SourceHanSansSC-Normal.otf" type="DynamicFontData" id=2]
@@ -10,12 +10,13 @@
 [ext_resource path="res://lineedit_style.tres" type="StyleBox" id=8]
 [ext_resource path="res://Asset/Button/General/RadioNormal.png" type="Texture" id=9]
 [ext_resource path="res://Asset/Button/General/RadioSelect.png" type="Texture" id=10]
+[ext_resource path="res://Asset/Button/General/Confirm.png" type="Texture" id=11]
 
-[sub_resource type="StyleBoxTexture" id=2]
+[sub_resource type="StyleBoxTexture" id=1]
 texture = ExtResource( 6 )
 region_rect = Rect2( 0, 0, 640, 569 )
 
-[sub_resource type="DynamicFont" id=1]
+[sub_resource type="DynamicFont" id=2]
 size = 32
 font_data = ExtResource( 2 )
 
@@ -46,11 +47,11 @@ font_data = ExtResource( 2 )
 size = 24
 font_data = ExtResource( 2 )
 
-[sub_resource type="StyleBoxTexture" id=12]
+[sub_resource type="StyleBoxTexture" id=11]
 texture = ExtResource( 6 )
 region_rect = Rect2( 0, 0, 640, 569 )
 
-[sub_resource type="DynamicFont" id=11]
+[sub_resource type="DynamicFont" id=12]
 size = 24
 font_data = ExtResource( 2 )
 
@@ -96,20 +97,25 @@ margin_left = 558.156
 margin_top = 373.135
 margin_right = 1358.16
 margin_bottom = 773.135
-custom_styles/panel = SubResource( 2 )
+custom_styles/panel = SubResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="GridContainer" type="GridContainer" parent="RegisterDialog"]
+[node name="VBoxContainer" type="VBoxContainer" parent="RegisterDialog"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -120.0
-margin_top = -109.5
-margin_right = 120.0
-margin_bottom = 109.5
+margin_left = -132.0
+margin_top = -158.0
+margin_right = 132.0
+margin_bottom = 158.0
+alignment = 1
+
+[node name="GridContainer" type="GridContainer" parent="RegisterDialog/VBoxContainer"]
+margin_right = 264.0
+margin_bottom = 233.0
 custom_constants/vseparation = 10
 custom_constants/hseparation = 10
 columns = 2
@@ -117,14 +123,14 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="UsernameLabel" type="Label" parent="RegisterDialog/GridContainer"]
+[node name="UsernameLabel" type="Label" parent="RegisterDialog/VBoxContainer/GridContainer"]
 margin_right = 64.0
 margin_bottom = 48.0
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = SubResource( 2 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "账号"
 
-[node name="UsernameEdit" type="LineEdit" parent="RegisterDialog/GridContainer"]
+[node name="UsernameEdit" type="LineEdit" parent="RegisterDialog/VBoxContainer/GridContainer"]
 margin_left = 74.0
 margin_right = 264.0
 margin_bottom = 48.0
@@ -134,15 +140,15 @@ custom_fonts/font = SubResource( 5 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 align = 1
 
-[node name="PasswordLabel" type="Label" parent="RegisterDialog/GridContainer"]
+[node name="PasswordLabel" type="Label" parent="RegisterDialog/VBoxContainer/GridContainer"]
 margin_top = 58.0
 margin_right = 64.0
 margin_bottom = 106.0
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = SubResource( 2 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "密码"
 
-[node name="PasswordEdit" type="LineEdit" parent="RegisterDialog/GridContainer"]
+[node name="PasswordEdit" type="LineEdit" parent="RegisterDialog/VBoxContainer/GridContainer"]
 margin_left = 74.0
 margin_top = 58.0
 margin_right = 264.0
@@ -154,15 +160,15 @@ custom_colors/font_color = Color( 0, 0, 0, 1 )
 align = 1
 secret = true
 
-[node name="NicknameLabel" type="Label" parent="RegisterDialog/GridContainer"]
+[node name="NicknameLabel" type="Label" parent="RegisterDialog/VBoxContainer/GridContainer"]
 margin_top = 116.0
 margin_right = 64.0
 margin_bottom = 164.0
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = SubResource( 2 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "昵称"
 
-[node name="NicknameEdit" type="LineEdit" parent="RegisterDialog/GridContainer"]
+[node name="NicknameEdit" type="LineEdit" parent="RegisterDialog/VBoxContainer/GridContainer"]
 margin_left = 74.0
 margin_top = 116.0
 margin_right = 264.0
@@ -173,21 +179,21 @@ custom_fonts/font = SubResource( 7 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 align = 1
 
-[node name="GenderLabel" type="Label" parent="RegisterDialog/GridContainer"]
+[node name="GenderLabel" type="Label" parent="RegisterDialog/VBoxContainer/GridContainer"]
 margin_top = 179.0
 margin_right = 64.0
 margin_bottom = 227.0
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = SubResource( 2 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "性别"
 
-[node name="GenderContainer" type="HBoxContainer" parent="RegisterDialog/GridContainer"]
+[node name="GenderContainer" type="HBoxContainer" parent="RegisterDialog/VBoxContainer/GridContainer"]
 margin_left = 74.0
 margin_top = 174.0
 margin_right = 264.0
 margin_bottom = 233.0
 
-[node name="MaleCheckBox" type="CheckBox" parent="RegisterDialog/GridContainer/GenderContainer"]
+[node name="MaleCheckBox" type="CheckBox" parent="RegisterDialog/VBoxContainer/GridContainer/GenderContainer"]
 margin_right = 91.0
 margin_bottom = 59.0
 custom_icons/radio_checked = ExtResource( 10 )
@@ -201,7 +207,7 @@ custom_colors/font_color_pressed = Color( 0, 0, 0, 1 )
 group = SubResource( 9 )
 text = "男"
 
-[node name="FemaleCheckBox" type="CheckBox" parent="RegisterDialog/GridContainer/GenderContainer"]
+[node name="FemaleCheckBox" type="CheckBox" parent="RegisterDialog/VBoxContainer/GridContainer/GenderContainer"]
 margin_left = 99.0
 margin_right = 190.0
 margin_bottom = 59.0
@@ -216,30 +222,40 @@ custom_colors/font_color_pressed = Color( 0, 0, 0, 1 )
 group = SubResource( 9 )
 text = "女"
 
-[node name="LoginPanel" type="PopupPanel" parent="."]
-visible = true
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = 679.628
-margin_top = 322.73
-margin_right = 1479.63
-margin_bottom = 722.73
-custom_styles/panel = SubResource( 12 )
+[node name="RegisterConfirmButton" type="TextureButton" parent="RegisterDialog/VBoxContainer"]
+margin_top = 241.0
+margin_right = 264.0
+margin_bottom = 316.0
+texture_normal = ExtResource( 11 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="GridContainer" type="GridContainer" parent="LoginPanel"]
+[node name="LoginPanel" type="PopupPanel" parent="."]
+margin_right = 800.0
+margin_bottom = 400.0
+custom_styles/panel = SubResource( 11 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="LoginPanel"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -97.0
-margin_top = -53.0
-margin_right = 97.0
-margin_bottom = 53.0
+margin_left = -400.0
+margin_top = -200.0
+margin_right = 400.0
+margin_bottom = 200.0
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GridContainer" type="GridContainer" parent="LoginPanel/VBoxContainer"]
+margin_right = 221.0
+margin_bottom = 106.0
 custom_constants/vseparation = 10
 custom_constants/hseparation = 10
 columns = 2
@@ -247,44 +263,52 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="UserNameLabel" type="Label" parent="LoginPanel/GridContainer"]
+[node name="UserNameLabel" type="Label" parent="LoginPanel/VBoxContainer/GridContainer"]
 margin_right = 64.0
 margin_bottom = 48.0
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = SubResource( 2 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "账号"
 align = 1
 
-[node name="UsernameEdit" type="LineEdit" parent="LoginPanel/GridContainer"]
+[node name="UsernameEdit" type="LineEdit" parent="LoginPanel/VBoxContainer/GridContainer"]
 margin_left = 74.0
 margin_right = 194.0
 margin_bottom = 48.0
 custom_styles/focus = ExtResource( 8 )
 custom_styles/normal = ExtResource( 8 )
-custom_fonts/font = SubResource( 11 )
+custom_fonts/font = SubResource( 12 )
 align = 1
 
-[node name="PasswordLabel" type="Label" parent="LoginPanel/GridContainer"]
+[node name="PasswordLabel" type="Label" parent="LoginPanel/VBoxContainer/GridContainer"]
 margin_top = 58.0
 margin_right = 64.0
 margin_bottom = 106.0
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = SubResource( 2 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "密码"
 align = 1
 
-[node name="PasswordEdit" type="LineEdit" parent="LoginPanel/GridContainer"]
+[node name="PasswordEdit" type="LineEdit" parent="LoginPanel/VBoxContainer/GridContainer"]
 margin_left = 74.0
 margin_top = 58.0
 margin_right = 194.0
 margin_bottom = 106.0
 custom_styles/focus = ExtResource( 8 )
 custom_styles/normal = ExtResource( 8 )
-custom_fonts/font = SubResource( 11 )
+custom_fonts/font = SubResource( 12 )
 align = 1
+
+[node name="LoginConfirmButton" type="TextureButton" parent="LoginPanel/VBoxContainer"]
+margin_top = 114.0
+margin_right = 221.0
+margin_bottom = 189.0
+texture_normal = ExtResource( 11 )
 
 [node name="LoginHTTPRequest" type="HTTPRequest" parent="."]
 
 [node name="RegisterHTTPRequest" type="HTTPRequest" parent="."]
 [connection signal="pressed" from="HBoxContainer/LoginButton" to="." method="_on_LoginButton_pressed"]
 [connection signal="pressed" from="HBoxContainer/SignupButton" to="." method="_on_SignupButton_pressed"]
+[connection signal="pressed" from="RegisterDialog/VBoxContainer/RegisterConfirmButton" to="." method="_on_RegisterConfirmButton_pressed"]
+[connection signal="pressed" from="LoginPanel/VBoxContainer/LoginConfirmButton" to="." method="_on_LoginConfirmButton_pressed"]

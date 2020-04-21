@@ -17,42 +17,85 @@ func _ready():
 #	pass
 
 
-func _on_SignupButton_pressed():
-	$RegisterDialog.popup_centered()
-	pass # Replace with function body.
 
 func send_login():
 	var use_ssl = false
 	var headers = ["Content-Type: application/json"]
-	var dict = {"username":"",
-		"password":""}
+	var dict = {"username":$LoginPanel/VBoxContainer/GridContainer/UsernameEdit.text,
+		"password":$LoginPanel/VBoxContainer/GridContainer/PasswordEdit.text,}
 	var data = to_json(dict)
-	$LoginHTTPRequest.request(Constants.HTTP.ROOM_URL, headers, use_ssl, HTTPClient.METHOD_POST, data)
+	$LoginHTTPRequest.request(Constants.HTTP.LOGIN_URL, headers, use_ssl, HTTPClient.METHOD_POST, data)
 
 	
 func send_signup():
 	var gender = Message.gender.FEMALE
-	if $RegisterDialog/GridContainer/GenderContainer/MaleCheckBox.pressed:
+	if $RegisterDialog/VBoxContainer/GridContainer/GenderContainer/MaleCheckBox.pressed:
 		gender = Message.gender.MALE
 	var use_ssl = false
 	var headers = ["Content-Type: application/json"]
-	var dict = {"username":$RegisterDialog/GridContainer/UsernameEdit.text,
-		"password":$RegisterDialog/GridContainer/PasswordEdit.text,
-		"nickname":$RegisterDialog/GridContainer/NicknameEdit.text,
+	var dict = {"username":$RegisterDialog/VBoxContainer/GridContainer/UsernameEdit.text,
+		"password":$RegisterDialog/VBoxContainer/GridContainer/PasswordEdit.text,
+		"nickname":$RegisterDialog/VBoxContainer/GridContainer/NicknameEdit.text,
 		"gender":gender,}
 	var data = to_json(dict)
-	$LoginHTTPRequest.request(Constants.HTTP.ROOM_URL, headers, use_ssl, HTTPClient.METHOD_POST, data)
+	$LoginHTTPRequest.request(Constants.HTTP.REGISTER_URL, headers, use_ssl, HTTPClient.METHOD_POST, data)
 
 
 
 func on_login_request_completed(result, response_code, headers, body):
 	if result!=HTTPRequest.RESULT_SUCCESS:
 		print_debug("http response error when login")
+		return
+	var json = JSON.parse(body.get_string_from_utf8())
+	var res = json.result
+	if res["success"] == true:
+		print_debug("login success, userID: ", res["user_id"])
+		Global.my_user_id = res["user_id"]
+		get_tree().change_scene("res://Hall.tscn")
+		#TODO: switch scene
+	else:
+		print_debug("login failed")
+	
 	
 func on_register_request_completed(result, response_code, headers, body):
 	if result!=HTTPRequest.RESULT_SUCCESS:
 		print_debug("http response error when sign up")
+		return
+	var json = JSON.parse(body.get_string_from_utf8())
+	var res = json.result
+	if res["success"] == true:
+		Global.my_user_id = res["user_id"]
+		print_debug("sign up success, userID: ", res["user_id"])
+	else:
+		print_debug("sign up failed")
 
+func _on_RegisterConfirmButton_pressed():
+	#TODO:check text em
+	if ($RegisterDialog/VBoxContainer/GridContainer/UsernameEdit.text.empty() or 
+		$RegisterDialog/VBoxContainer/GridContainer/PasswordEdit.text.empty() or
+		$RegisterDialog/VBoxContainer/GridContainer/NicknameEdit.text.empty() or
+		not(
+			$RegisterDialog/VBoxContainer/GridContainer/GenderContainer/MaleCheckBox.pressed or
+			$RegisterDialog/VBoxContainer/GridContainer/GenderContainer/FemaleCheckBox.pressed
+			)
+		):
+		#TODO:inform not enough info
+		return
+	send_signup()
+	
+func _on_LoginConfirmButton_pressed():
+	if ($LoginPanel/VBoxContainer/GridContainer/UsernameEdit.text.empty() or
+		$LoginPanel/VBoxContainer/GridContainer/PasswordEdit.text.empty()
+	):
+		# inform not enough info
+		return
+	send_login()
 
 func _on_LoginButton_pressed():
 	$LoginPanel.popup_centered()
+
+func _on_SignupButton_pressed():
+	$RegisterDialog.popup_centered()
+
+
+

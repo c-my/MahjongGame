@@ -22,7 +22,6 @@ func _ready():
 
 func on_ws_established():
 	get_tree().change_scene("res://Table/Table.tscn")
-	pass
 
 func _on_CreateRoomButton_pressed():
 	$CreateRoomDialog.popup_centered()
@@ -54,7 +53,7 @@ func on_create_request_completed(result, response_code, headers, body):
 	if res["success"]==true:
 		print_debug("room created")
 		# connect to websocket
-		ConnManager.connect_ws(my_user_id)
+		ConnManager.connect_ws(Global.my_user_id)
 	else:
 		print_debug("failed to create room")
 		
@@ -67,7 +66,7 @@ func on_join_request_completed(result, response_code, headers, body):
 	if res["success"]==true:
 		print_debug("room joined")
 		# connect to websocket
-		ConnManager.connect_ws(my_user_id)
+		ConnManager.connect_ws(Global.my_user_id)
 	else:
 		var reason = res["reason"]
 		print_debug("failed to join room")
@@ -77,7 +76,7 @@ func on_join_request_completed(result, response_code, headers, body):
 func send_create_room():
 	var use_ssl = false
 	var headers = ["Content-Type: application/json"]
-	var dict = {"user_id":my_user_id,
+	var dict = {"user_id":Global.my_user_id,
 		"passwd":$CreateRoomDialog/VoxContainer/PasswdContainer/PasswordEdit.text}
 	var data = to_json(dict)
 	$CreateRoomRequest.request(Constants.HTTP.ROOM_URL, headers, use_ssl, HTTPClient.METHOD_POST, data)
@@ -86,7 +85,7 @@ func send_create_room():
 func send_join_room():
 	var use_ssl = false
 	var headers = ["Content-Type: application/json"]
-	var dict = {"user_id":my_user_id,
+	var dict = {"user_id":Global.my_user_id,
 		"room_id":$JoinRoomDialog/VoxContainer/RoomIDContainer/RoomIDEdit.text.to_int(),
 		"passwd":$JoinRoomDialog/VoxContainer/PasswdContainer/PasswordEdit.text}
 	var data = to_json(dict)

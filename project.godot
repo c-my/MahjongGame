@@ -16,11 +16,12 @@ _global_script_class_icons={
 [application]
 
 config/name="MahjongGame"
-run/main_scene="res://Hall.tscn"
+run/main_scene="res://Login.tscn"
 config/icon="res://icon.png"
 
 [autoload]
 
+Global="*res://Global.gd"
 Constants="*res://Constants.gd"
 Message="*res://Network/Message.gd"
 ConnManager="*res://Network/ConnManager.gd"

@@ -63,6 +63,8 @@ class HTTP:
 	const BASE_URL = "http://127.0.0.1"
 	const PORT = "1114"
 	const ROOM_URL = BASE_URL+":"+PORT+"/room/"
+	const LOGIN_URL = BASE_URL+":"+PORT+"/login/"
+	const REGISTER_URL = BASE_URL+":"+PORT+"/register/"
 	
 	const RELEASE_BASE_URL = "http://mj.caimingyang.cn"
 	const RELEASE_PORT = "80"
