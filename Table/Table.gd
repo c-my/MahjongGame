@@ -254,7 +254,7 @@ func set_action_audio(msg):
 		
 func handle_sound_button_clicked():
 	var mute = $ControlButtons/SoundButton.pressed
-	AudioServer.set_bus_mute(AudioServer.get_bus_index("Master"), mute)
+	AudioServer.set_bus_mute(AudioServer.get_bus_index("BGM"), mute)
 	
 func handle_music_button_clicked():
 	var mute = $ControlButtons/SoundButton.pressed

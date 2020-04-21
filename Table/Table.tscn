@@ -43,6 +43,7 @@ script = ExtResource( 6 )
 [node name="BGMPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 31 )
 autoplay = true
+bus = "BGM"
 
 [node name="ActionPlayer" type="AudioStreamPlayer" parent="."]
 bus = "Effect"
