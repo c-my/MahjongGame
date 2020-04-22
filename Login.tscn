@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://Asset/LoginBackgounnd.png" type="Texture" id=1]
 [ext_resource path="res://Asset/Font/SourceHanSansSC-Normal.otf" type="DynamicFontData" id=2]
@@ -42,6 +42,14 @@ size = 24
 font_data = ExtResource( 2 )
 
 [sub_resource type="ButtonGroup" id=9]
+
+[sub_resource type="StreamTexture" id=13]
+flags = 4
+load_path = "res://.import/RadioSelect.png-9fa6b8f56f1a88ae34b11e74ec2554de.stex"
+
+[sub_resource type="StreamTexture" id=14]
+flags = 4
+load_path = "res://.import/RadioNormal.png-11ab88ef6fe2e65a4d5b3a4e5e51d8b4.stex"
 
 [sub_resource type="DynamicFont" id=10]
 size = 24
@@ -96,7 +104,7 @@ anchor_bottom = 0.5
 margin_left = 558.156
 margin_top = 373.135
 margin_right = 1358.16
-margin_bottom = 773.135
+margin_bottom = 793.135
 custom_styles/panel = SubResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -211,8 +219,8 @@ text = "男"
 margin_left = 99.0
 margin_right = 190.0
 margin_bottom = 59.0
-custom_icons/radio_checked = ExtResource( 10 )
-custom_icons/radio_unchecked = ExtResource( 9 )
+custom_icons/radio_checked = SubResource( 13 )
+custom_icons/radio_unchecked = SubResource( 14 )
 custom_fonts/font = SubResource( 10 )
 custom_colors/font_color_disabled = Color( 0, 0, 0, 1 )
 custom_colors/font_color_hover_pressed = Color( 0, 0, 0, 1 )

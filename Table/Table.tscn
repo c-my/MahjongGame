@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=2]
+[gd_scene load_steps=44 format=2]
 
 [ext_resource path="res://Table/OppositeDropArea.gd" type="Script" id=1]
 [ext_resource path="res://Table/PlayerAction.gd" type="Script" id=2]
@@ -36,6 +36,16 @@
 [ext_resource path="res://Asset/Button/RoomControl/Sound.png" type="Texture" id=34]
 [ext_resource path="res://Asset/Button/RoomControl/Music.png" type="Texture" id=35]
 [ext_resource path="res://Asset/Button/RoomControl/MusicMute.png" type="Texture" id=36]
+[ext_resource path="res://Asset/Label/Ready.png" type="Texture" id=37]
+[ext_resource path="res://Asset/Label/Banker.png" type="Texture" id=38]
+[ext_resource path="res://Asset/Label/Offline.png" type="Texture" id=39]
+[ext_resource path="res://Asset/Avatar/Male.png" type="Texture" id=40]
+[ext_resource path="res://Asset/Font/SourceHanSansSC-Normal.otf" type="DynamicFontData" id=41]
+[ext_resource path="res://Table/BottomAvatar.gd" type="Script" id=42]
+
+[sub_resource type="DynamicFont" id=1]
+size = 24
+font_data = ExtResource( 41 )
 
 [node name="Table" type="Node2D"]
 script = ExtResource( 6 )
@@ -328,6 +338,221 @@ margin_bottom = 128.0
 toggle_mode = true
 texture_normal = ExtResource( 34 )
 texture_pressed = ExtResource( 33 )
+
+[node name="BottomAvatar" type="HBoxContainer" parent="."]
+visible = false
+margin_left = 383.452
+margin_top = 914.896
+margin_right = 510.452
+margin_bottom = 1145.9
+script = ExtResource( 42 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AvatarContainer" type="VBoxContainer" parent="BottomAvatar"]
+margin_right = 75.0
+margin_bottom = 230.0
+
+[node name="Avatar" type="TextureRect" parent="BottomAvatar/AvatarContainer"]
+margin_right = 75.0
+margin_bottom = 75.0
+texture = ExtResource( 40 )
+
+[node name="Nickname" type="Label" parent="BottomAvatar/AvatarContainer"]
+margin_top = 83.0
+margin_right = 75.0
+margin_bottom = 118.0
+custom_fonts/font = SubResource( 1 )
+text = "昵称"
+align = 1
+
+[node name="StateContainer" type="VBoxContainer" parent="BottomAvatar"]
+margin_left = 83.0
+margin_right = 119.0
+margin_bottom = 230.0
+
+[node name="BankerIcon" type="TextureRect" parent="BottomAvatar/StateContainer"]
+margin_right = 36.0
+margin_bottom = 37.0
+texture = ExtResource( 38 )
+
+[node name="ReadyIcon" type="TextureRect" parent="BottomAvatar/StateContainer"]
+visible = false
+margin_top = 85.0
+margin_right = 88.0
+margin_bottom = 131.0
+texture = ExtResource( 37 )
+
+[node name="OfflineIcon" type="TextureRect" parent="BottomAvatar/StateContainer"]
+visible = false
+margin_top = 45.0
+margin_right = 88.0
+margin_bottom = 77.0
+rect_min_size = Vector2( 88, 32 )
+texture = ExtResource( 39 )
+expand = true
+
+[node name="RightAvatar" type="HBoxContainer" parent="."]
+visible = false
+margin_left = 1856.1
+margin_top = 383.268
+margin_right = 1983.1
+margin_bottom = 614.268
+script = ExtResource( 42 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AvatarContainer" type="VBoxContainer" parent="RightAvatar"]
+margin_right = 75.0
+margin_bottom = 231.0
+
+[node name="Avatar" type="TextureRect" parent="RightAvatar/AvatarContainer"]
+margin_right = 75.0
+margin_bottom = 75.0
+texture = ExtResource( 40 )
+
+[node name="Nickname" type="Label" parent="RightAvatar/AvatarContainer"]
+margin_top = 83.0
+margin_right = 75.0
+margin_bottom = 118.0
+custom_fonts/font = SubResource( 1 )
+text = "昵称"
+align = 1
+
+[node name="StateContainer" type="VBoxContainer" parent="RightAvatar"]
+margin_left = 83.0
+margin_right = 119.0
+margin_bottom = 231.0
+
+[node name="BankerIcon" type="TextureRect" parent="RightAvatar/StateContainer"]
+margin_right = 36.0
+margin_bottom = 37.0
+texture = ExtResource( 38 )
+
+[node name="ReadyIcon" type="TextureRect" parent="RightAvatar/StateContainer"]
+visible = false
+margin_top = 85.0
+margin_right = 88.0
+margin_bottom = 131.0
+texture = ExtResource( 37 )
+
+[node name="OfflineIcon" type="TextureRect" parent="RightAvatar/StateContainer"]
+visible = false
+margin_top = 45.0
+margin_right = 88.0
+margin_bottom = 77.0
+rect_min_size = Vector2( 88, 32 )
+texture = ExtResource( 39 )
+expand = true
+
+[node name="OppoAvatar" type="HBoxContainer" parent="."]
+visible = false
+margin_left = 832.592
+margin_top = 35.0
+margin_right = 959.592
+margin_bottom = 266.0
+script = ExtResource( 42 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AvatarContainer" type="VBoxContainer" parent="OppoAvatar"]
+margin_right = 75.0
+margin_bottom = 231.0
+
+[node name="Avatar" type="TextureRect" parent="OppoAvatar/AvatarContainer"]
+margin_right = 75.0
+margin_bottom = 75.0
+texture = ExtResource( 40 )
+
+[node name="Nickname" type="Label" parent="OppoAvatar/AvatarContainer"]
+margin_top = 83.0
+margin_right = 75.0
+margin_bottom = 118.0
+custom_fonts/font = SubResource( 1 )
+text = "昵称"
+align = 1
+
+[node name="StateContainer" type="VBoxContainer" parent="OppoAvatar"]
+margin_left = 83.0
+margin_right = 119.0
+margin_bottom = 231.0
+
+[node name="BankerIcon" type="TextureRect" parent="OppoAvatar/StateContainer"]
+margin_right = 36.0
+margin_bottom = 37.0
+texture = ExtResource( 38 )
+
+[node name="ReadyIcon" type="TextureRect" parent="OppoAvatar/StateContainer"]
+visible = false
+margin_top = 85.0
+margin_right = 88.0
+margin_bottom = 131.0
+texture = ExtResource( 37 )
+
+[node name="OfflineIcon" type="TextureRect" parent="OppoAvatar/StateContainer"]
+visible = false
+margin_top = 45.0
+margin_right = 88.0
+margin_bottom = 77.0
+rect_min_size = Vector2( 88, 32 )
+texture = ExtResource( 39 )
+expand = true
+
+[node name="LeftAvatar" type="HBoxContainer" parent="."]
+visible = false
+margin_top = 383.268
+margin_right = 127.0
+margin_bottom = 614.268
+script = ExtResource( 42 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AvatarContainer" type="VBoxContainer" parent="LeftAvatar"]
+margin_right = 75.0
+margin_bottom = 231.0
+
+[node name="Avatar" type="TextureRect" parent="LeftAvatar/AvatarContainer"]
+margin_right = 75.0
+margin_bottom = 75.0
+texture = ExtResource( 40 )
+
+[node name="Nickname" type="Label" parent="LeftAvatar/AvatarContainer"]
+margin_top = 83.0
+margin_right = 75.0
+margin_bottom = 118.0
+custom_fonts/font = SubResource( 1 )
+text = "昵称"
+align = 1
+
+[node name="StateContainer" type="VBoxContainer" parent="LeftAvatar"]
+margin_left = 83.0
+margin_right = 119.0
+margin_bottom = 231.0
+
+[node name="BankerIcon" type="TextureRect" parent="LeftAvatar/StateContainer"]
+margin_right = 36.0
+margin_bottom = 37.0
+texture = ExtResource( 38 )
+
+[node name="ReadyIcon" type="TextureRect" parent="LeftAvatar/StateContainer"]
+visible = false
+margin_top = 85.0
+margin_right = 88.0
+margin_bottom = 131.0
+texture = ExtResource( 37 )
+
+[node name="OfflineIcon" type="TextureRect" parent="LeftAvatar/StateContainer"]
+visible = false
+margin_top = 45.0
+margin_right = 88.0
+margin_bottom = 77.0
+rect_min_size = Vector2( 88, 32 )
+texture = ExtResource( 39 )
+expand = true
 [connection signal="pressed" from="VBoxContainer/TestButtons/StartButton" to="." method="_on_Button9_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/Button" to="." method="_on_Button_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/Button3" to="." method="_on_Button3_pressed"]

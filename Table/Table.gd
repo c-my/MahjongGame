@@ -46,6 +46,7 @@ func handle_game_msg(msg):
 	set_player_action(msg)
 	set_chow_panel()
 	set_action_audio(msg)
+	set_avatars(msg)
 	current_msg = msg
 	just_clicked = false
 	
@@ -59,7 +60,11 @@ func handle_game_result_msg(msg):
 	
 func handle_get_ready_msg(msg):
 	# TODO: show ready state
-	pass
+	$BottomAvatar.show_ready(msg["ready_list"][my_table_order])
+	$RightAvatar.show_ready(msg["ready_list"][(my_table_order+1)%4])
+	$OppoAvatar.show_ready(msg["ready_list"][(my_table_order+2)%4])
+	$LeftAvatar.show_ready(msg["ready_list"][(my_table_order+2)%4])
+	
 	
 func handle_user_id_msg(msg):
 	my_user_order = msg["user_order"]
@@ -175,7 +180,7 @@ func set_hand_areas(msg):
 	var new_tile_number = msg["current_tile"]["number"]
 	var new_tile_in_hand = false
 	var show_new_tile = false
-	if msg["current_turn"]==my_table_order:
+	if msg["current_turn"] == my_table_order:
 		show_new_tile = true
 	if show_new_tile:
 		new_tile_in_hand = false
@@ -282,6 +287,25 @@ func set_action_audio(msg):
 		play_discard_audio(last_tile["suit"], last_tile["number"], gender)
 	else:
 		play_action_audio(last_action, gender)
+		
+func set_avatars(msg):
+	var users_info = msg["user_list"]
+	var bottom_nickname = users_info[my_table_order]["nickname"]
+	var bottom_gender = users_info[my_table_order]["gender"]
+	$BottomAvatar.show_avatar(bottom_nickname, bottom_gender, my_table_order==0)
+	
+	var right_nickname = users_info[(my_table_order+1)%4]["nickname"]
+	var right_gender = users_info[(my_table_order+1)%4]["gender"]
+	$RightAvatar.show_avatar(right_nickname, right_gender, my_table_order==3)
+	
+	var oppo_nickname = users_info[(my_table_order+2)%4]["nickname"]
+	var oppo_gender = users_info[(my_table_order+2)%4]["gender"]
+	$OppoAvatar.show_avatar(oppo_nickname, oppo_gender, my_table_order==2)
+	
+	var left_nickname = users_info[(my_table_order+3)%4]["nickname"]
+	var left_gender = users_info[(my_table_order+3)%4]["gender"]
+	$LeftAvatar.show_avatar(left_nickname, left_gender, my_table_order==1)
+	
 		
 func handle_sound_button_clicked():
 	var mute = $ControlButtons/SoundButton.pressed

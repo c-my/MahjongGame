@@ -38,7 +38,7 @@ func show_tiles(show_new_tile=false, new_tile_in_hand=false, new_tile_suit=-1, n
 	var new_tile_index = -1
 
 	var left_size = tiles.size()
-	if not new_tile_in_hand:
+	if show_new_tile and not new_tile_in_hand:
 		left_size -= 1
 	set_position(Vector2(x, y))
 	var pos_x = 0
