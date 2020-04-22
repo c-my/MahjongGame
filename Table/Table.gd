@@ -159,7 +159,37 @@ func set_hand_areas(msg):
 		t.set_tile_type(my_tiles[i]["suit"], my_tiles[i]["number"])
 		t.connect("clicked", self, "handle_tile_click")
 		$BottomHand.add_tile_by_instance(t)
-	$BottomHand.show_tiles()
+	var my_tiles_total = my_tiles.size()
+	var kong_count = 0
+	var my_shown = msg["player_tile"][my_table_order]["shown_tiles"]
+	if my_shown != null:
+		for shown in my_shown:
+			if (shown["shown_type"]==Message.player_action.ADDED_KONG or
+				shown["shown_type"]==Message.player_action.CONCEALED_KONG or
+				shown["shown_type"]==Message.player_action.EXPOSED_KONG
+			):
+				kong_count+=1
+				
+			my_tiles_total += shown["tiles"].size()
+	var new_tile_suit = msg["current_tile"]["suit"]
+	var new_tile_number = msg["current_tile"]["number"]
+	var new_tile_in_hand = false
+	var show_new_tile = false
+	if msg["current_turn"]==my_table_order:
+		show_new_tile = true
+	if show_new_tile:
+		new_tile_in_hand = false
+		if kong_count+14 == my_tiles_total:
+			# 玩家抓了牌
+			print_debug("new_tile_in_hand=true, my_tiles_total:", my_tiles_total,"kong_count:",kong_count)
+			new_tile_in_hand = true
+		else:
+			print_debug("add new tile in hand")
+			var t = Tile.instance()
+			t.set_tile_type(new_tile_suit, new_tile_number)
+			t.connect("clicked", self, "handle_tile_click")
+			$BottomHand.add_tile_by_instance(t)
+	$BottomHand.show_tiles(show_new_tile, new_tile_in_hand, new_tile_suit, new_tile_number)
 	
 func set_drop_areas(msg):
 	var bottom_drop_tiles = msg["player_tile"][my_table_order]["drop_tiles"]
