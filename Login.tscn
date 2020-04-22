@@ -278,6 +278,7 @@ margin_bottom = 48.0
 custom_styles/focus = ExtResource( 8 )
 custom_styles/normal = ExtResource( 8 )
 custom_fonts/font = SubResource( 12 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
 align = 1
 
 [node name="PasswordLabel" type="Label" parent="LoginPanel/VBoxContainer/GridContainer"]
@@ -297,6 +298,7 @@ margin_bottom = 106.0
 custom_styles/focus = ExtResource( 8 )
 custom_styles/normal = ExtResource( 8 )
 custom_fonts/font = SubResource( 12 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
 align = 1
 
 [node name="LoginConfirmButton" type="TextureButton" parent="LoginPanel/VBoxContainer"]
