@@ -5,7 +5,6 @@ var Tile = preload("res://Tile.tscn")
 var is_my_turn = false
 var has_actions = false #用于控制能否发牌
 var my_table_order = 0
-var my_user_order = 0
 var my_gender = 0
 var current_msg
 var current_kong_type = Message.player_action.EXPOSED_KONG
@@ -19,9 +18,11 @@ func _ready():
 	ConnManager.connect("recv_table_order_msg", self, "handle_table_order_msg")
 	ConnManager.connect("recv_game_result_msg", self, "handle_game_result_msg")
 	ConnManager.connect("recv_get_ready_msg", self, "handle_get_ready_msg")
-	ConnManager.connect("recv_user_order_msg", self, "handle_user_id_msg")
+	ConnManager.connect("recv_chat_msg", self, "handle_chat_msg")
 	
 	$ReadyButton.connect("pressed", self, "handle_ready_pressed")
+	
+	$ChatField.connect("send_chat", self, "handle_send_chat_pressed")
 
 	
 	$PlayerAction/Chow.connect("pressed", self, "handle_chow")
@@ -55,7 +56,7 @@ func handle_table_order_msg(msg):
 	print_debug("set table order: ", my_table_order)
 	
 func handle_game_result_msg(msg):
-	var winner = msg["winner"]
+	var winner = int(msg["winner"])
 	print_debug("winner: ", winner)
 	
 func handle_get_ready_msg(msg):
@@ -65,13 +66,32 @@ func handle_get_ready_msg(msg):
 	$OppoAvatar.show_ready(msg["ready_list"][(my_table_order+2)%4])
 	$LeftAvatar.show_ready(msg["ready_list"][(my_table_order+2)%4])
 	
+
 	
-func handle_user_id_msg(msg):
-	my_user_order = msg["user_order"]
 	
+func handle_chat_msg(msg):
+	var from = int(msg["from"])
+	var content = msg["content"]
+
+	if from == my_table_order:
+		return
+	elif from == (my_table_order+1)%4:
+		$RightAvatar.show_chat_pop(content)
+	elif from == (my_table_order+2)%4:
+		$OppoAvatar.show_chat_pop(content)
+	elif from == (my_table_order+3)%4:
+		$LeftAvatar.show_chat_pop(content)
+		
+	
+
 func handle_ready_pressed():
 	print_debug("ready pressed")
 	ConnManager.send_ready(my_table_order)
+	
+func handle_send_chat_pressed(text):
+	print_debug("chat send pressed")
+	ConnManager.send_chat(my_table_order, text)
+	
 	
 	
 func handle_chow():

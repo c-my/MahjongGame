@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=2]
+[gd_scene load_steps=58 format=2]
 
 [ext_resource path="res://Table/OppositeDropArea.gd" type="Script" id=1]
 [ext_resource path="res://Table/PlayerAction.gd" type="Script" id=2]
@@ -42,9 +42,38 @@
 [ext_resource path="res://Asset/Avatar/Male.png" type="Texture" id=40]
 [ext_resource path="res://Asset/Font/SourceHanSansSC-Normal.otf" type="DynamicFontData" id=41]
 [ext_resource path="res://Table/BottomAvatar.gd" type="Script" id=42]
+[ext_resource path="res://Table/ChatField.gd" type="Script" id=43]
+[ext_resource path="res://Asset/Input/InputChat.png" type="Texture" id=44]
+[ext_resource path="res://Asset/Button/General/SendButton.png" type="Texture" id=45]
+[ext_resource path="res://Asset/Chat/LeftChat.png" type="Texture" id=46]
+[ext_resource path="res://Table/LeftAvatar.gd" type="Script" id=47]
+[ext_resource path="res://Asset/Chat/RightChat.png" type="Texture" id=48]
+[ext_resource path="res://Table/RightAvatar.gd" type="Script" id=49]
+[ext_resource path="res://Asset/Chat/OppoChat.png" type="Texture" id=50]
+[ext_resource path="res://Table/OppoAvatar.gd" type="Script" id=51]
 
 [sub_resource type="DynamicFont" id=1]
 size = 24
+font_data = ExtResource( 41 )
+
+[sub_resource type="DynamicFont" id=5]
+size = 32
+font_data = ExtResource( 41 )
+
+[sub_resource type="DynamicFont" id=6]
+size = 32
+font_data = ExtResource( 41 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 32
+font_data = ExtResource( 41 )
+
+[sub_resource type="StyleBoxTexture" id=2]
+texture = ExtResource( 44 )
+region_rect = Rect2( 0, 0, 660, 60 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 32
 font_data = ExtResource( 41 )
 
 [node name="Table" type="Node2D"]
@@ -341,10 +370,9 @@ texture_pressed = ExtResource( 33 )
 
 [node name="BottomAvatar" type="HBoxContainer" parent="."]
 visible = false
-margin_left = 383.452
-margin_top = 914.896
-margin_right = 510.452
-margin_bottom = 1145.9
+margin_top = 991.896
+margin_right = 127.0
+margin_bottom = 1222.9
 script = ExtResource( 42 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -352,7 +380,7 @@ __meta__ = {
 
 [node name="AvatarContainer" type="VBoxContainer" parent="BottomAvatar"]
 margin_right = 75.0
-margin_bottom = 230.0
+margin_bottom = 231.0
 
 [node name="Avatar" type="TextureRect" parent="BottomAvatar/AvatarContainer"]
 margin_right = 75.0
@@ -370,7 +398,7 @@ align = 1
 [node name="StateContainer" type="VBoxContainer" parent="BottomAvatar"]
 margin_left = 83.0
 margin_right = 119.0
-margin_bottom = 230.0
+margin_bottom = 231.0
 
 [node name="BankerIcon" type="TextureRect" parent="BottomAvatar/StateContainer"]
 margin_right = 36.0
@@ -395,17 +423,42 @@ expand = true
 
 [node name="RightAvatar" type="HBoxContainer" parent="."]
 visible = false
-margin_left = 1856.1
-margin_top = 383.268
-margin_right = 1983.1
-margin_bottom = 614.268
-script = ExtResource( 42 )
+margin_left = 1492.0
+margin_top = 383.0
+margin_right = 1916.0
+margin_bottom = 614.0
+alignment = 2
+script = ExtResource( 49 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Chat" type="TextureRect" parent="RightAvatar"]
+visible = false
+margin_right = 297.0
+margin_bottom = 231.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource( 48 )
+expand = true
+
+[node name="Label" type="Label" parent="RightAvatar/Chat"]
+margin_left = 17.08
+margin_top = 23.0
+margin_right = 260.08
+margin_bottom = 154.0
+custom_fonts/font = SubResource( 5 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+align = 1
+valign = 1
+autowrap = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="AvatarContainer" type="VBoxContainer" parent="RightAvatar"]
-margin_right = 75.0
+margin_left = 305.0
+margin_right = 380.0
 margin_bottom = 231.0
 
 [node name="Avatar" type="TextureRect" parent="RightAvatar/AvatarContainer"]
@@ -422,8 +475,8 @@ text = "昵称"
 align = 1
 
 [node name="StateContainer" type="VBoxContainer" parent="RightAvatar"]
-margin_left = 83.0
-margin_right = 119.0
+margin_left = 388.0
+margin_right = 424.0
 margin_bottom = 231.0
 
 [node name="BankerIcon" type="TextureRect" parent="RightAvatar/StateContainer"]
@@ -447,13 +500,17 @@ rect_min_size = Vector2( 88, 32 )
 texture = ExtResource( 39 )
 expand = true
 
+[node name="Timer" type="Timer" parent="RightAvatar"]
+wait_time = 2.0
+one_shot = true
+
 [node name="OppoAvatar" type="HBoxContainer" parent="."]
 visible = false
-margin_left = 832.592
+margin_left = 833.0
 margin_top = 35.0
-margin_right = 959.592
+margin_right = 1320.0
 margin_bottom = 266.0
-script = ExtResource( 42 )
+script = ExtResource( 51 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -501,12 +558,36 @@ rect_min_size = Vector2( 88, 32 )
 texture = ExtResource( 39 )
 expand = true
 
+[node name="Timer" type="Timer" parent="OppoAvatar"]
+wait_time = 2.0
+one_shot = true
+
+[node name="Chat" type="TextureRect" parent="OppoAvatar"]
+margin_left = 127.0
+margin_right = 487.0
+margin_bottom = 231.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource( 50 )
+expand = true
+
+[node name="Label" type="Label" parent="OppoAvatar/Chat"]
+margin_left = 30.0
+margin_top = 75.0
+margin_right = 321.0
+margin_bottom = 197.0
+custom_fonts/font = SubResource( 6 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+align = 1
+valign = 1
+autowrap = true
+
 [node name="LeftAvatar" type="HBoxContainer" parent="."]
 visible = false
-margin_top = 383.268
-margin_right = 127.0
-margin_bottom = 614.268
-script = ExtResource( 42 )
+margin_top = 383.0
+margin_right = 460.0
+margin_bottom = 614.0
+script = ExtResource( 47 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -553,6 +634,62 @@ margin_bottom = 77.0
 rect_min_size = Vector2( 88, 32 )
 texture = ExtResource( 39 )
 expand = true
+
+[node name="Chat" type="TextureRect" parent="LeftAvatar"]
+visible = false
+margin_left = 127.0
+margin_right = 460.0
+margin_bottom = 231.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource( 46 )
+expand = true
+
+[node name="Label" type="Label" parent="LeftAvatar/Chat"]
+margin_left = 25.0
+margin_top = 23.0
+margin_right = 302.0
+margin_bottom = 148.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = SubResource( 4 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "asd"
+align = 1
+valign = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Timer" type="Timer" parent="LeftAvatar"]
+wait_time = 2.0
+one_shot = true
+
+[node name="ChatField" type="HBoxContainer" parent="."]
+margin_left = 1364.08
+margin_top = 856.17
+margin_right = 1897.08
+margin_bottom = 907.17
+script = ExtResource( 43 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LineEdit" type="LineEdit" parent="ChatField"]
+margin_right = 422.0
+margin_bottom = 51.0
+size_flags_horizontal = 3
+custom_styles/normal = SubResource( 2 )
+custom_fonts/font = SubResource( 3 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+placeholder_text = "按回车发送消息"
+
+[node name="SendButton" type="TextureButton" parent="ChatField"]
+margin_left = 430.0
+margin_right = 532.0
+margin_bottom = 51.0
+texture_normal = ExtResource( 45 )
 [connection signal="pressed" from="VBoxContainer/TestButtons/StartButton" to="." method="_on_Button9_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/Button" to="." method="_on_Button_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/Button3" to="." method="_on_Button3_pressed"]
@@ -565,3 +702,7 @@ expand = true
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/Button9" to="." method="_on_bottomshown_pressed"]
 [connection signal="pressed" from="ControlButtons/MusicButton" to="." method="handle_music_button_clicked"]
 [connection signal="pressed" from="ControlButtons/SoundButton" to="." method="handle_sound_button_clicked"]
+[connection signal="timeout" from="RightAvatar/Timer" to="RightAvatar" method="_on_Timer_timeout"]
+[connection signal="timeout" from="OppoAvatar/Timer" to="OppoAvatar" method="_on_Timer_timeout"]
+[connection signal="timeout" from="LeftAvatar/Timer" to="LeftAvatar" method="_on_Timer_timeout"]
+[connection signal="pressed" from="ChatField/SendButton" to="ChatField" method="_on_SendButton_pressed"]

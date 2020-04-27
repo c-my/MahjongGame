@@ -10,7 +10,7 @@ signal recv_game_msg
 signal recv_table_order_msg
 signal recv_game_result_msg
 signal recv_get_ready_msg
-signal recv_user_order_msg
+signal recv_chat_msg
 
 signal conn_success
 signal conn_failed
@@ -75,8 +75,8 @@ func _on_data():
 		emit_signal("recv_game_result_msg", json)
 	elif msg_type == Message.msg_type.GET_READY_MSG:
 		emit_signal("recv_get_ready_msg", json)
-	elif msg_type == Message.msg_type.USER_ORDER_MSG:
-		emit_signal("recv_user_order_msg", json)
+	elif msg_type == Message.msg_type.CHAT_MSG:
+		emit_signal("recv_chat_msg", json)
 	
 	print_debug("msg_type: ", json_recv.result["msg_type"])
 
@@ -159,4 +159,10 @@ func send_ready(order):
 	msg["action"] = Message.player_action.READY
 	msg["table_order"] = order
 	msg["chow_type"] = Message.chow_type.NAC
+	send_message(to_json(msg))
+	
+func send_chat(order, message):
+	var msg = Message.chat_msg_dict
+	msg["from"] = order
+	msg["content"] = message
 	send_message(to_json(msg))
