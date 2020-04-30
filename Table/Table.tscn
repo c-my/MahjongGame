@@ -1,4 +1,4 @@
-[gd_scene load_steps=58 format=2]
+[gd_scene load_steps=62 format=2]
 
 [ext_resource path="res://Table/OppositeDropArea.gd" type="Script" id=1]
 [ext_resource path="res://Table/PlayerAction.gd" type="Script" id=2]
@@ -51,16 +51,18 @@
 [ext_resource path="res://Table/RightAvatar.gd" type="Script" id=49]
 [ext_resource path="res://Asset/Chat/OppoChat.png" type="Texture" id=50]
 [ext_resource path="res://Table/OppoAvatar.gd" type="Script" id=51]
+[ext_resource path="res://Asset/PopupBackground.png" type="Texture" id=52]
+[ext_resource path="res://Table/PopupPanel.gd" type="Script" id=53]
 
 [sub_resource type="DynamicFont" id=1]
 size = 24
 font_data = ExtResource( 41 )
 
-[sub_resource type="DynamicFont" id=5]
+[sub_resource type="DynamicFont" id=2]
 size = 32
 font_data = ExtResource( 41 )
 
-[sub_resource type="DynamicFont" id=6]
+[sub_resource type="DynamicFont" id=3]
 size = 32
 font_data = ExtResource( 41 )
 
@@ -68,11 +70,19 @@ font_data = ExtResource( 41 )
 size = 32
 font_data = ExtResource( 41 )
 
-[sub_resource type="StyleBoxTexture" id=2]
+[sub_resource type="StyleBoxTexture" id=5]
 texture = ExtResource( 44 )
 region_rect = Rect2( 0, 0, 660, 60 )
 
-[sub_resource type="DynamicFont" id=3]
+[sub_resource type="DynamicFont" id=6]
+size = 32
+font_data = ExtResource( 41 )
+
+[sub_resource type="StyleBoxTexture" id=7]
+texture = ExtResource( 52 )
+region_rect = Rect2( 0, 0, 640, 569 )
+
+[sub_resource type="DynamicFont" id=8]
 size = 32
 font_data = ExtResource( 41 )
 
@@ -333,14 +343,17 @@ margin_bottom = 37.0
 text = "BottomShown"
 
 [node name="ReadyButton" type="TextureButton" parent="."]
-visible = false
-margin_left = 896.551
-margin_top = 603.429
-margin_right = 1132.55
-margin_bottom = 702.429
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 833.0
+margin_top = 614.0
+margin_right = 1069.0
+margin_bottom = 713.0
 texture_normal = ExtResource( 32 )
 __meta__ = {
-"_edit_use_anchors_": true
+"_edit_use_anchors_": false
 }
 
 [node name="ControlButtons" type="HBoxContainer" parent="."]
@@ -447,7 +460,7 @@ margin_left = 17.08
 margin_top = 23.0
 margin_right = 260.08
 margin_bottom = 154.0
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = SubResource( 2 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 align = 1
 valign = 1
@@ -576,7 +589,7 @@ margin_left = 30.0
 margin_top = 75.0
 margin_right = 321.0
 margin_bottom = 197.0
-custom_fonts/font = SubResource( 6 )
+custom_fonts/font = SubResource( 3 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 align = 1
 valign = 1
@@ -677,19 +690,97 @@ __meta__ = {
 }
 
 [node name="LineEdit" type="LineEdit" parent="ChatField"]
-margin_right = 422.0
+margin_right = 423.0
 margin_bottom = 51.0
 size_flags_horizontal = 3
-custom_styles/normal = SubResource( 2 )
-custom_fonts/font = SubResource( 3 )
+custom_styles/normal = SubResource( 5 )
+custom_fonts/font = SubResource( 6 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 placeholder_text = "按回车发送消息"
 
 [node name="SendButton" type="TextureButton" parent="ChatField"]
-margin_left = 430.0
-margin_right = 532.0
+margin_left = 431.0
+margin_right = 533.0
 margin_bottom = 51.0
 texture_normal = ExtResource( 45 )
+
+[node name="PopupPanel" type="PopupPanel" parent="."]
+margin_left = 493.0
+margin_top = 251.0
+margin_right = 1426.0
+margin_bottom = 690.0
+custom_styles/panel = SubResource( 7 )
+script = ExtResource( 53 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Container" type="VBoxContainer" parent="PopupPanel"]
+margin_top = 15.0
+margin_right = 933.0
+margin_bottom = 454.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="First" type="HBoxContainer" parent="PopupPanel/Container"]
+margin_right = 933.0
+margin_bottom = 48.0
+
+[node name="Label" type="Label" parent="PopupPanel/Container/First"]
+margin_bottom = 48.0
+custom_fonts/font = SubResource( 8 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+
+[node name="New" type="HBoxContainer" parent="PopupPanel/Container/First"]
+margin_left = 8.0
+margin_right = 8.0
+margin_bottom = 48.0
+
+[node name="Second" type="HBoxContainer" parent="PopupPanel/Container"]
+margin_top = 56.0
+margin_right = 933.0
+margin_bottom = 104.0
+
+[node name="Label" type="Label" parent="PopupPanel/Container/Second"]
+margin_bottom = 48.0
+custom_fonts/font = SubResource( 8 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+
+[node name="New" type="HBoxContainer" parent="PopupPanel/Container/Second"]
+margin_left = 8.0
+margin_right = 8.0
+margin_bottom = 48.0
+
+[node name="Third" type="HBoxContainer" parent="PopupPanel/Container"]
+margin_top = 112.0
+margin_right = 933.0
+margin_bottom = 160.0
+
+[node name="Label" type="Label" parent="PopupPanel/Container/Third"]
+margin_bottom = 48.0
+custom_fonts/font = SubResource( 8 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+
+[node name="New" type="HBoxContainer" parent="PopupPanel/Container/Third"]
+margin_left = 8.0
+margin_right = 8.0
+margin_bottom = 48.0
+
+[node name="Fourth" type="HBoxContainer" parent="PopupPanel/Container"]
+margin_top = 168.0
+margin_right = 933.0
+margin_bottom = 216.0
+
+[node name="Label" type="Label" parent="PopupPanel/Container/Fourth"]
+margin_bottom = 48.0
+custom_fonts/font = SubResource( 8 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+
+[node name="New" type="HBoxContainer" parent="PopupPanel/Container/Fourth"]
+margin_left = 8.0
+margin_right = 8.0
+margin_bottom = 48.0
 [connection signal="pressed" from="VBoxContainer/TestButtons/StartButton" to="." method="_on_Button9_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/Button" to="." method="_on_Button_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/Button3" to="." method="_on_Button3_pressed"]
@@ -700,6 +791,7 @@ texture_normal = ExtResource( 45 )
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/Button7" to="." method="_on_rightdrop_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/Button8" to="." method="_on_oppodrop_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/Button9" to="." method="_on_bottomshown_pressed"]
+[connection signal="pressed" from="ReadyButton" to="." method="handle_ready_pressed"]
 [connection signal="pressed" from="ControlButtons/MusicButton" to="." method="handle_music_button_clicked"]
 [connection signal="pressed" from="ControlButtons/SoundButton" to="." method="handle_sound_button_clicked"]
 [connection signal="timeout" from="RightAvatar/Timer" to="RightAvatar" method="_on_Timer_timeout"]

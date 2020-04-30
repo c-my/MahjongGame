@@ -20,7 +20,6 @@ func _ready():
 	ConnManager.connect("recv_get_ready_msg", self, "handle_get_ready_msg")
 	ConnManager.connect("recv_chat_msg", self, "handle_chat_msg")
 	
-	$ReadyButton.connect("pressed", self, "handle_ready_pressed")
 	
 	$ChatField.connect("send_chat", self, "handle_send_chat_pressed")
 
@@ -57,10 +56,13 @@ func handle_table_order_msg(msg):
 	
 func handle_game_result_msg(msg):
 	var winner = int(msg["winner"])
+	$PopupPanel.show_result(msg)
 	print_debug("winner: ", winner)
 	
 func handle_get_ready_msg(msg):
 	# TODO: show ready state
+	if msg["ready_list"][my_table_order]:
+		$ReadyButton.hide()
 	$BottomAvatar.show_ready(msg["ready_list"][my_table_order])
 	$RightAvatar.show_ready(msg["ready_list"][(my_table_order+1)%4])
 	$OppoAvatar.show_ready(msg["ready_list"][(my_table_order+2)%4])
@@ -475,3 +477,7 @@ func _on_bottomshown_pressed():
 	$OppoShown.show_tiles(json_tmp.result)
 	$LeftShown.show_tiles(json_tmp.result)
 	$RightShown.show_tiles(json_tmp.result)
+
+
+
+
