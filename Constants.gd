@@ -86,6 +86,8 @@ class WebSockt:
 	const RELEASE_BASE_URL = "ws://mj.caimingyang.cn"
 	const RELEASE_BASE_PORT = "80"
 	const RELEASE_URL = RELEASE_BASE_URL+":"+RELEASE_BASE_PORT
+	
+enum rule{JinzhouGameRule}
 
 
 # Called when the node enters the scene tree for the first time.

@@ -1,5 +1,7 @@
 extends Node2D
 
+onready var rule_choice = $CreateRoomDialog/VoxContainer/GameRuleContainer/GameRuleChoice
+
 const Success       = 1
 const NoSuchRoom    = -1
 const NoSeat        = -2
@@ -13,7 +15,10 @@ func _ready():
 	$CreateRoomRequest.connect("request_completed", self, "on_create_request_completed")
 	$JoinRoomRequest.connect("request_completed", self, "on_join_request_completed")
 	ConnManager.connect("conn_success", self, "on_ws_established")
-
+	
+	rule_choice.add_item("锦州麻将", 0)
+	rule_choice.add_item("测试啊打发士大夫", 0)
+	
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -81,7 +86,8 @@ func send_create_room():
 	var use_ssl = false
 	var headers = ["Content-Type: application/json"]
 	var dict = {"user_id":Global.my_user_id,
-		"passwd":$CreateRoomDialog/VoxContainer/PasswdContainer/PasswordEdit.text}
+		"passwd":$CreateRoomDialog/VoxContainer/PasswdContainer/PasswordEdit.text,
+		"rule": Constants.rule.JinzhouGameRule}
 	var data = to_json(dict)
 	$CreateRoomRequest.request(Constants.HTTP.ROOM_URL, headers, use_ssl, HTTPClient.METHOD_POST, data)
 

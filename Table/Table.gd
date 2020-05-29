@@ -34,7 +34,7 @@ func _ready():
 	$ChowPanel/MidChow.connect("pressed", self, "handle_mid_chow")
 	$ChowPanel/RightChow.connect("pressed", self, "handle_right_chow")
 	
-	$RoomIDLabel.text = "房间号: " + str(Global.my_room_id).pad_zeros(5)
+	$RoomIDLabel.text = "房间号: %s 玩法：%s" %[str(Global.my_room_id).pad_zeros(5),"测试"]
 
 
 	
