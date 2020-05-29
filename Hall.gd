@@ -16,8 +16,8 @@ func _ready():
 	$JoinRoomRequest.connect("request_completed", self, "on_join_request_completed")
 	ConnManager.connect("conn_success", self, "on_ws_established")
 	
-	rule_choice.add_item("锦州麻将", 0)
-	rule_choice.add_item("测试啊打发士大夫", 0)
+	rule_choice.add_item("锦州麻将", Constants.rule.JinzhouGameRule)
+	rule_choice.add_item("沈阳麻将", Constants.rule.ShenyangGameRule)
 	
 
 
@@ -83,11 +83,11 @@ func on_join_request_completed(result, response_code, headers, body):
 
 	
 func send_create_room():
-	var use_ssl = false
+	var use_ssl = false	
 	var headers = ["Content-Type: application/json"]
 	var dict = {"user_id":Global.my_user_id,
 		"passwd":$CreateRoomDialog/VoxContainer/PasswdContainer/PasswordEdit.text,
-		"rule": Constants.rule.JinzhouGameRule}
+		"rule": rule_choice.get_selected_id()}
 	var data = to_json(dict)
 	$CreateRoomRequest.request(Constants.HTTP.ROOM_URL, headers, use_ssl, HTTPClient.METHOD_POST, data)
 

@@ -59,6 +59,7 @@ class Table:
 	const SIDE_HAND_MARGIN = 80
 	const SIDE_SHOWN_MARGIN_X = SIDE_HAND_MARGIN + 50 + 30
 	const SIDE_SHOWN_MARGIN_Y = 50
+	const SIDE_DROP_MARGIN_X = SIDE_SHOWN_MARGIN_X + 50
 	
 class Timer_Table:
 	enum DIRECTION {NONE, BOTTOM, RIGHT, OPPOSITE, LEFT}
@@ -87,7 +88,7 @@ class WebSockt:
 	const RELEASE_BASE_PORT = "80"
 	const RELEASE_URL = RELEASE_BASE_URL+":"+RELEASE_BASE_PORT
 	
-enum rule{JinzhouGameRule}
+enum rule{JinzhouGameRule, ShenyangGameRule}
 
 
 # Called when the node enters the scene tree for the first time.

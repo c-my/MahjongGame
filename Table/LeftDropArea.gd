@@ -29,6 +29,7 @@ func get_tile_instance(suit, number):
 	return tile
 
 func show_tiles():
+#	self.position = Vector2(Constants.Table.) 
 	for i in range(get_children().size()):
 		get_children()[i].position = Vector2(-i*Constants.Tile.SIDE_DROP_DIFF, 
 				i*(Constants.Tile.SIDE_DROP_HEIGHT-Constants.Tile.SIDE_DROP_THICK))
