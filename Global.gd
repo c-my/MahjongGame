@@ -1,6 +1,7 @@
 extends Node
 
 var my_user_id = 0
+var my_room_id = 0
 
 
 # Called when the node enters the scene tree for the first time.

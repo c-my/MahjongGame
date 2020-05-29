@@ -52,10 +52,10 @@ __meta__ = {
 }
 
 [node name="ButtonContainer" type="HBoxContainer" parent="."]
-margin_left = 621.264
-margin_top = 859.261
-margin_right = 1417.26
-margin_bottom = 1018.26
+margin_left = 561.0
+margin_top = 856.611
+margin_right = 1367.0
+margin_bottom = 1015.61
 custom_constants/separation = 40
 alignment = 1
 __meta__ = {
@@ -247,6 +247,27 @@ texture_normal = ExtResource( 6 )
 [node name="CreateRoomRequest" type="HTTPRequest" parent="."]
 
 [node name="JoinRoomRequest" type="HTTPRequest" parent="."]
+
+[node name="PopupPanel" type="PopupPanel" parent="."]
+margin_right = 16.0
+margin_bottom = 16.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PopupPanel"]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 229.0
+margin_bottom = 116.0
+
+[node name="Label" type="Label" parent="PopupPanel/VBoxContainer"]
+margin_right = 40.0
+margin_bottom = 25.0
+
+[node name="ConfirmeButton" type="TextureButton" parent="PopupPanel/VBoxContainer"]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 229.0
+margin_bottom = 83.0
+texture_normal = ExtResource( 5 )
 [connection signal="pressed" from="ButtonContainer/CreateRoomButton" to="." method="_on_CreateRoomButton_pressed"]
 [connection signal="pressed" from="ButtonContainer/EnterRoomButton" to="." method="_on_EnterRoomButton_pressed"]
 [connection signal="pressed" from="CreateRoomDialog/VoxContainer/ButtonContainer/ConfirmButton" to="." method="_on_CreateRoom_ConfirmButton_pressed"]

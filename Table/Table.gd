@@ -33,6 +33,8 @@ func _ready():
 	$ChowPanel/LeftChow.connect("pressed", self, "handle_left_chow")
 	$ChowPanel/MidChow.connect("pressed", self, "handle_mid_chow")
 	$ChowPanel/RightChow.connect("pressed", self, "handle_right_chow")
+	
+	$RoomIDLabel.text = "房间号: " + str(Global.my_room_id).pad_zeros(5)
 
 
 	

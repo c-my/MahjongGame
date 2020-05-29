@@ -52,6 +52,8 @@ func on_create_request_completed(result, response_code, headers, body):
 	var res = json.result
 	if res["success"]==true:
 		print_debug("room created")
+		var room_id = res["reason"]
+		Global.my_room_id = room_id
 		# connect to websocket
 		ConnManager.connect_ws(Global.my_user_id)
 	else:
@@ -65,6 +67,8 @@ func on_join_request_completed(result, response_code, headers, body):
 	var res = json.result
 	if res["success"]==true:
 		print_debug("room joined")
+		var room_id = res["reason"]
+		Global.my_room_id = room_id
 		# connect to websocket
 		ConnManager.connect_ws(Global.my_user_id)
 	else:

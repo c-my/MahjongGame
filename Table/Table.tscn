@@ -1,4 +1,4 @@
-[gd_scene load_steps=62 format=2]
+[gd_scene load_steps=63 format=2]
 
 [ext_resource path="res://Table/OppositeDropArea.gd" type="Script" id=1]
 [ext_resource path="res://Table/PlayerAction.gd" type="Script" id=2]
@@ -84,6 +84,10 @@ region_rect = Rect2( 0, 0, 640, 569 )
 
 [sub_resource type="DynamicFont" id=8]
 size = 32
+font_data = ExtResource( 41 )
+
+[sub_resource type="DynamicFont" id=9]
+size = 64
 font_data = ExtResource( 41 )
 
 [node name="Table" type="Node2D"]
@@ -265,6 +269,7 @@ __meta__ = {
 }
 
 [node name="TestButtons" type="HBoxContainer" parent="VBoxContainer"]
+visible = false
 margin_right = 76.0
 margin_bottom = 37.0
 custom_constants/separation = 10
@@ -681,9 +686,9 @@ one_shot = true
 
 [node name="ChatField" type="HBoxContainer" parent="."]
 margin_left = 1364.08
-margin_top = 856.17
+margin_top = 821.17
 margin_right = 1897.08
-margin_bottom = 907.17
+margin_bottom = 872.17
 script = ExtResource( 43 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -696,7 +701,7 @@ size_flags_horizontal = 3
 custom_styles/normal = SubResource( 5 )
 custom_fonts/font = SubResource( 6 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
-placeholder_text = "按回车发送消息"
+placeholder_text = "输入聊天消息"
 
 [node name="SendButton" type="TextureButton" parent="ChatField"]
 margin_left = 431.0
@@ -716,9 +721,8 @@ __meta__ = {
 }
 
 [node name="Container" type="VBoxContainer" parent="PopupPanel"]
-margin_top = 15.0
 margin_right = 933.0
-margin_bottom = 454.0
+margin_bottom = 439.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -781,6 +785,20 @@ custom_colors/font_color = Color( 0, 0, 0, 1 )
 margin_left = 8.0
 margin_right = 8.0
 margin_bottom = 48.0
+
+[node name="RoomIDLabel" type="Label" parent="."]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = 171.0
+margin_right = 346.0
+margin_bottom = 94.0
+custom_fonts/font = SubResource( 9 )
+text = "00000"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 [connection signal="pressed" from="VBoxContainer/TestButtons/StartButton" to="." method="_on_Button9_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/Button" to="." method="_on_Button_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/Button3" to="." method="_on_Button3_pressed"]

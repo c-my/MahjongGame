@@ -8,6 +8,7 @@ onready var first_nickname = $Container/First/Label
 onready var second_nickname = $Container/Second/Label
 onready var third_nickname = $Container/Third/Label
 onready var fourth_nickname = $Container/Fourth/Label
+onready var max_label_width = 200
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -28,7 +29,9 @@ func set_first(msg):
 	first_nickname.text = msg["user_list"][0]["nickname"]
 	var hand = msg["player_tile"][0]["hand_tiles"]
 	var shown = msg["player_tile"][0]["shown_tiles"]
-	var tile_pos = first_nickname.rect_size.x
+	var tile_pos = max_label_width
+	print_debug("pos: ", tile_pos)
+	print_debug("text: ", first_nickname.text)
 	for h in hand:
 		var tile = get_hand_instance(h["suit"], h["number"])
 		tile.position = Vector2(tile_pos, 0)
@@ -54,7 +57,7 @@ func set_second(msg):
 	second_nickname.text = msg["user_list"][1]["nickname"]
 	var hand = msg["player_tile"][1]["hand_tiles"]
 	var shown = msg["player_tile"][1]["shown_tiles"]
-	var tile_pos = 0
+	var tile_pos = max_label_width
 	for h in hand:
 		var tile = get_hand_instance(h["suit"], h["number"])
 		tile.position = Vector2(tile_pos, y)
@@ -79,7 +82,7 @@ func set_third(msg):
 	third_nickname.text = msg["user_list"][2]["nickname"]
 	var hand = msg["player_tile"][2]["hand_tiles"]
 	var shown = msg["player_tile"][2]["shown_tiles"]
-	var tile_pos = 0
+	var tile_pos = max_label_width
 	for h in hand:
 		var tile = get_hand_instance(h["suit"], h["number"])
 		tile.position = Vector2(tile_pos, y)
@@ -104,7 +107,7 @@ func set_fourth(msg):
 	fourth_nickname.text = msg["user_list"][3]["nickname"]
 	var hand = msg["player_tile"][3]["hand_tiles"]
 	var shown = msg["player_tile"][3]["shown_tiles"]
-	var tile_pos = 0
+	var tile_pos = max_label_width
 	for h in hand:
 		var tile = get_hand_instance(h["suit"], h["number"])
 		tile.position = Vector2(tile_pos, y)
