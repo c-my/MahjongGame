@@ -58,7 +58,8 @@ func handle_table_order_msg(msg):
 	
 func handle_game_result_msg(msg):
 	var winner = int(msg["winner"])
-	$PopupPanel.show_result(msg)
+	$GameResultPanel.show_result(msg)
+	$ReadyButton.show()
 	print_debug("winner: ", winner)
 	
 func handle_get_ready_msg(msg):

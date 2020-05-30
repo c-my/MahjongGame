@@ -709,82 +709,39 @@ margin_right = 533.0
 margin_bottom = 51.0
 texture_normal = ExtResource( 45 )
 
-[node name="PopupPanel" type="PopupPanel" parent="."]
+[node name="GameResultPanel" type="PopupPanel" parent="."]
+visible = true
 margin_left = 493.0
 margin_top = 251.0
 margin_right = 1426.0
-margin_bottom = 690.0
+margin_bottom = 751.0
+rect_min_size = Vector2( 950, 550 )
 custom_styles/panel = SubResource( 7 )
 script = ExtResource( 53 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="Container" type="VBoxContainer" parent="PopupPanel"]
-margin_right = 933.0
-margin_bottom = 439.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="First" type="HBoxContainer" parent="PopupPanel/Container"]
-margin_right = 933.0
-margin_bottom = 48.0
-
-[node name="Label" type="Label" parent="PopupPanel/Container/First"]
-margin_bottom = 48.0
+[node name="Nickname0" type="Label" parent="GameResultPanel"]
+margin_right = 950.0
+margin_bottom = 550.0
 custom_fonts/font = SubResource( 8 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 
-[node name="New" type="HBoxContainer" parent="PopupPanel/Container/First"]
-margin_left = 8.0
-margin_right = 8.0
-margin_bottom = 48.0
-
-[node name="Second" type="HBoxContainer" parent="PopupPanel/Container"]
-margin_top = 56.0
-margin_right = 933.0
-margin_bottom = 104.0
-
-[node name="Label" type="Label" parent="PopupPanel/Container/Second"]
-margin_bottom = 48.0
+[node name="Nickname1" type="Label" parent="GameResultPanel"]
+margin_right = 950.0
+margin_bottom = 550.0
 custom_fonts/font = SubResource( 8 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 
-[node name="New" type="HBoxContainer" parent="PopupPanel/Container/Second"]
-margin_left = 8.0
-margin_right = 8.0
-margin_bottom = 48.0
-
-[node name="Third" type="HBoxContainer" parent="PopupPanel/Container"]
-margin_top = 112.0
-margin_right = 933.0
-margin_bottom = 160.0
-
-[node name="Label" type="Label" parent="PopupPanel/Container/Third"]
-margin_bottom = 48.0
+[node name="Nickname2" type="Label" parent="GameResultPanel"]
+margin_right = 950.0
+margin_bottom = 550.0
 custom_fonts/font = SubResource( 8 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 
-[node name="New" type="HBoxContainer" parent="PopupPanel/Container/Third"]
-margin_left = 8.0
-margin_right = 8.0
-margin_bottom = 48.0
-
-[node name="Fourth" type="HBoxContainer" parent="PopupPanel/Container"]
-margin_top = 168.0
-margin_right = 933.0
-margin_bottom = 216.0
-
-[node name="Label" type="Label" parent="PopupPanel/Container/Fourth"]
-margin_bottom = 48.0
+[node name="Nickname3" type="Label" parent="GameResultPanel"]
+margin_right = 950.0
+margin_bottom = 550.0
 custom_fonts/font = SubResource( 8 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
-
-[node name="New" type="HBoxContainer" parent="PopupPanel/Container/Fourth"]
-margin_left = 8.0
-margin_right = 8.0
-margin_bottom = 48.0
 
 [node name="RoomIDLabel" type="Label" parent="."]
 anchor_left = 1.0
