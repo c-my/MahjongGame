@@ -16,13 +16,13 @@ func _ready():
 	
 	
 func show_result(msg):
+	popup_centered(Vector2(1200, 550))	
 	for i in range(4):
 		show_line(i, msg)
-	popup_centered(Vector2(950, 550))
 	
 
 func show_line(row, msg):
-	var x = 0
+	var x = Constants.Tile.RESULT_LEFT_MARGIN
 	var y = row*(Constants.Tile.RESULT_HAND_HEIGHT+Constants.Tile.RESULT_VERTICALL_GAP)
 	y += Constants.Tile.RESULT_VERTICALL_GAP*2
 	var nickname = msg["user_list"][row]["nickname"]
