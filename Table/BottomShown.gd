@@ -42,7 +42,7 @@ func show_tiles(tiles):
 				var t = get_hide_tile_instance()
 				add_child(t)
 				t.position = Vector2(pos+i*Constants.Tile.BOTTOM_DROP_WIDTH, 0)
-			var t = get_hide_tile_instance()
+			var t = get_tile_instance(suit["tiles"][3]["suit"], suit["tiles"][3]["number"])
 			add_child(t)
 			t.position = Vector2(pos+Constants.Tile.BOTTOM_DROP_WIDTH, -Constants.Tile.BOTTOM_DROP_THICK)
 		elif(suit["shown_type"]==Message.player_action.ADDED_KONG):
