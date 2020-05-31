@@ -19,6 +19,7 @@ func _ready():
 	ConnManager.connect("recv_game_result_msg", self, "handle_game_result_msg")
 	ConnManager.connect("recv_get_ready_msg", self, "handle_get_ready_msg")
 	ConnManager.connect("recv_chat_msg", self, "handle_chat_msg")
+	ConnManager.connect("conn_failed", self, "handle_conn_failed")
 	
 	
 	$ChatField.connect("send_chat", self, "handle_send_chat_pressed")
@@ -35,6 +36,8 @@ func _ready():
 	$ChowPanel/RightChow.connect("pressed", self, "handle_right_chow")
 	
 	$RoomIDLabel.text = "房间号: %s 玩法：%s" %[str(Global.my_room_id).pad_zeros(5),"测试"]
+	
+	$DisconnectDialog/VBoxContainer/ConfirmButton.connect("pressed", self, "on_disconnect_confirm")
 
 
 	
@@ -174,6 +177,12 @@ func handle_cancel():
 		return
 	print_debug("send cancel")
 	ConnManager.send_cancel(my_table_order)
+	
+func on_disconnect_confirm():
+	get_tree().change_scene("res://Hall.tscn")
+	
+func handle_conn_failed():
+	$DisconnectDialog.popup_centered()
 			
 		
 

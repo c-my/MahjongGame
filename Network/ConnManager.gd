@@ -48,6 +48,7 @@ func _closed(was_clean = false):
 	# by the remote peer before closing the socket.
 	print("Closed, clean: ", was_clean)
 	set_process(false)
+	emit_signal("conn_failed")
 
 func _connected(proto = ""):
 	# This is called on connection, "proto" will be the selected WebSocket
