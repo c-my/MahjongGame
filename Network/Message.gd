@@ -10,7 +10,7 @@ extends Node
 func _ready():
 	pass # Replace with function body.
 
-enum msg_type{GAME_MSG, TABLE_ORDER_MSG, GAME_RESULT_MSG, GET_READY_MSG, CHAT_MSG}
+enum msg_type{GAME_MSG, TABLE_ORDER_MSG, GAME_RESULT_MSG, GET_READY_MSG, CHAT_MSG, JOIN_MSG}
 
 enum player_action{START,DEAL, CHOW,PONG, EXPOSED_KONG, CONCEALED_KONG, ADDED_KONG, WIN, CANCEL, DISCARD, DRAW, READY}
 

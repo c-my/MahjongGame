@@ -14,6 +14,7 @@ var my_user_id=0
 func _ready():
 	$CreateRoomRequest.connect("request_completed", self, "on_create_request_completed")
 	$JoinRoomRequest.connect("request_completed", self, "on_join_request_completed")
+	$BackButton.connect("pressed", self, "on_backbtn_clicked")
 	ConnManager.connect("conn_success", self, "on_ws_established")
 	
 	rule_choice.add_item("锦州麻将", Constants.rule.JinzhouGameRule)
@@ -49,6 +50,9 @@ func _on_JoinRoom_ConfirmButton_pressed():
 	
 func _on_JoinRoom_CancelButton_pressed():
 	$JoinRoomDialog.hide()
+	
+func on_backbtn_clicked():
+	get_tree().change_scene("res://Login.tscn")
 	
 func on_create_request_completed(result, response_code, headers, body):
 	if result!=HTTPRequest.RESULT_SUCCESS:

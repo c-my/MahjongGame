@@ -11,6 +11,7 @@ signal recv_table_order_msg
 signal recv_game_result_msg
 signal recv_get_ready_msg
 signal recv_chat_msg
+signal recv_join_msg
 
 signal conn_success
 signal conn_failed
@@ -82,6 +83,8 @@ func _on_data():
 		emit_signal("recv_get_ready_msg", json)
 	elif msg_type == Message.msg_type.CHAT_MSG:
 		emit_signal("recv_chat_msg", json)
+	elif msg_type == Message.msg_type.JOIN_MSG:
+		emit_signal("recv_join_msg", json)
 	
 	print_debug("msg_type: ", json_recv.result["msg_type"])
 

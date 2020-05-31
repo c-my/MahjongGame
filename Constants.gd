@@ -91,7 +91,7 @@ class WebSockt:
 	const URL = BASE_URL+":"+BASE_PORT
 	
 	const RELEASE_BASE_URL = "wss://mj.caimingyang.cn"
-	const RELEASE_BASE_PORT = "80"
+	const RELEASE_BASE_PORT = "443"
 	const RELEASE_URL = RELEASE_BASE_URL+":"+RELEASE_BASE_PORT
 	
 enum rule{JinzhouGameRule, ShenyangGameRule}

@@ -19,6 +19,7 @@ func _ready():
 	ConnManager.connect("recv_game_result_msg", self, "handle_game_result_msg")
 	ConnManager.connect("recv_get_ready_msg", self, "handle_get_ready_msg")
 	ConnManager.connect("recv_chat_msg", self, "handle_chat_msg")
+	ConnManager.connect("recv_join_msg", self, "handle_join_msg")
 	ConnManager.connect("conn_failed", self, "handle_conn_failed")
 	
 	
@@ -35,7 +36,7 @@ func _ready():
 	$ChowPanel/MidChow.connect("pressed", self, "handle_mid_chow")
 	$ChowPanel/RightChow.connect("pressed", self, "handle_right_chow")
 	
-	$InfoArea/RoomIDLabel.text = " 房间: %s 玩法：%s" %[str(Global.my_room_id).pad_zeros(5),"测试"]
+	$InfoArea/RoomIDLabel.text = "  房间: %s" %[str(Global.my_room_id).pad_zeros(5)]
 	$InfoArea/ExitButton.connect("pressed", self, "on_exit_pressed")
 	
 	$DisconnectDialog/VBoxContainer/ConfirmButton.connect("pressed", self, "on_disconnect_confirm")
@@ -77,7 +78,7 @@ func handle_get_ready_msg(msg):
 	$BottomAvatar.show_ready(msg["ready_list"][my_table_order])
 	$RightAvatar.show_ready(msg["ready_list"][(my_table_order+1)%4])
 	$OppoAvatar.show_ready(msg["ready_list"][(my_table_order+2)%4])
-	$LeftAvatar.show_ready(msg["ready_list"][(my_table_order+2)%4])
+	$LeftAvatar.show_ready(msg["ready_list"][(my_table_order+3)%4])
 	
 
 	
@@ -95,7 +96,24 @@ func handle_chat_msg(msg):
 	elif from == (my_table_order+3)%4:
 		$LeftAvatar.show_chat_pop(content)
 		
+func handle_join_msg(msg):
+	var users_info = msg["user_list"]
+	var bottom_nickname = users_info[0]["nickname"]
+	var bottom_gender = users_info[0]["gender"]
+	$BottomAvatar.show_avatar(bottom_nickname, bottom_gender)
 	
+	if len(users_info)>=2:
+		var right_nickname = users_info[1]["nickname"]
+		var right_gender = users_info[1]["gender"]
+		$RightAvatar.show_avatar(right_nickname, right_gender)
+	if len(users_info)>=3:
+		var oppo_nickname = users_info[2]["nickname"]
+		var oppo_gender = users_info[2]["gender"]
+		$OppoAvatar.show_avatar(oppo_nickname, oppo_gender)
+	if len(users_info)>=4:
+		var left_nickname = users_info[3]["nickname"]
+		var left_gender = users_info[3]["gender"]
+		$LeftAvatar.show_avatar(left_nickname, left_gender)
 
 func handle_ready_pressed():
 	print_debug("ready pressed")

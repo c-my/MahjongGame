@@ -54,7 +54,6 @@
 [ext_resource path="res://Asset/PopupBackground.png" type="Texture" id=52]
 [ext_resource path="res://Table/PopupPanel.gd" type="Script" id=53]
 [ext_resource path="res://Asset/Button/General/Confirm.png" type="Texture" id=54]
-[ext_resource path="res://Asset/Button/RoomControl/ExitButton.png" type="Texture" id=55]
 [ext_resource path="res://Asset/Tile/OppositeHand.png" type="Texture" id=56]
 
 [sub_resource type="DynamicFont" id=1]
@@ -89,15 +88,19 @@ region_rect = Rect2( 0, 0, 640, 569 )
 size = 32
 font_data = ExtResource( 41 )
 
-[sub_resource type="StyleBoxTexture" id=10]
+[sub_resource type="StyleBoxTexture" id=9]
 texture = ExtResource( 52 )
 region_rect = Rect2( 0, 0, 640, 569 )
 
-[sub_resource type="DynamicFont" id=11]
+[sub_resource type="DynamicFont" id=10]
 size = 48
 font_data = ExtResource( 41 )
 
-[sub_resource type="DynamicFont" id=9]
+[sub_resource type="StreamTexture" id=11]
+flags = 4
+load_path = "res://.import/ExitButton.png-90bb905636ba19a1a2935f9c69eb1cf7.stex"
+
+[sub_resource type="DynamicFont" id=12]
 size = 64
 font_data = ExtResource( 41 )
 
@@ -758,7 +761,7 @@ custom_colors/font_color = Color( 0, 0, 0, 1 )
 visible = true
 margin_right = 600.0
 margin_bottom = 400.0
-custom_styles/panel = SubResource( 10 )
+custom_styles/panel = SubResource( 9 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -780,7 +783,7 @@ __meta__ = {
 [node name="Label" type="Label" parent="DisconnectDialog/VBoxContainer"]
 margin_right = 240.0
 margin_bottom = 70.0
-custom_fonts/font = SubResource( 11 )
+custom_fonts/font = SubResource( 10 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "连接已断开"
 
@@ -801,7 +804,7 @@ __meta__ = {
 margin_right = 90.0
 margin_bottom = 122.0
 rect_min_size = Vector2( 90, 122 )
-texture_normal = ExtResource( 55 )
+texture_normal = SubResource( 11 )
 expand = true
 __meta__ = {
 "_edit_use_anchors_": false
@@ -818,7 +821,7 @@ margin_left = 185.0
 margin_top = 14.0
 margin_right = 220.0
 margin_bottom = 108.0
-custom_fonts/font = SubResource( 9 )
+custom_fonts/font = SubResource( 12 )
 text = "0"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -829,7 +832,7 @@ margin_left = 228.0
 margin_top = 14.0
 margin_right = 403.0
 margin_bottom = 108.0
-custom_fonts/font = SubResource( 9 )
+custom_fonts/font = SubResource( 12 )
 text = "00000"
 __meta__ = {
 "_edit_use_anchors_": false

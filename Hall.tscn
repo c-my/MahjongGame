@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://Asset/HallBackground.png" type="Texture" id=1]
 [ext_resource path="res://Asset/Button/RoomControl/CreateRoom.png" type="Texture" id=2]
@@ -65,6 +65,10 @@ font_data = ExtResource( 8 )
 size = 32
 font_data = ExtResource( 8 )
 
+[sub_resource type="StreamTexture" id=11]
+flags = 4
+load_path = "res://.import/QuitButton.png-31c18ce8db720f95af92c09426515d86.stex"
+
 [node name="Node2D" type="Node2D"]
 script = ExtResource( 4 )
 
@@ -78,9 +82,9 @@ __meta__ = {
 }
 
 [node name="ButtonContainer" type="HBoxContainer" parent="."]
-margin_left = 561.0
+margin_left = 557.0
 margin_top = 856.611
-margin_right = 1367.0
+margin_right = 1363.0
 margin_bottom = 1015.61
 custom_constants/separation = 40
 alignment = 1
@@ -323,6 +327,17 @@ margin_top = 8.0
 margin_right = 229.0
 margin_bottom = 83.0
 texture_normal = ExtResource( 5 )
+
+[node name="BackButton" type="TextureButton" parent="."]
+margin_left = 48.0
+margin_top = 33.0
+margin_right = 108.0
+margin_bottom = 95.0
+rect_scale = Vector2( 2, 2 )
+texture_normal = SubResource( 11 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 [connection signal="pressed" from="ButtonContainer/CreateRoomButton" to="." method="_on_CreateRoomButton_pressed"]
 [connection signal="pressed" from="ButtonContainer/EnterRoomButton" to="." method="_on_EnterRoomButton_pressed"]
 [connection signal="pressed" from="CreateRoomDialog/VoxContainer/ButtonContainer/ConfirmButton" to="." method="_on_CreateRoom_ConfirmButton_pressed"]
