@@ -63,6 +63,8 @@ func handle_table_order_msg(msg):
 	
 func handle_game_result_msg(msg):
 	var winner = int(msg["winner"])
+	if winner >= 0:
+		play_action_audio(Message.player_action.WIN, msg["user_list"][winner]["gender"])
 	$GameResultPanel.show_result(msg)
 	$PlayerAction.hide()
 	$ReadyButton.show()

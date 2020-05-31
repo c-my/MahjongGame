@@ -40,14 +40,14 @@ func show_line(row, msg):
 		x += Constants.Tile.RESULT_HAND_WIDTH
 	if shown == null:
 		return
-	x += Constants.Tile.RESULT_HAND_WIDTH
+	x += Constants.Tile.RESULT_HAND_WIDTH/2.0
 	for s in shown:
 		for t in s["tiles"]:
 			var tile = get_shown_instance(t["suit"], t["number"])
 			add_child(tile)
 			tile.position = Vector2(x, y)
 			x += Constants.Tile.RESULT_SHOWN_WIDTH
-		x += Constants.Tile.RESULT_SHOWN_WIDTH
+		x += Constants.Tile.RESULT_SHOWN_WIDTH/2.0
 	
 	
 func get_hand_instance(suit, number):
