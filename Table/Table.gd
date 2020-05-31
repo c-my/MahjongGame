@@ -35,7 +35,7 @@ func _ready():
 	$ChowPanel/MidChow.connect("pressed", self, "handle_mid_chow")
 	$ChowPanel/RightChow.connect("pressed", self, "handle_right_chow")
 	
-	$InfoArea/RoomIDLabel.text = "房间号: %s 玩法：%s" %[str(Global.my_room_id).pad_zeros(5),"测试"]
+	$InfoArea/RoomIDLabel.text = " 房间: %s 玩法：%s" %[str(Global.my_room_id).pad_zeros(5),"测试"]
 	$InfoArea/ExitButton.connect("pressed", self, "on_exit_pressed")
 	
 	$DisconnectDialog/VBoxContainer/ConfirmButton.connect("pressed", self, "on_disconnect_confirm")
@@ -53,6 +53,7 @@ func handle_game_msg(msg):
 	set_chow_panel()
 	set_action_audio(msg)
 	set_avatars(msg)
+	set_wall_count(msg)
 	current_msg = msg
 	just_clicked = false
 	
@@ -344,6 +345,9 @@ func set_avatars(msg):
 	var left_nickname = users_info[(my_table_order+3)%4]["nickname"]
 	var left_gender = users_info[(my_table_order+3)%4]["gender"]
 	$LeftAvatar.show_avatar(left_nickname, left_gender, my_table_order==1)
+	
+func set_wall_count(msg):
+	$InfoArea/WallCount.text = str(msg["wall_count"])
 	
 		
 func handle_sound_button_clicked():
