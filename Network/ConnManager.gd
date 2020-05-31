@@ -42,6 +42,9 @@ func connect_ws(user_id):
 		
 func send_message(msg):
 	_client.get_peer(1).put_packet(msg.to_utf8())
+	
+func close():
+	_client.disconnect_from_host()
 
 func _closed(was_clean = false):
 	# was_clean will tell you if the disconnection was correctly notified

@@ -35,7 +35,8 @@ func _ready():
 	$ChowPanel/MidChow.connect("pressed", self, "handle_mid_chow")
 	$ChowPanel/RightChow.connect("pressed", self, "handle_right_chow")
 	
-	$RoomIDLabel.text = "房间号: %s 玩法：%s" %[str(Global.my_room_id).pad_zeros(5),"测试"]
+	$InfoArea/RoomIDLabel.text = "房间号: %s 玩法：%s" %[str(Global.my_room_id).pad_zeros(5),"测试"]
+	$InfoArea/ExitButton.connect("pressed", self, "on_exit_pressed")
 	
 	$DisconnectDialog/VBoxContainer/ConfirmButton.connect("pressed", self, "on_disconnect_confirm")
 
@@ -183,6 +184,9 @@ func on_disconnect_confirm():
 	
 func handle_conn_failed():
 	$DisconnectDialog.popup_centered()
+	
+func on_exit_pressed():
+	ConnManager.close()
 			
 		
 

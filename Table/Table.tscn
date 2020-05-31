@@ -1,4 +1,4 @@
-[gd_scene load_steps=66 format=2]
+[gd_scene load_steps=67 format=2]
 
 [ext_resource path="res://Table/OppositeDropArea.gd" type="Script" id=1]
 [ext_resource path="res://Table/PlayerAction.gd" type="Script" id=2]
@@ -54,6 +54,7 @@
 [ext_resource path="res://Asset/PopupBackground.png" type="Texture" id=52]
 [ext_resource path="res://Table/PopupPanel.gd" type="Script" id=53]
 [ext_resource path="res://Asset/Button/General/Confirm.png" type="Texture" id=54]
+[ext_resource path="res://Asset/Button/RoomControl/ExitButton.png" type="Texture" id=55]
 
 [sub_resource type="DynamicFont" id=1]
 size = 24
@@ -87,16 +88,16 @@ region_rect = Rect2( 0, 0, 640, 569 )
 size = 32
 font_data = ExtResource( 41 )
 
-[sub_resource type="DynamicFont" id=9]
-size = 64
-font_data = ExtResource( 41 )
-
 [sub_resource type="StyleBoxTexture" id=10]
 texture = ExtResource( 52 )
 region_rect = Rect2( 0, 0, 640, 569 )
 
 [sub_resource type="DynamicFont" id=11]
 size = 48
+font_data = ExtResource( 41 )
+
+[sub_resource type="DynamicFont" id=9]
+size = 64
 font_data = ExtResource( 41 )
 
 [node name="Table" type="Node2D"]
@@ -752,20 +753,6 @@ margin_bottom = 550.0
 custom_fonts/font = SubResource( 8 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 
-[node name="RoomIDLabel" type="Label" parent="."]
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-margin_left = 40.0
-margin_right = 215.0
-margin_bottom = 94.0
-custom_fonts/font = SubResource( 9 )
-text = "00000"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [node name="DisconnectDialog" type="PopupDialog" parent="."]
 visible = true
 margin_right = 600.0
@@ -798,6 +785,34 @@ margin_top = 150.0
 margin_right = 240.0
 margin_bottom = 225.0
 texture_normal = ExtResource( 54 )
+
+[node name="InfoArea" type="HBoxContainer" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ExitButton" type="TextureButton" parent="InfoArea"]
+margin_right = 90.0
+margin_bottom = 122.0
+rect_min_size = Vector2( 90, 122 )
+texture_normal = ExtResource( 55 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RoomIDLabel" type="Label" parent="InfoArea"]
+margin_left = 98.0
+margin_top = 14.0
+margin_right = 273.0
+margin_bottom = 108.0
+custom_fonts/font = SubResource( 9 )
+text = "00000"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 [connection signal="pressed" from="VBoxContainer/TestButtons/StartButton" to="." method="_on_Button9_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/Button" to="." method="_on_Button_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/Button3" to="." method="_on_Button3_pressed"]
