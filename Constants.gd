@@ -72,25 +72,25 @@ class Chow_Panel:
 	
 class HTTP:
 #	const BASE_URL = "http://127.0.0.1"
-	const BASE_URL = "http://mj.caimingyang.cn"
+	const BASE_URL = "https://mj.caimingyang.cn"
 #	const PORT = "1114"
-	const PORT = "80"
+	const PORT = "443"
 	const ROOM_URL = BASE_URL+":"+PORT+"/room/"
 	const LOGIN_URL = BASE_URL+":"+PORT+"/login/"
 	const REGISTER_URL = BASE_URL+":"+PORT+"/register/"
 	
-	const RELEASE_BASE_URL = "http://mj.caimingyang.cn"
-	const RELEASE_PORT = "80"
+	const RELEASE_BASE_URL = "https://mj.caimingyang.cn"
+	const RELEASE_PORT = "443"
 	const RELEASE_ROOM_URL = RELEASE_BASE_URL+":"+RELEASE_PORT+"/room/"
 
 class WebSockt:
 #	const BASE_URL = "ws://127.0.0.1"
-	const BASE_URL = "ws://mj.caimingyang.cn"
+	const BASE_URL = "wss://mj.caimingyang.cn"
 #	const BASE_PORT = "1114"
-	const BASE_PORT = "80"
+	const BASE_PORT = "443"
 	const URL = BASE_URL+":"+BASE_PORT
 	
-	const RELEASE_BASE_URL = "ws://mj.caimingyang.cn"
+	const RELEASE_BASE_URL = "wss://mj.caimingyang.cn"
 	const RELEASE_BASE_PORT = "80"
 	const RELEASE_URL = RELEASE_BASE_URL+":"+RELEASE_BASE_PORT
 	

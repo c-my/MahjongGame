@@ -19,7 +19,7 @@ func _ready():
 
 
 func send_login():
-	var use_ssl = false
+	var use_ssl = true
 	var headers = ["Content-Type: application/json"]
 	var dict = {"username":$LoginPanel/VBoxContainer/GridContainer/UsernameEdit.text,
 		"password":$LoginPanel/VBoxContainer/GridContainer/PasswordEdit.text,}
@@ -31,7 +31,7 @@ func send_signup():
 	var gender = Message.gender.FEMALE
 	if $RegisterDialog/VBoxContainer/GridContainer/GenderContainer/MaleCheckBox.pressed:
 		gender = Message.gender.MALE
-	var use_ssl = false
+	var use_ssl = true
 	var headers = ["Content-Type: application/json"]
 	var dict = {"username":$RegisterDialog/VBoxContainer/GridContainer/UsernameEdit.text,
 		"password":$RegisterDialog/VBoxContainer/GridContainer/PasswordEdit.text,

@@ -36,6 +36,10 @@ window/stretch/mode="2d"
 
 theme/use_hidpi=true
 
+[network]
+
+ssl/certificates="res://Asset/Cert/ca-certificates.crt"
+
 [rendering]
 
 environment/default_environment="res://default_env.tres"
