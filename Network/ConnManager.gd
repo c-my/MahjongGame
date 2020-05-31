@@ -34,6 +34,7 @@ func _ready():
 
 		
 func connect_ws(user_id):
+	set_process(true)
 	# Initiate connection to the given URL.
 	var err = _client.connect_to_url(Constants.WebSockt.URL+"/ws/"+ str(user_id))
 	if err != OK:

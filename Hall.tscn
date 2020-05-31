@@ -14,24 +14,24 @@
 texture = ExtResource( 7 )
 region_rect = Rect2( 0, 0, 640, 569 )
 
-[sub_resource type="DynamicFont" id=7]
+[sub_resource type="DynamicFont" id=2]
 size = 32
 font_data = ExtResource( 8 )
 
-[sub_resource type="DynamicFont" id=8]
+[sub_resource type="DynamicFont" id=3]
 size = 32
 font_data = ExtResource( 8 )
 
-[sub_resource type="StyleBoxTexture" id=9]
+[sub_resource type="StyleBoxTexture" id=4]
 
-[sub_resource type="Theme" id=10]
+[sub_resource type="Theme" id=5]
 PopupMenu/colors/font_color = Color( 0, 0, 0, 1 )
 PopupMenu/colors/font_color_accel = Color( 0.7, 0.7, 0.7, 0.8 )
 PopupMenu/colors/font_color_disabled = Color( 0.4, 0.4, 0.4, 0.8 )
 PopupMenu/colors/font_color_hover = Color( 0.88, 0.88, 0.88, 1 )
 PopupMenu/constants/hseparation = 8
 PopupMenu/constants/vseparation = 8
-PopupMenu/fonts/font = SubResource( 8 )
+PopupMenu/fonts/font = SubResource( 3 )
 PopupMenu/icons/checked = null
 PopupMenu/icons/radio_checked = null
 PopupMenu/icons/radio_unchecked = null
@@ -40,28 +40,28 @@ PopupMenu/icons/unchecked = null
 PopupMenu/styles/hover = null
 PopupMenu/styles/labeled_separator_left = null
 PopupMenu/styles/labeled_separator_right = null
-PopupMenu/styles/panel = SubResource( 9 )
+PopupMenu/styles/panel = SubResource( 4 )
 PopupMenu/styles/panel_disabled = null
 PopupMenu/styles/separator = null
 
-[sub_resource type="StyleBoxTexture" id=3]
+[sub_resource type="StyleBoxTexture" id=6]
 texture = ExtResource( 9 )
 region_rect = Rect2( 0, 0, 257, 59 )
 
-[sub_resource type="StyleBoxTexture" id=4]
+[sub_resource type="StyleBoxTexture" id=7]
 texture = ExtResource( 9 )
 region_rect = Rect2( 0, 0, 257, 59 )
 
-[sub_resource type="DynamicFont" id=5]
+[sub_resource type="DynamicFont" id=8]
 size = 32
 extra_spacing_char = 5
 font_data = ExtResource( 8 )
 
-[sub_resource type="DynamicFont" id=2]
+[sub_resource type="DynamicFont" id=9]
 size = 32
 font_data = ExtResource( 8 )
 
-[sub_resource type="DynamicFont" id=6]
+[sub_resource type="DynamicFont" id=10]
 size = 32
 font_data = ExtResource( 8 )
 
@@ -133,7 +133,7 @@ alignment = 1
 margin_left = 136.0
 margin_right = 207.0
 margin_bottom = 48.0
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = SubResource( 2 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "玩 法"
 
@@ -141,12 +141,12 @@ text = "玩 法"
 margin_left = 215.0
 margin_right = 503.0
 margin_bottom = 48.0
-theme = SubResource( 10 )
-custom_styles/hover = SubResource( 3 )
-custom_styles/pressed = SubResource( 3 )
-custom_styles/focus = SubResource( 3 )
-custom_styles/normal = SubResource( 4 )
-custom_fonts/font = SubResource( 5 )
+theme = SubResource( 5 )
+custom_styles/hover = SubResource( 6 )
+custom_styles/pressed = SubResource( 6 )
+custom_styles/focus = SubResource( 6 )
+custom_styles/normal = SubResource( 7 )
+custom_fonts/font = SubResource( 8 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_colors/font_color_hover = Color( 0, 0, 0, 1 )
 custom_colors/font_color_pressed = Color( 0, 0, 0, 1 )
@@ -163,7 +163,7 @@ alignment = 1
 margin_left = 154.0
 margin_right = 282.0
 margin_bottom = 48.0
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 9 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "房间密码"
 
@@ -171,9 +171,9 @@ text = "房间密码"
 margin_left = 302.0
 margin_right = 590.0
 margin_bottom = 48.0
-custom_styles/focus = SubResource( 3 )
-custom_styles/normal = SubResource( 4 )
-custom_fonts/font = SubResource( 5 )
+custom_styles/focus = SubResource( 6 )
+custom_styles/normal = SubResource( 7 )
+custom_fonts/font = SubResource( 8 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 align = 1
 max_length = 6
@@ -233,7 +233,7 @@ alignment = 1
 margin_left = 124.0
 margin_right = 220.0
 margin_bottom = 48.0
-custom_fonts/font = SubResource( 6 )
+custom_fonts/font = SubResource( 10 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "房间号"
 
@@ -241,9 +241,9 @@ text = "房间号"
 margin_left = 228.0
 margin_right = 516.0
 margin_bottom = 48.0
-custom_styles/focus = SubResource( 3 )
-custom_styles/normal = SubResource( 4 )
-custom_fonts/font = SubResource( 5 )
+custom_styles/focus = SubResource( 6 )
+custom_styles/normal = SubResource( 7 )
+custom_fonts/font = SubResource( 8 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 align = 1
 max_length = 6
@@ -261,7 +261,7 @@ alignment = 1
 margin_left = 136.0
 margin_right = 207.0
 margin_bottom = 48.0
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = SubResource( 2 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "密 码"
 
@@ -269,9 +269,9 @@ text = "密 码"
 margin_left = 215.0
 margin_right = 503.0
 margin_bottom = 48.0
-custom_styles/focus = SubResource( 3 )
-custom_styles/normal = SubResource( 4 )
-custom_fonts/font = SubResource( 5 )
+custom_styles/focus = SubResource( 6 )
+custom_styles/normal = SubResource( 7 )
+custom_fonts/font = SubResource( 8 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 align = 1
 max_length = 6
