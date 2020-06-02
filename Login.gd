@@ -92,10 +92,12 @@ func _on_LoginConfirmButton_pressed():
 	send_login()
 
 func _on_LoginButton_pressed():
-	$LoginPanel.popup_centered()
+#	$LoginPanel.popup_centered()
+	$LoginPanel.popup_centered_ratio(0.6)
 
 func _on_SignupButton_pressed():
-	$RegisterDialog.popup_centered()
+#	$RegisterDialog.popup_centered()
+	$RegisterDialog.popup_centered_ratio(0.6)
 
 
 

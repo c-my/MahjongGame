@@ -401,10 +401,9 @@ texture_normal = ExtResource( 34 )
 texture_pressed = ExtResource( 33 )
 
 [node name="BottomAvatar" type="HBoxContainer" parent="."]
-visible = false
-margin_top = 991.896
+margin_top = 908.896
 margin_right = 127.0
-margin_bottom = 1222.9
+margin_bottom = 1139.9
 script = ExtResource( 42 )
 __meta__ = {
 "_edit_use_anchors_": false

@@ -143,6 +143,8 @@ func handle_chow():
 func handle_left_chow():
 	if current_msg == null:
 		return
+	$ChowPanel.hide()
+	$PlayerAction.hide()
 	var suit = current_msg["current_tile"]["suit"]
 	var number = current_msg["current_tile"]["number"]
 	play_action_audio(Message.player_action.CHOW, my_gender)
@@ -151,6 +153,8 @@ func handle_left_chow():
 func handle_mid_chow():
 	if current_msg == null:
 		return
+	$ChowPanel.hide()
+	$PlayerAction.hide()
 	var suit = current_msg["current_tile"]["suit"]
 	var number = current_msg["current_tile"]["number"]
 	play_action_audio(Message.player_action.CHOW, my_gender)
@@ -159,6 +163,8 @@ func handle_mid_chow():
 func handle_right_chow():
 	if current_msg == null:
 		return
+	$ChowPanel.hide()
+	$PlayerAction.hide()
 	var suit = current_msg["current_tile"]["suit"]
 	var number = current_msg["current_tile"]["number"]
 	play_action_audio(Message.player_action.CHOW, my_gender)
@@ -171,20 +177,23 @@ func handle_pong():
 		return
 	play_action_audio(Message.player_action.PONG, my_gender)
 	ConnManager.send_pong(current_msg["current_tile"], my_table_order)
-	
+	$PlayerAction.hide()
+		
 func handle_kong():
 	if current_msg == null:
 		return
 	if current_kong_type == Message.player_action.EXPOSED_KONG:
 		play_action_audio(current_kong_type, my_gender)
 		ConnManager.send_exposedkong(current_msg["current_tile"], my_table_order)
+		$PlayerAction.hide()
 	elif current_kong_type == Message.player_action.CONCEALED_KONG:
 		play_action_audio(current_kong_type, my_gender)		
 		ConnManager.send_concealedkong(current_msg["current_tile"], my_table_order)
+		$PlayerAction.hide()
 	elif current_kong_type == Message.player_action.ADDED_KONG:
 		play_action_audio(current_kong_type, my_gender)		
 		ConnManager.send_addedkong(current_msg["current_tile"], my_table_order)
-		
+		$PlayerAction.hide()
 
 func handle_win():
 	if current_msg == null:
@@ -192,7 +201,7 @@ func handle_win():
 	print_debug("send win")
 	play_action_audio(Message.player_action.WIN, my_gender)	
 	ConnManager.send_win(current_msg["current_tile"], my_table_order)
-
+	$PlayerAction.hide()
 		
 func handle_cancel():
 	if current_msg == null:
@@ -318,6 +327,10 @@ func set_player_action(msg):
 		
 func set_shown_areas(msg):
 	var tiles = msg["player_tile"]
+	$BottomShown.clear_tiles()
+	$RightShown.clear_tiles()
+	$OppoShown.clear_tiles()
+	$LeftShown.clear_tiles()
 	if tiles == null:
 		return
 	var bottom_shown = tiles[my_table_order]["shown_tiles"]
