@@ -15,7 +15,7 @@ func _ready():
 	hide_texture = ImageTexture.new()
 	hide_texture = load("res://Asset/Tile/HideTileBottom.png")
 	position = Vector2(Constants.Screen.WIDTH-Constants.Table.BOTTOM_SHOWN_MARGIN_X-
-	3*Constants.Tile.BOTTOM_DROP_WIDTH, Constants.Table.BOTTOM_SHOWN_MARGIN_Y+Constants.Tile.OPPOSITE_HAND_HEIGHT)
+	3*Constants.Tile.BOTTOM_DROP_WIDTH, Constants.Table.BOTTOM_SHOWN_MARGIN_Y+Constants.Tile.OPPOSITE_HAND_HEIGHT-20)
 
 	
 func show_tiles(tiles):

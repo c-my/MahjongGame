@@ -32,9 +32,12 @@ func get_tile_instance(suit, number):
 	return tile
 
 func show_tiles():
+	var row = -1
 	for i in range(tiles.size()):
-		tiles[i].position = Vector2(-i*Constants.Tile.SIDE_DROP_DIFF, 
-				-i*(Constants.Tile.SIDE_DROP_HEIGHT-Constants.Tile.SIDE_DROP_THICK))
+		if i % 13 == 0:
+			row += 1
+		tiles[i].position = Vector2(-row*Constants.Tile.SIDE_DROP_HEIGHT, 
+				-(i%13)*(Constants.Tile.SIDE_DROP_HEIGHT-Constants.Tile.SIDE_DROP_THICK))
 				
 	
 func clear_tiles():

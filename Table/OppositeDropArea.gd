@@ -28,9 +28,11 @@ func get_tile_instance(suit, number):
 	return tile
 
 func show_tiles():
+	var row = -1
 	for i in range(get_children().size()):
-		get_children()[i].position = Vector2(-i*Constants.Tile.OPPOSITE_DROP_WIDTH, 0)
-	pass
+		if i % 14 == 0:
+			row += 1
+		get_children()[i].position = Vector2(-(i%14)*Constants.Tile.OPPOSITE_DROP_WIDTH, row*(Constants.Tile.OPPOSITE_DROP_HEIGHT-Constants.Tile.OPPOSITE_DROP_THICK))
 
 func clear_tiles():
 	for tile in get_children():

@@ -22,8 +22,7 @@ func _ready():
 	ConnManager.connect("recv_join_msg", self, "handle_join_msg")
 	ConnManager.connect("conn_failed", self, "handle_conn_failed")
 	
-	
-	$ChatField.connect("send_chat", self, "handle_send_chat_pressed")
+	$ChatNode/ChatField.connect("send_chat", self, "handle_send_chat_pressed")
 
 	
 	$PlayerAction/Chow.connect("pressed", self, "handle_chow")
@@ -66,7 +65,7 @@ func handle_game_result_msg(msg):
 	var winner = int(msg["winner"])
 	if winner >= 0:
 		play_action_audio(Message.player_action.WIN, msg["user_list"][winner]["gender"])
-	$GameResultPanel.show_result(msg)
+	$ResultNode/GameResultPanel.show_result(msg)
 	$PlayerAction.hide()
 	$ReadyButton.show()
 	print_debug("winner: ", winner)

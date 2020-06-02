@@ -30,7 +30,7 @@ func rearrange_tiles():
 		tiles[i].position = Vector2(i*Constants.Tile.OPPOSITE_HAND_WIDTH, 0)
 	var x = (Constants.Screen.WIDTH - get_children().size()*Constants.Tile.OPPOSITE_HAND_WIDTH)/2.0
 	var y = Constants.Table.OPPO_HAND_MARGIN_Y
-	self.position = Vector2(x, y)
+	self.position = Vector2(x, y-20)
 	
 func get_tile_instance():
 	var tile = Sprite.new()

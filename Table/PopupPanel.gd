@@ -16,6 +16,7 @@ func _ready():
 	
 	
 func show_result(msg):
+	set("z", 6)
 	clear_tiles()
 	popup_centered(Vector2(1200, 550))	
 	for i in range(4):
