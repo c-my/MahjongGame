@@ -362,22 +362,23 @@ func set_action_audio(msg):
 		play_action_audio(last_action, gender)
 		
 func set_avatars(msg):
+	var first_player = msg["first_player"]
 	var users_info = msg["user_list"]
 	var bottom_nickname = users_info[my_table_order]["nickname"]
 	var bottom_gender = users_info[my_table_order]["gender"]
-	$BottomAvatar.show_avatar(bottom_nickname, bottom_gender, my_table_order==0)
+	$BottomAvatar.show_avatar(bottom_nickname, bottom_gender, my_table_order==first_player)
 	
 	var right_nickname = users_info[(my_table_order+1)%4]["nickname"]
 	var right_gender = users_info[(my_table_order+1)%4]["gender"]
-	$RightAvatar.show_avatar(right_nickname, right_gender, my_table_order==3)
+	$RightAvatar.show_avatar(right_nickname, right_gender, (my_table_order+1)%4==first_player)
 	
 	var oppo_nickname = users_info[(my_table_order+2)%4]["nickname"]
 	var oppo_gender = users_info[(my_table_order+2)%4]["gender"]
-	$OppoAvatar.show_avatar(oppo_nickname, oppo_gender, my_table_order==2)
+	$OppoAvatar.show_avatar(oppo_nickname, oppo_gender, (my_table_order+2)%4==first_player)
 	
 	var left_nickname = users_info[(my_table_order+3)%4]["nickname"]
 	var left_gender = users_info[(my_table_order+3)%4]["gender"]
-	$LeftAvatar.show_avatar(left_nickname, left_gender, my_table_order==1)
+	$LeftAvatar.show_avatar(left_nickname, left_gender, (my_table_order+3)%4==first_player)
 	
 func set_wall_count(msg):
 	$InfoArea/WallCount.text = str(msg["wall_count"])
