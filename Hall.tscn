@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://Asset/HallBackground.png" type="Texture" id=1]
 [ext_resource path="res://Asset/Button/RoomControl/CreateRoom.png" type="Texture" id=2]
@@ -73,6 +73,14 @@ font_data = ExtResource( 8 )
 flags = 4
 load_path = "res://.import/QuitButton.png-31c18ce8db720f95af92c09426515d86.stex"
 
+[sub_resource type="StyleBoxTexture" id=14]
+texture = ExtResource( 7 )
+region_rect = Rect2( 0, 0, 640, 569 )
+
+[sub_resource type="DynamicFont" id=12]
+size = 72
+font_data = ExtResource( 8 )
+
 [node name="Node2D" type="Node2D"]
 script = ExtResource( 4 )
 
@@ -114,7 +122,6 @@ __meta__ = {
 }
 
 [node name="CreateRoomDialog" type="PopupPanel" parent="."]
-visible = true
 margin_right = 930.0
 margin_bottom = 580.0
 custom_styles/panel = SubResource( 1 )
@@ -362,9 +369,132 @@ texture_normal = SubResource( 11 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="NoSuchRoom" type="PopupDialog" parent="."]
+margin_right = 500.0
+margin_bottom = 500.0
+custom_styles/panel = SubResource( 14 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="NoSuchRoom"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -216.0
+margin_top = -94.0
+margin_right = 216.0
+margin_bottom = 94.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="NoSuchRoom/VBoxContainer"]
+margin_right = 432.0
+margin_bottom = 105.0
+custom_fonts/font = SubResource( 12 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "此房间不存在"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="NoSuchRoom/VBoxContainer"]
+margin_top = 113.0
+margin_right = 432.0
+margin_bottom = 188.0
+alignment = 1
+
+[node name="ConfirmButton" type="TextureButton" parent="NoSuchRoom/VBoxContainer/HBoxContainer"]
+margin_left = 105.0
+margin_right = 326.0
+margin_bottom = 75.0
+texture_normal = ExtResource( 5 )
+
+[node name="WrongPassword" type="PopupDialog" parent="."]
+margin_right = 500.0
+margin_bottom = 500.0
+custom_styles/panel = SubResource( 14 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="WrongPassword"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -216.0
+margin_top = -94.0
+margin_right = 216.0
+margin_bottom = 94.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="WrongPassword/VBoxContainer"]
+margin_right = 432.0
+margin_bottom = 105.0
+custom_fonts/font = SubResource( 12 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "房间密码错误"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="WrongPassword/VBoxContainer"]
+margin_top = 113.0
+margin_right = 432.0
+margin_bottom = 188.0
+alignment = 1
+
+[node name="ConfirmButton" type="TextureButton" parent="WrongPassword/VBoxContainer/HBoxContainer"]
+margin_left = 105.0
+margin_right = 326.0
+margin_bottom = 75.0
+texture_normal = ExtResource( 5 )
+
+[node name="NoSeat" type="PopupDialog" parent="."]
+margin_right = 500.0
+margin_bottom = 500.0
+custom_styles/panel = SubResource( 14 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="NoSeat"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -216.0
+margin_top = -94.0
+margin_right = 216.0
+margin_bottom = 94.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="NoSeat/VBoxContainer"]
+margin_right = 432.0
+margin_bottom = 105.0
+custom_fonts/font = SubResource( 12 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "房间人数已满"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="NoSeat/VBoxContainer"]
+margin_top = 113.0
+margin_right = 432.0
+margin_bottom = 188.0
+alignment = 1
+
+[node name="ConfirmButton" type="TextureButton" parent="NoSeat/VBoxContainer/HBoxContainer"]
+margin_left = 105.0
+margin_right = 326.0
+margin_bottom = 75.0
+texture_normal = ExtResource( 5 )
 [connection signal="pressed" from="ButtonContainer/CreateRoomButton" to="." method="_on_CreateRoomButton_pressed"]
 [connection signal="pressed" from="ButtonContainer/EnterRoomButton" to="." method="_on_EnterRoomButton_pressed"]
 [connection signal="pressed" from="CreateRoomDialog/VoxContainer/ButtonContainer/ConfirmButton" to="." method="_on_CreateRoom_ConfirmButton_pressed"]
 [connection signal="pressed" from="CreateRoomDialog/VoxContainer/ButtonContainer/CancelButton" to="." method="_on_CreateRoom_CancelButton_pressed"]
 [connection signal="pressed" from="JoinRoomDialog/VoxContainer/ButtonContainer/ConfirmButton" to="." method="_on_JoinRoom_ConfirmButton_pressed"]
 [connection signal="pressed" from="JoinRoomDialog/VoxContainer/ButtonContainer/CancelButton" to="." method="_on_JoinRoom_CancelButton_pressed"]
+[connection signal="pressed" from="NoSuchRoom/VBoxContainer/HBoxContainer/ConfirmButton" to="." method="_on_NoSuchRoom_ConfirmButton_pressed"]
+[connection signal="pressed" from="WrongPassword/VBoxContainer/HBoxContainer/ConfirmButton" to="." method="_on_WrongPassword_ConfirmButton_pressed"]
+[connection signal="pressed" from="NoSeat/VBoxContainer/HBoxContainer/ConfirmButton" to="." method="_on_NoSeat_ConfirmButton_pressed"]

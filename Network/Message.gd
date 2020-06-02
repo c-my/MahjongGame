@@ -18,6 +18,8 @@ enum chow_type{LEFT, MID, RIGHT, NAC}
 
 enum gender{FEMALE, MALE}
 
+enum join_err{WRONG_PASSWORD=-3, NO_SEAT, NO_SUCH_ROOM}
+
 var game_msg_dict = {
 	"msg_type":msg_type.GAME_MSG,
 	"table_order":0,

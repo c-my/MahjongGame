@@ -82,7 +82,13 @@ func on_join_request_completed(result, response_code, headers, body):
 		ConnManager.connect_ws(Global.my_user_id)
 	else:
 		var reason = res["reason"]
-		print_debug("failed to join room")
+		print_debug("failed to join room, reason: ", reason)
+		if reason == Message.join_err.NO_SUCH_ROOM:
+			$NoSuchRoom.popup_centered()
+		elif reason == Message.join_err.NO_SEAT:
+			$NoSeat.popup_centered()
+		elif reason == Message.join_err.WRONG_PASSWORD:
+			$WrongPassword.popup_centered()
 		
 
 	
@@ -114,4 +120,18 @@ func send_join_room():
 
 
 
+
+
+
+func _on_NoSuchRoom_ConfirmButton_pressed():
+	$NoSuchRoom.hide()
+
+
+
+func _on_WrongPassword_ConfirmButton_pressed():
+	$WrongPassword.hide()
+
+
+func _on_NoSeat_ConfirmButton_pressed():
+	$NoSeat.hide()
 
