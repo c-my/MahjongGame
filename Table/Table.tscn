@@ -761,6 +761,7 @@ visible = true
 margin_right = 600.0
 margin_bottom = 400.0
 custom_styles/panel = SubResource( 9 )
+popup_exclusive = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -793,8 +794,10 @@ margin_bottom = 225.0
 texture_normal = ExtResource( 54 )
 
 [node name="InfoArea" type="HBoxContainer" parent="."]
-margin_right = 40.0
-margin_bottom = 40.0
+margin_left = 25.0
+margin_top = 25.0
+margin_right = 428.0
+margin_bottom = 147.0
 __meta__ = {
 "_edit_use_anchors_": false
 }

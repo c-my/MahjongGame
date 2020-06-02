@@ -81,7 +81,9 @@ func get_avatar_path(gender):
 
 func clear_tiles():
 	for tile in get_children():
-		remove_child(tile)
-		tile.queue_free()
+		if tile is Label:
+			continue
+		else:
+			tile.queue_free()
 
 
