@@ -72,36 +72,36 @@ font_data = ExtResource( 41 )
 size = 32
 font_data = ExtResource( 41 )
 
-[sub_resource type="StyleBoxTexture" id=9]
+[sub_resource type="StyleBoxTexture" id=5]
 texture = ExtResource( 52 )
 region_rect = Rect2( 0, 0, 640, 569 )
 
-[sub_resource type="DynamicFont" id=10]
+[sub_resource type="DynamicFont" id=6]
 size = 48
 font_data = ExtResource( 41 )
 
-[sub_resource type="StreamTexture" id=11]
+[sub_resource type="StreamTexture" id=7]
 flags = 4
 load_path = "res://.import/ExitButton.png-90bb905636ba19a1a2935f9c69eb1cf7.stex"
 
-[sub_resource type="DynamicFont" id=12]
+[sub_resource type="DynamicFont" id=8]
 size = 64
 font_data = ExtResource( 41 )
 
-[sub_resource type="StyleBoxTexture" id=5]
+[sub_resource type="StyleBoxTexture" id=9]
 texture = ExtResource( 44 )
 region_rect = Rect2( 0, 0, 660, 60 )
 modulate_color = Color( 1, 1, 1, 0.588235 )
 
-[sub_resource type="DynamicFont" id=6]
+[sub_resource type="DynamicFont" id=10]
 size = 32
 font_data = ExtResource( 41 )
 
-[sub_resource type="StyleBoxTexture" id=7]
+[sub_resource type="StyleBoxTexture" id=11]
 texture = ExtResource( 52 )
 region_rect = Rect2( 0, 0, 640, 569 )
 
-[sub_resource type="DynamicFont" id=8]
+[sub_resource type="DynamicFont" id=12]
 size = 32
 font_data = ExtResource( 41 )
 
@@ -276,6 +276,7 @@ script = ExtResource( 28 )
 script = ExtResource( 29 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
+visible = false
 margin_right = 40.0
 margin_bottom = 40.0
 rect_scale = Vector2( 2, 4 )
@@ -700,7 +701,7 @@ one_shot = true
 [node name="DisconnectDialog" type="PopupDialog" parent="."]
 margin_right = 600.0
 margin_bottom = 400.0
-custom_styles/panel = SubResource( 9 )
+custom_styles/panel = SubResource( 5 )
 popup_exclusive = true
 __meta__ = {
 "_edit_use_anchors_": false
@@ -723,7 +724,7 @@ __meta__ = {
 [node name="Label" type="Label" parent="DisconnectDialog/VBoxContainer"]
 margin_right = 240.0
 margin_bottom = 70.0
-custom_fonts/font = SubResource( 10 )
+custom_fonts/font = SubResource( 6 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "连接已断开"
 
@@ -746,7 +747,7 @@ __meta__ = {
 margin_right = 90.0
 margin_bottom = 122.0
 rect_min_size = Vector2( 90, 122 )
-texture_normal = SubResource( 11 )
+texture_normal = SubResource( 7 )
 expand = true
 __meta__ = {
 "_edit_use_anchors_": false
@@ -763,7 +764,7 @@ margin_left = 185.0
 margin_top = 14.0
 margin_right = 220.0
 margin_bottom = 108.0
-custom_fonts/font = SubResource( 12 )
+custom_fonts/font = SubResource( 8 )
 text = "0"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -774,7 +775,7 @@ margin_left = 228.0
 margin_top = 14.0
 margin_right = 403.0
 margin_bottom = 108.0
-custom_fonts/font = SubResource( 12 )
+custom_fonts/font = SubResource( 8 )
 text = "00000"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -797,8 +798,8 @@ __meta__ = {
 margin_right = 423.0
 margin_bottom = 51.0
 size_flags_horizontal = 3
-custom_styles/normal = SubResource( 5 )
-custom_fonts/font = SubResource( 6 )
+custom_styles/normal = SubResource( 9 )
+custom_fonts/font = SubResource( 10 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 context_menu_enabled = false
 placeholder_text = "输入聊天消息"
@@ -818,31 +819,31 @@ margin_top = 251.0
 margin_right = 1443.0
 margin_bottom = 801.0
 rect_min_size = Vector2( 950, 550 )
-custom_styles/panel = SubResource( 7 )
+custom_styles/panel = SubResource( 11 )
 script = ExtResource( 53 )
 
 [node name="Nickname0" type="Label" parent="ResultNode/GameResultPanel"]
 margin_right = 950.0
 margin_bottom = 550.0
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = SubResource( 12 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 
 [node name="Nickname1" type="Label" parent="ResultNode/GameResultPanel"]
 margin_right = 950.0
 margin_bottom = 550.0
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = SubResource( 12 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 
 [node name="Nickname2" type="Label" parent="ResultNode/GameResultPanel"]
 margin_right = 950.0
 margin_bottom = 550.0
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = SubResource( 12 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 
 [node name="Nickname3" type="Label" parent="ResultNode/GameResultPanel"]
 margin_right = 950.0
 margin_bottom = 550.0
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = SubResource( 12 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 [connection signal="pressed" from="VBoxContainer/TestButtons/StartButton" to="." method="_on_Button9_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/Button" to="." method="_on_Button_pressed"]

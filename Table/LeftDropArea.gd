@@ -16,7 +16,7 @@ func _ready():
 func add_tile(suit, number):
 	var tile = get_tile_instance(suit, number)
 	add_child(tile)
-	show_tiles()
+
 
 func get_tile_instance(suit, number):
 	var tile = Sprite.new()

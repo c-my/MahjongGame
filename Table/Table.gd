@@ -270,21 +270,25 @@ func set_drop_areas(msg):
 	if bottom_drop_tiles!=null:
 		for t in bottom_drop_tiles:
 			$BottomDropArea.add_tile(t["suit"], t["number"])
+		$BottomDropArea.show_tiles()
 	var right_drop_tiles = msg["player_tile"][(my_table_order+1)%4]["drop_tiles"]
 	$RightDropArea.clear_tiles()
 	if right_drop_tiles!=null:
 		for t in right_drop_tiles:
 			$RightDropArea.add_tile(t["suit"], t["number"])
+		$RightDropArea.show_tiles()
 	var oppo_drop_tiles = msg["player_tile"][(my_table_order+2)%4]["drop_tiles"]
 	$OppositeDropArea.clear_tiles()
 	if oppo_drop_tiles!=null:
 		for t in oppo_drop_tiles:
 			$OppositeDropArea.add_tile(t["suit"], t["number"])
+		$OppositeDropArea.show_tiles()
 	var left_drop_tiles = msg["player_tile"][(my_table_order+3)%4]["drop_tiles"] 
 	$LeftDropArea.clear_tiles()
 	if left_drop_tiles!=null:
 		for t in left_drop_tiles:
 			$LeftDropArea.add_tile(t["suit"], t["number"])
+		$LeftDropArea.show_tiles()
 		
 func set_timer_direction(msg):
 	var current_turn = msg["current_turn"]

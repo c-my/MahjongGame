@@ -19,7 +19,7 @@ func add_tile(suit, number):
 	tiles.append(tile)
 	add_child(tile)
 	move_child(tile, 0)
-	show_tiles()
+
 
 func get_tile_instance(suit, number):
 	var tile = Sprite.new()
